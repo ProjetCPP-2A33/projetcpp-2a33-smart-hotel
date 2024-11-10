@@ -200,7 +200,7 @@ QWidget:disabled {
         <rect>
          <x>10</x>
          <y>60</y>
-         <width>831</width>
+         <width>791</width>
          <height>531</height>
         </rect>
        </property>
@@ -291,10 +291,10 @@ QWidget:disabled {
       <widget class="QGraphicsView" name="graphicsView_chart">
        <property name="geometry">
         <rect>
-         <x>850</x>
+         <x>810</x>
          <y>330</y>
-         <width>361</width>
-         <height>321</height>
+         <width>401</width>
+         <height>341</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -335,6 +335,114 @@ border-radius :15px</string>
         <string>Trier la liste des clients par:</string>
        </property>
       </widget>
+      <widget class="QPushButton" name="pushButton_trierParNom">
+       <property name="geometry">
+        <rect>
+         <x>1110</x>
+         <y>180</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #999DF2; /* Nouveau bleu pour l'arrière-plan */
+color: #000000; /* Texte blanc */
+border: 5px solid #999DF2; /* Bordure de la même couleur que l'arrière-plan */
+border-radius: 10px; /* Coins arrondis */
+padding: 5px 10px; /* Espacement interne */
+font: 15 8pt; /* Police avec un poids de 75 et taille de 15pt */
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="ressource.qrc">
+         <normaloff>:/img/6fa8be47-cec4-4270-ae1f-b0962243668d-removebg-preview.png</normaloff>:/img/6fa8be47-cec4-4270-ae1f-b0962243668d-removebg-preview.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_trierParNom_3">
+       <property name="geometry">
+        <rect>
+         <x>1160</x>
+         <y>180</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #999DF2; /* Nouveau bleu pour l'arrière-plan */
+color: #000000; /* Texte blanc */
+border: 5px solid #999DF2; /* Bordure de la même couleur que l'arrière-plan */
+border-radius: 10px; /* Coins arrondis */
+padding: 5px 10px; /* Espacement interne */
+font: 15 8pt; /* Police avec un poids de 75 et taille de 15pt */
+</string>
+       </property>
+       <property name="icon">
+        <iconset resource="ressource.qrc">
+         <normaloff>:/img/29abf6e7-23c4-4564-b07f-5229067fda50-removebg-preview.png</normaloff>:/img/29abf6e7-23c4-4564-b07f-5229067fda50-removebg-preview.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+       <property name="autoExclusive">
+        <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_export_pdf">
+       <property name="geometry">
+        <rect>
+         <x>600</x>
+         <y>620</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #999DF2; /* Nouveau bleu pour l'arrière-plan */
+color: #ffffff; /* Texte blanc */
+border: 5px solid #999DF2; /* Bordure de la même couleur que l'arrière-plan */
+border-radius: 10px; /* Coins arrondis */
+padding: 5px 10px; /* Espacement interne */
+font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="ressource.qrc">
+         <normaloff>:/img/WhatsApp_Image_2024-11-10_at_23.19.58-removebg-preview.png</normaloff>:/img/WhatsApp_Image_2024-11-10_at_23.19.58-removebg-preview.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>90</width>
+         <height>90</height>
+        </size>
+       </property>
+       <property name="autoRepeat">
+        <bool>false</bool>
+       </property>
+      </widget>
      </widget>
      <widget class="QLineEdit" name="lineEdit_critereRecherche">
       <property name="geometry">
@@ -365,9 +473,9 @@ border-radius: 20px; </string>
       <property name="geometry">
        <rect>
         <x>1120</x>
-        <y>70</y>
-        <width>31</width>
-        <height>31</height>
+        <y>60</y>
+        <width>41</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -383,8 +491,8 @@ font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
        <string/>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>:/resources/img/search_6033394.png</normaloff>:/resources/img/search_6033394.png</iconset>
+       <iconset resource="ressource.qrc">
+        <normaloff>:/img/0b26b188-484e-4955-b620-a8405c76b74e-removebg-preview.png</normaloff>:/img/0b26b188-484e-4955-b620-a8405c76b74e-removebg-preview.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -405,51 +513,13 @@ font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
        <bool>false</bool>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_tri_asc">
-      <property name="geometry">
-       <rect>
-        <x>1120</x>
-        <y>200</y>
-        <width>31</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: #999DF2; /* Nouveau bleu pour l'arrière-plan */
-color: #ffffff; /* Texte blanc */
-border: 5px solid #999DF2; /* Bordure de la même couleur que l'arrière-plan */
-border-radius: 10px; /* Coins arrondis */
-padding: 5px 10px; /* Espacement interne */
-font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset>
-        <normaloff>:/resources/img/up-right-arrow_5689533.png</normaloff>:/resources/img/up-right-arrow_5689533.png</iconset>
-      </property>
-      <property name="iconSize">
-       <size>
-        <width>25</width>
-        <height>25</height>
-       </size>
-      </property>
-      <property name="autoRepeat">
-       <bool>false</bool>
-      </property>
-      <property name="autoExclusive">
-       <bool>false</bool>
-      </property>
-     </widget>
      <widget class="QPushButton" name="pushButton_tri_desc">
       <property name="geometry">
        <rect>
         <x>1140</x>
-        <y>280</y>
-        <width>31</width>
-        <height>31</height>
+        <y>270</y>
+        <width>41</width>
+        <height>41</height>
        </rect>
       </property>
       <property name="styleSheet">
@@ -465,8 +535,8 @@ font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
        <string/>
       </property>
       <property name="icon">
-       <iconset>
-        <normaloff>:/resources/img/down-right-arrow_5689533.png</normaloff>:/resources/img/down-right-arrow_5689533.png</iconset>
+       <iconset resource="ressource.qrc">
+        <normaloff>:/img/8051f3d1-c574-4c63-b54e-83dfdd52aa02-removebg-preview.png</normaloff>:/img/8051f3d1-c574-4c63-b54e-83dfdd52aa02-removebg-preview.png</iconset>
       </property>
       <property name="iconSize">
        <size>
@@ -505,8 +575,23 @@ QComboBox::drop-down {
         <string>IdClient</string>
        </property>
       </item>
+      <item>
+       <property name="text">
+        <string>Nom</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>Prenom</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>CIN</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QComboBox" name="comboBox_critereRech_2">
+     <widget class="QComboBox" name="comboBox_ordre">
       <property name="geometry">
        <rect>
         <x>950</x>
@@ -538,6 +623,11 @@ QComboBox::drop-down {
       </property>
       <item>
        <property name="text">
+        <string>Choisir un critere</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
         <string>Genre</string>
        </property>
       </item>
@@ -561,11 +651,10 @@ border-radius :15px</string>
      </widget>
      <zorder>groupBox_2</zorder>
      <zorder>lineEdit_critereRecherche</zorder>
-     <zorder>pushButton_tri_asc</zorder>
      <zorder>pushButton_tri_desc</zorder>
      <zorder>pushButtonRechercher_met</zorder>
      <zorder>comboBox_critereRecherche</zorder>
-     <zorder>comboBox_critereRech_2</zorder>
+     <zorder>comboBox_ordre</zorder>
      <zorder>comboBoxCritere</zorder>
      <zorder>label_21</zorder>
     </widget>
@@ -2558,6 +2647,8 @@ QPushButton:disabled {
    </property>
   </widget>
  </widget>
- <resources/>
+ <resources>
+  <include location="ressource.qrc"/>
+ </resources>
  <connections/>
 </ui>

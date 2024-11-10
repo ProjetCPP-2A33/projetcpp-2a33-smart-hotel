@@ -16,6 +16,16 @@ class MainWindow : public QMainWindow
 public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
+public slots:
+    void on_pushButton_trierParNom_clicked();
+    void on_pushButton_trierParNom_3_clicked();
+    void exportToPdf(const QString &fileName);
+    void on_pushButton_export_pdf_clicked();
+    void createPieChart(QString critere);
+    void on_comboBoxCritere_currentIndexChanged();
+    void on_pushButtonRechercher_met_clicked();
+    void on_pushButton_afficher_clicked();
+
 private slots:
     void on_pushButton_ajouter_clicked();
     void on_pushButton_supprimer_clicked();

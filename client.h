@@ -39,6 +39,12 @@ public:
     bool supprimer(int);
     Client rechercher(int idC);
     bool modifier(int idC);
+    QSqlQueryModel* trierParNom(const QString& ordre = "ASC");
+    QSqlQueryModel* trierParNom_desc(const QString& order="DESC");
+    QSqlQueryModel* rechercher(const QString& critere, const QString& typeRecherche);
+
+    //QSqlQueryModel* rechercherClients(const QString& champ, const QString& valeur);
+
 
     QString CIN,nomC, prenomC, nationalite, emailC, genre;
     int num_telC;

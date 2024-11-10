@@ -147,5 +147,54 @@ bool Client::modifier(int idC)
     }
     return true;
 }
+QSqlQueryModel* Client::trierParNom(const QString& ordre)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QString queryText = "SELECT * FROM CLIENTS ORDER BY NOMC ";
+    model->setQuery(queryText);
+    return model;
+}
+
+QSqlQueryModel* Client::trierParNom_desc(const QString& ordre)
+{
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QString queryText = "SELECT * FROM CLIENTS ORDER BY NOMC DESC";
+    model->setQuery(queryText);
+    return model;
+}
+
+
+QSqlQueryModel* Client::rechercher(const QString& critere, const QString& typeRecherche) {
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QSqlQuery query;
+
+    // Utilisez le critère pour effectuer la recherche en fonction du type choisi
+    QString queryString;
+    if (typeRecherche == "Nom") {
+        queryString = "SELECT * FROM CLIENTS WHERE NOMC LIKE :criterePattern";
+    } else if (typeRecherche == "Prenom") {
+        queryString = "SELECT * FROM CLIENTS WHERE PRENOMC LIKE :criterePattern";
+    } else if (typeRecherche == "IdClient") {
+        queryString = "SELECT * FROM CLIENTS WHERE IDC LIKE :criterePattern";
+    }else if (typeRecherche == "CIN") {
+        queryString = "SELECT * FROM CLIENTS WHERE CIN LIKE :criterePattern";
+    }
+    // Ajoutez d'autres conditions en fonction des types de recherche disponibles
+
+    query.prepare(queryString);
+    query.bindValue(":criterePattern", "%" + critere + "%");  // Recherche partielle (LIKE %critere%)
+
+    if (query.exec()) {
+        model->setQuery(query);
+        return model;
+    } else {
+        // Gérer les erreurs ou retourner nullptr selon vos besoins
+        delete model;
+        return nullptr;
+    }
+}
+
+
+
 
 

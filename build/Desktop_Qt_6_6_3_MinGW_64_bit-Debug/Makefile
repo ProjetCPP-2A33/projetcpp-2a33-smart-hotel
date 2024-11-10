@@ -402,7 +402,11 @@ Makefile: ../../crud.pro C:/Qt_6_6/6.6.3/mingw_64/mkspecs/win32-g++/qmake.conf C
 		C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/yacc.prf \
 		C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/lex.prf \
 		../../crud.pro \
+		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6PrintSupport.prl \
+		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Charts.prl \
+		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6OpenGLWidgets.prl \
 		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Widgets.prl \
+		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6OpenGL.prl \
 		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Gui.prl \
 		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Sql.prl \
 		C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Core.prl \
@@ -411,7 +415,8 @@ Makefile: ../../crud.pro C:/Qt_6_6/6.6.3/mingw_64/mkspecs/win32-g++/qmake.conf C
 		../../img/b.qrc \
 		../../img/logo.qrc \
 		../../img/n.qrc \
-		../../img/t.qrc
+		../../img/t.qrc \
+		../../ressource.qrc
 	$(QMAKE) -o Makefile ../../crud.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
 C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/spec_pre.prf:
 C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/device_config.prf:
@@ -745,7 +750,11 @@ C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/exceptions.prf:
 C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/yacc.prf:
 C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/lex.prf:
 ../../crud.pro:
+C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6PrintSupport.prl:
+C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Charts.prl:
+C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6OpenGLWidgets.prl:
 C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Widgets.prl:
+C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6OpenGL.prl:
 C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Gui.prl:
 C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Sql.prl:
 C:/Qt_6_6/6.6.3/mingw_64/lib/Qt6Core.prl:
@@ -755,6 +764,7 @@ C:/Qt_6_6/6.6.3/mingw_64/mkspecs/features/build_pass.prf:
 ../../img/logo.qrc:
 ../../img/n.qrc:
 ../../img/t.qrc:
+../../ressource.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile ../../crud.pro -spec win32-g++ CONFIG+=debug CONFIG+=qml_debug
 

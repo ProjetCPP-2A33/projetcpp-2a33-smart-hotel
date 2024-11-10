@@ -3,6 +3,25 @@
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QRegularExpression>
+#include <QPrinter>
+#include <QFileDialog>
+#include <QPainter>
+#include <QTableView>
+#include <QFont>
+#include <QRect>
+#include <QPixmap>
+#include <QString>
+
+
+#include <QSqlQuery>
+#include <QChart>
+#include <QChartView>
+#include <QBarSeries>
+#include <QBarSet>
+#include <QBarCategoryAxis>
+#include <QValueAxis>
+#include <QGraphicsProxyWidget>
+#include <QGraphicsScene>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -84,6 +103,7 @@ void MainWindow::on_pushButton_ajouter_clicked()
                                  QObject::tr("Ajout effectué\n"
                                              "Click Cancel to exit."), QMessageBox::Cancel);
         actualiserListeClients(); // Actualiser l'affichage après l'ajout
+        on_comboBoxCritere_currentIndexChanged();
         // Réinitialisez les champs après l'ajout
         ui->lineedit_cin->clear();
         ui->lineedit_tel->clear();
@@ -136,6 +156,7 @@ void MainWindow::on_pushButton_supprimer_clicked()
                                  QObject::tr("Suppression effectuée\n"
                                              "Click Cancel to exit."), QMessageBox::Cancel);
         actualiserListeClients(); // Actualiser l'affichage après la suppression
+        on_comboBoxCritere_currentIndexChanged();
         // Réinitialisez les champs de l'interface après la suppression
         ui->lineedit_id_rech->clear();
         ui->lineedit_cin_supp->clear();
@@ -250,6 +271,7 @@ void MainWindow::on_pushButton_modifier_clicked() {
     if (clientAModifier.modifier(idC)) {
         QMessageBox::information(this, "Modification réussie", "Les informations du client ont été modifiées.");
         actualiserListeClients();
+        on_comboBoxCritere_currentIndexChanged();
         ui->lineedit_id_modif->clear();
         ui->lineedit_cin_modif->clear();
         ui->lineedit_nom_modif->clear();
@@ -264,6 +286,129 @@ void MainWindow::on_pushButton_modifier_clicked() {
         QMessageBox::critical(this, "Erreur", "Échec de la modification des informations du client.");
     }
 }
+void MainWindow::on_pushButton_trierParNom_clicked()
+{
+    QString ordre = ui->comboBox_ordre->currentText();  // Ex. "ASC" ou "DESC"
+    ui->tableView->setModel(Cl.trierParNom(ordre));
+}
+
+
+void MainWindow::on_pushButton_trierParNom_3_clicked()
+{
+    QString ordre = ui->comboBox_ordre->currentText();  // Ex. "ASC" ou "DESC"
+    ui->tableView->setModel(Cl.trierParNom_desc(ordre));
+}
+
+void MainWindow::exportToPdf(const QString &fileName)
+{
+    QPrinter printer(QPrinter::PrinterResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPageSize(QPageSize(QPageSize::A3));
+
+    QString filePath = QFileDialog::getSaveFileName(this, tr("Enregistrer sous"), fileName, tr("Fichiers PDF (*.pdf)"));
+    if (filePath.isEmpty()) return;
+
+    printer.setOutputFileName(filePath);
+
+    QPainter painter(&printer);
+    painter.setRenderHint(QPainter::Antialiasing);
+    painter.setRenderHint(QPainter::TextAntialiasing);
+
+    QFont titreFont("Arial", 20, QFont::Bold);
+    painter.setFont(titreFont);
+
+    // Utilisation de `pageLayout().fullRect(QPageLayout::Point).width()` pour la largeur de la page
+    QRect titreRect(0, 0, printer.pageLayout().fullRect(QPageLayout::Point).width(), 50);
+    painter.drawText(titreRect, Qt::AlignCenter, "Liste des Clients");
+
+    ui->tableView->render(&painter);
+}
+
+void MainWindow::on_pushButton_export_pdf_clicked()
+{
+    exportToPdf("liste_clients.pdf");
+}
+
+
+void MainWindow::on_comboBoxCritere_currentIndexChanged()
+{
+    QString critere = ui->comboBoxCritere->currentText();
+    if (critere == "Genre") {
+        createPieChart(critere);
+    }
+}
+
+void MainWindow::createPieChart(QString critere)
+{
+    QSqlQuery query("SELECT " + critere + ", COUNT(*) FROM CLIENTS GROUP BY " + critere);
+    QBarSeries *barSeries = new QBarSeries();
+
+    while (query.next()) {
+        QString label = query.value(0).toString();
+        int count = query.value(1).toInt();
+        QString labelText = QString::number(count) + "-" + label;
+        QBarSet *barSet = new QBarSet(labelText);
+        *barSet << count;
+        barSeries->append(barSet);
+    }
+
+    QChart *chart = new QChart();
+    chart->addSeries(barSeries);
+    chart->setTitle("Statistiques des clients par " + critere);
+    chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    QBarCategoryAxis *axisX = new QBarCategoryAxis();
+    chart->addAxis(axisX, Qt::AlignBottom);
+    barSeries->attachAxis(axisX);
+
+    QValueAxis *axisY = new QValueAxis();
+    chart->addAxis(axisY, Qt::AlignLeft);
+    barSeries->attachAxis(axisY);
+
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+
+    QSize size = ui->graphicsView_chart->size();
+    chartView->resize(size.width(), size.height());
+
+    QGraphicsProxyWidget *proxy = new QGraphicsProxyWidget();
+    proxy->setWidget(chartView);
+
+    QGraphicsScene *scene = new QGraphicsScene();
+    scene->addItem(proxy);
+
+    ui->graphicsView_chart->setScene(scene);
+}
+
+
+void MainWindow::on_pushButtonRechercher_met_clicked() {
+    QString critereRecherche = ui->lineEdit_critereRecherche->text();
+    QString typeRecherche = ui->comboBox_critereRecherche->currentText();
+
+    Client c;
+
+    // Appel de la fonction de recherche avec le critère et le type de recherche
+    QSqlQueryModel* model = c.rechercher(critereRecherche, typeRecherche);
+    if (model != nullptr) {
+        ui->tableView->setModel(model);
+    } else {
+        // Gérer les erreurs ou afficher un message à l'utilisateur selon vos besoins
+        QMessageBox::warning(this, "Avertissement", "Erreur lors de la recherche!", QMessageBox::Ok);
+    }
+}
 
 
 
+void MainWindow::on_pushButton_afficher_clicked()
+{
+    Client c;
+
+    // Afficher la liste des athlètes dans le QTableView
+    QSqlQueryModel* model = c.afficher();
+
+    if (model != nullptr) {
+        ui->tableView->setModel(model);
+        ui->tableView->resizeColumnsToContents();
+    }
+    actualiserListeClients();
+}

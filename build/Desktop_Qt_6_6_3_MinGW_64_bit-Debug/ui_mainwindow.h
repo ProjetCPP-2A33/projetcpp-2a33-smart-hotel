@@ -41,12 +41,14 @@ public:
     QGraphicsView *graphicsView_chart;
     QLabel *label_23;
     QLabel *label_22;
+    QPushButton *pushButton_trierParNom;
+    QPushButton *pushButton_trierParNom_3;
+    QPushButton *pushButton_export_pdf;
     QLineEdit *lineEdit_critereRecherche;
     QPushButton *pushButtonRechercher_met;
-    QPushButton *pushButton_tri_asc;
     QPushButton *pushButton_tri_desc;
     QComboBox *comboBox_critereRecherche;
-    QComboBox *comboBox_critereRech_2;
+    QComboBox *comboBox_ordre;
     QComboBox *comboBoxCritere;
     QLabel *label_21;
     QWidget *Ajouter;
@@ -268,7 +270,7 @@ public:
         groupBox_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
         tableView = new QTableView(groupBox_2);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(10, 60, 831, 531));
+        tableView->setGeometry(QRect(10, 60, 791, 531));
         tableView->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "image: url(:/c/cc.png);\n"
 "image: url(:/c/cc.png);\n"
@@ -341,7 +343,7 @@ public:
 ""));
         graphicsView_chart = new QGraphicsView(groupBox_2);
         graphicsView_chart->setObjectName("graphicsView_chart");
-        graphicsView_chart->setGeometry(QRect(850, 330, 361, 321));
+        graphicsView_chart->setGeometry(QRect(810, 330, 401, 341));
         graphicsView_chart->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         label_23 = new QLabel(groupBox_2);
         label_23->setObjectName("label_23");
@@ -353,6 +355,53 @@ public:
         label_22->setGeometry(QRect(860, 150, 271, 31));
         label_22->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
 "border-radius :15px"));
+        pushButton_trierParNom = new QPushButton(groupBox_2);
+        pushButton_trierParNom->setObjectName("pushButton_trierParNom");
+        pushButton_trierParNom->setGeometry(QRect(1110, 180, 41, 41));
+        pushButton_trierParNom->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
+"color: #000000; /* Texte blanc */\n"
+"border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
+"border-radius: 10px; /* Coins arrondis */\n"
+"padding: 5px 10px; /* Espacement interne */\n"
+"font: 15 8pt; /* Police avec un poids de 75 et taille de 15pt */\n"
+""));
+        QIcon icon;
+        icon.addFile(QString::fromUtf8(":/img/6fa8be47-cec4-4270-ae1f-b0962243668d-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_trierParNom->setIcon(icon);
+        pushButton_trierParNom->setIconSize(QSize(25, 25));
+        pushButton_trierParNom->setAutoRepeat(false);
+        pushButton_trierParNom->setAutoExclusive(false);
+        pushButton_trierParNom_3 = new QPushButton(groupBox_2);
+        pushButton_trierParNom_3->setObjectName("pushButton_trierParNom_3");
+        pushButton_trierParNom_3->setGeometry(QRect(1160, 180, 41, 41));
+        pushButton_trierParNom_3->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
+"color: #000000; /* Texte blanc */\n"
+"border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
+"border-radius: 10px; /* Coins arrondis */\n"
+"padding: 5px 10px; /* Espacement interne */\n"
+"font: 15 8pt; /* Police avec un poids de 75 et taille de 15pt */\n"
+""));
+        QIcon icon1;
+        icon1.addFile(QString::fromUtf8(":/img/29abf6e7-23c4-4564-b07f-5229067fda50-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_trierParNom_3->setIcon(icon1);
+        pushButton_trierParNom_3->setIconSize(QSize(25, 25));
+        pushButton_trierParNom_3->setAutoRepeat(false);
+        pushButton_trierParNom_3->setAutoExclusive(false);
+        pushButton_export_pdf = new QPushButton(groupBox_2);
+        pushButton_export_pdf->setObjectName("pushButton_export_pdf");
+        pushButton_export_pdf->setGeometry(QRect(600, 620, 41, 41));
+        pushButton_export_pdf->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
+"color: #ffffff; /* Texte blanc */\n"
+"border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
+"border-radius: 10px; /* Coins arrondis */\n"
+"padding: 5px 10px; /* Espacement interne */\n"
+"font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
+""));
+        QIcon icon2;
+        icon2.addFile(QString::fromUtf8(":/img/WhatsApp_Image_2024-11-10_at_23.19.58-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_export_pdf->setIcon(icon2);
+        pushButton_export_pdf->setIconSize(QSize(90, 90));
+        pushButton_export_pdf->setAutoRepeat(false);
         lineEdit_critereRecherche = new QLineEdit(afficher);
         lineEdit_critereRecherche->setObjectName("lineEdit_critereRecherche");
         lineEdit_critereRecherche->setGeometry(QRect(920, 120, 231, 41));
@@ -364,7 +413,7 @@ public:
         lineEdit_critereRecherche->setAlignment(Qt::AlignmentFlag::AlignCenter);
         pushButtonRechercher_met = new QPushButton(afficher);
         pushButtonRechercher_met->setObjectName("pushButtonRechercher_met");
-        pushButtonRechercher_met->setGeometry(QRect(1120, 70, 31, 31));
+        pushButtonRechercher_met->setGeometry(QRect(1120, 60, 41, 41));
         pushButtonRechercher_met->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
 "color: #ffffff; /* Texte blanc */\n"
 "border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
@@ -372,33 +421,17 @@ public:
 "padding: 5px 10px; /* Espacement interne */\n"
 "font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
 ""));
-        QIcon icon;
-        icon.addFile(QString::fromUtf8(":/resources/img/search_6033394.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonRechercher_met->setIcon(icon);
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/img/0b26b188-484e-4955-b620-a8405c76b74e-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonRechercher_met->setIcon(icon3);
         pushButtonRechercher_met->setIconSize(QSize(25, 25));
         pushButtonRechercher_met->setCheckable(false);
         pushButtonRechercher_met->setChecked(false);
         pushButtonRechercher_met->setAutoRepeat(false);
         pushButtonRechercher_met->setAutoExclusive(false);
-        pushButton_tri_asc = new QPushButton(afficher);
-        pushButton_tri_asc->setObjectName("pushButton_tri_asc");
-        pushButton_tri_asc->setGeometry(QRect(1120, 200, 31, 31));
-        pushButton_tri_asc->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
-"color: #ffffff; /* Texte blanc */\n"
-"border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
-"border-radius: 10px; /* Coins arrondis */\n"
-"padding: 5px 10px; /* Espacement interne */\n"
-"font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
-""));
-        QIcon icon1;
-        icon1.addFile(QString::fromUtf8(":/resources/img/up-right-arrow_5689533.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_tri_asc->setIcon(icon1);
-        pushButton_tri_asc->setIconSize(QSize(25, 25));
-        pushButton_tri_asc->setAutoRepeat(false);
-        pushButton_tri_asc->setAutoExclusive(false);
         pushButton_tri_desc = new QPushButton(afficher);
         pushButton_tri_desc->setObjectName("pushButton_tri_desc");
-        pushButton_tri_desc->setGeometry(QRect(1140, 280, 31, 31));
+        pushButton_tri_desc->setGeometry(QRect(1140, 270, 41, 41));
         pushButton_tri_desc->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
 "color: #ffffff; /* Texte blanc */\n"
 "border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
@@ -406,11 +439,14 @@ public:
 "padding: 5px 10px; /* Espacement interne */\n"
 "font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
 ""));
-        QIcon icon2;
-        icon2.addFile(QString::fromUtf8(":/resources/img/down-right-arrow_5689533.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_tri_desc->setIcon(icon2);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/img/8051f3d1-c574-4c63-b54e-83dfdd52aa02-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_tri_desc->setIcon(icon4);
         pushButton_tri_desc->setIconSize(QSize(25, 25));
         comboBox_critereRecherche = new QComboBox(afficher);
+        comboBox_critereRecherche->addItem(QString());
+        comboBox_critereRecherche->addItem(QString());
+        comboBox_critereRecherche->addItem(QString());
         comboBox_critereRecherche->addItem(QString());
         comboBox_critereRecherche->setObjectName("comboBox_critereRecherche");
         comboBox_critereRecherche->setGeometry(QRect(950, 70, 141, 31));
@@ -428,12 +464,13 @@ public:
 "    border-left: 1px solid #ccc;\n"
 "    border-radius: 0 5px 5px 0;\n"
 "}"));
-        comboBox_critereRech_2 = new QComboBox(afficher);
-        comboBox_critereRech_2->addItem(QString());
-        comboBox_critereRech_2->setObjectName("comboBox_critereRech_2");
-        comboBox_critereRech_2->setGeometry(QRect(950, 200, 141, 31));
-        comboBox_critereRech_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        comboBox_ordre = new QComboBox(afficher);
+        comboBox_ordre->addItem(QString());
+        comboBox_ordre->setObjectName("comboBox_ordre");
+        comboBox_ordre->setGeometry(QRect(950, 200, 141, 31));
+        comboBox_ordre->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         comboBoxCritere = new QComboBox(afficher);
+        comboBoxCritere->addItem(QString());
         comboBoxCritere->addItem(QString());
         comboBoxCritere->setObjectName("comboBoxCritere");
         comboBoxCritere->setGeometry(QRect(950, 280, 151, 31));
@@ -446,11 +483,10 @@ public:
         tabWidget->addTab(afficher, QString());
         groupBox_2->raise();
         lineEdit_critereRecherche->raise();
-        pushButton_tri_asc->raise();
         pushButton_tri_desc->raise();
         pushButtonRechercher_met->raise();
         comboBox_critereRecherche->raise();
-        comboBox_critereRech_2->raise();
+        comboBox_ordre->raise();
         comboBoxCritere->raise();
         label_21->raise();
         Ajouter = new QWidget();
@@ -1412,15 +1448,20 @@ public:
         pushButton_afficher->setText(QCoreApplication::translate("MainWindow", "Afficher", nullptr));
         label_23->setText(QCoreApplication::translate("MainWindow", "Afficher les statistiques des clients par:", nullptr));
         label_22->setText(QCoreApplication::translate("MainWindow", "Trier la liste des clients par:", nullptr));
+        pushButton_trierParNom->setText(QString());
+        pushButton_export_pdf->setText(QString());
         lineEdit_critereRecherche->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher", nullptr));
         pushButtonRechercher_met->setText(QString());
-        pushButton_tri_asc->setText(QString());
         pushButton_tri_desc->setText(QString());
         comboBox_critereRecherche->setItemText(0, QCoreApplication::translate("MainWindow", "IdClient", nullptr));
+        comboBox_critereRecherche->setItemText(1, QCoreApplication::translate("MainWindow", "Nom", nullptr));
+        comboBox_critereRecherche->setItemText(2, QCoreApplication::translate("MainWindow", "Prenom", nullptr));
+        comboBox_critereRecherche->setItemText(3, QCoreApplication::translate("MainWindow", "CIN", nullptr));
 
-        comboBox_critereRech_2->setItemText(0, QCoreApplication::translate("MainWindow", "Nom", nullptr));
+        comboBox_ordre->setItemText(0, QCoreApplication::translate("MainWindow", "Nom", nullptr));
 
-        comboBoxCritere->setItemText(0, QCoreApplication::translate("MainWindow", "Genre", nullptr));
+        comboBoxCritere->setItemText(0, QCoreApplication::translate("MainWindow", "Choisir un critere", nullptr));
+        comboBoxCritere->setItemText(1, QCoreApplication::translate("MainWindow", "Genre", nullptr));
 
         label_21->setText(QCoreApplication::translate("MainWindow", "Rechercher un client par:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(afficher), QCoreApplication::translate("MainWindow", "Liste", nullptr));

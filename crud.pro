@@ -1,4 +1,4 @@
-QT       += core gui sql
+QT       += core gui sql printsupport charts
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -36,3 +36,9 @@ RESOURCES += \
     resource.qrc \
     resource.qrc \
     ressource.qrc
+
+DISTFILES += \
+    img/0b26b188-484e-4955-b620-a8405c76b74e.jfif \
+    img/29abf6e7-23c4-4564-b07f-5229067fda50.jfif \
+    img/6fa8be47-cec4-4270-ae1f-b0962243668d.jfif \
+    img/8051f3d1-c574-4c63-b54e-83dfdd52aa02.jfif
