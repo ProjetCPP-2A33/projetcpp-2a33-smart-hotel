@@ -1,0 +1,20 @@
+# ninja log v6
+100	1050	7517326829280515	gestionservice_autogen/timestamp	d998cf39c5dcf706
+100	1050	7517326829280515	gestionservice_autogen/mocs_compilation.cpp	d998cf39c5dcf706
+100	1050	7517326829280515	C:/Users/nour1/OneDrive/Documents/gestionservice/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/gestionservice_autogen/timestamp	d998cf39c5dcf706
+100	1050	7517326829280515	C:/Users/nour1/OneDrive/Documents/gestionservice/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/gestionservice_autogen/mocs_compilation.cpp	d998cf39c5dcf706
+1124	5397	7517319009361935	CMakeFiles/gestionservice.dir/gestionservice_autogen/mocs_compilation.cpp.obj	1b2f989b99126007
+1144	4992	7517319009563381	CMakeFiles/gestionservice.dir/connection.cpp.obj	1b9eb5b9225841b4
+1130	5503	7517319009417935	CMakeFiles/gestionservice.dir/main.cpp.obj	a219d7b8a74d8a77
+43	785	7518152652815911	gestionservice_autogen/timestamp	d998cf39c5dcf706
+43	785	7518152652815911	gestionservice_autogen/mocs_compilation.cpp	d998cf39c5dcf706
+43	785	7518152652815911	C:/Users/nour1/OneDrive/Documents/gestionservice/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/gestionservice_autogen/timestamp	d998cf39c5dcf706
+43	785	7518152652815911	C:/Users/nour1/OneDrive/Documents/gestionservice/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/gestionservice_autogen/mocs_compilation.cpp	d998cf39c5dcf706
+799	3142	7518152653812676	CMakeFiles/gestionservice.dir/connection.cpp.obj	394444b63aaef651
+786	3586	7518152653678814	CMakeFiles/gestionservice.dir/gestionservice_autogen/mocs_compilation.cpp.obj	daf8a201bc42c3c8
+790	3742	7518152653732616	CMakeFiles/gestionservice.dir/main.cpp.obj	1dca20b0a9f95a5d
+42	330	7518153128922219	gestionservice_autogen/timestamp	d998cf39c5dcf706
+42	330	7518153128922219	gestionservice_autogen/mocs_compilation.cpp	d998cf39c5dcf706
+42	330	7518153128922219	C:/Users/nour1/OneDrive/Documents/gestionservice/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/gestionservice_autogen/timestamp	d998cf39c5dcf706
+42	330	7518153128922219	C:/Users/nour1/OneDrive/Documents/gestionservice/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/gestionservice_autogen/mocs_compilation.cpp	d998cf39c5dcf706
+340	2409	7518153131846577	CMakeFiles/gestionservice.dir/service.cpp.obj	1b228daffc68b585
