@@ -1,6 +1,14 @@
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/InterfaceCRUD_autogen/EWIEGA46WW/moc_mainwindow.cpp: C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.h \
   C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/InterfaceCRUD_autogen/moc_predefs.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QFlags \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QIODevice \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QList \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QMetaType \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QObject \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QSharedDataPointer \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QString \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QUrl \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/QVariant \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/q20functional.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/q20memory.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/q20type_traits.h \
@@ -20,6 +28,7 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qbytearraylist.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qbytearrayview.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcalendar.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qchar.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcompare.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcompare_impl.h \
@@ -30,8 +39,10 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcontainerinfo.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcontainertools_impl.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcontiguouscache.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qcryptographichash.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qdarwinhelpers.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qdatastream.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qdatetime.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qdebug.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qexceptionhandling.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qflags.h \
@@ -44,12 +55,14 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qglobalstatic.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qhash.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qhashfunctions.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qiodevice.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qiodevicebase.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qiterable.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qiterator.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qlatin1stringview.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qline.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qlist.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qlocale.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qlogging.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qmalloc.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qmap.h \
@@ -110,6 +123,7 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qtversionchecks.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qtypeinfo.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qtypes.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qurl.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qutf8stringview.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qvariant.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtCore/qvarlengtharray.h \
@@ -142,6 +156,25 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/6.6.3/mingw_64/include/QtGui/qtransform.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtGui/qwindowdefs.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/QNetworkAccessManager \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/QNetworkRequest \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/QSslConfiguration \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/QSslPreSharedKeyAuthenticator \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qabstractsocket.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qhostaddress.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qnetworkaccessmanager.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qnetworkreply.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qnetworkrequest.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qssl.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qsslcertificate.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qsslconfiguration.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qsslerror.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qsslpresharedkeyauthenticator.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qsslsocket.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtcpsocket.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetwork-config.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetworkexports.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetworkglobal.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlError \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlQuery \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlQueryModel \

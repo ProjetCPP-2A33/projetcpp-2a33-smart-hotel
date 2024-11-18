@@ -18,6 +18,7 @@
 #include <QtWidgets/QListWidget>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
+#include <QtWidgets/QPlainTextEdit>
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTabWidget>
@@ -57,6 +58,7 @@ public:
     QWidget *verticalLayoutWidget;
     QVBoxLayout *verticalLayout;
     QPushButton *statistiqueButton_2;
+    QPushButton *pb_historiqueService;
     QWidget *Ajouter;
     QGroupBox *groupBox;
     QLabel *label;
@@ -84,11 +86,8 @@ public:
     QLineEdit *l7;
     QLabel *label_46;
     QLabel *label_47;
-    QLineEdit *lineedit_nom_supp_2;
-    QLabel *label_42;
-    QPushButton *pushButton_rechercher_2;
-    QWidget *supprimer;
-    QGroupBox *groupBox_7;
+    QPushButton *sendSMSButton;
+    QPlainTextEdit *contenu;
     QLabel *label_17;
     QLabel *label_18;
     QPushButton *pushButton_11;
@@ -676,6 +675,51 @@ public:
 "    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
 "}\n"
 ""));
+        pb_historiqueService = new QPushButton(afficher);
+        pb_historiqueService->setObjectName("pb_historiqueService");
+        pb_historiqueService->setGeometry(QRect(270, 660, 221, 51));
+        pb_historiqueService->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
         tabWidget->addTab(afficher, QString());
         Ajouter = new QWidget();
         Ajouter->setObjectName("Ajouter");
@@ -1032,23 +1076,10 @@ public:
         label_47->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
 "border-radius :15px"));
         label_47->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        lineedit_nom_supp_2 = new QLineEdit(groupBox_3);
-        lineedit_nom_supp_2->setObjectName("lineedit_nom_supp_2");
-        lineedit_nom_supp_2->setGeometry(QRect(950, 420, 211, 51));
-        lineedit_nom_supp_2->setFont(font2);
-        lineedit_nom_supp_2->setStyleSheet(QString::fromUtf8("border-radius :15px"));
-        lineedit_nom_supp_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        lineedit_nom_supp_2->setReadOnly(false);
-        label_42 = new QLabel(groupBox_3);
-        label_42->setObjectName("label_42");
-        label_42->setGeometry(QRect(790, 440, 131, 31));
-        label_42->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
-"border-radius :15px"));
-        label_42->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        pushButton_rechercher_2 = new QPushButton(groupBox_3);
-        pushButton_rechercher_2->setObjectName("pushButton_rechercher_2");
-        pushButton_rechercher_2->setGeometry(QRect(950, 500, 221, 51));
-        pushButton_rechercher_2->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+        sendSMSButton = new QPushButton(groupBox_3);
+        sendSMSButton->setObjectName("sendSMSButton");
+        sendSMSButton->setGeometry(QRect(950, 500, 221, 51));
+        sendSMSButton->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
 "QPushButton {\n"
 "    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
 "    color: #ffffff;              /* Texte blanc */\n"
@@ -1090,76 +1121,10 @@ public:
 "    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
 "}\n"
 ""));
+        contenu = new QPlainTextEdit(groupBox_3);
+        contenu->setObjectName("contenu");
+        contenu->setGeometry(QRect(950, 330, 211, 151));
         tabWidget->addTab(Modifier, QString());
-        supprimer = new QWidget();
-        supprimer->setObjectName("supprimer");
-        groupBox_7 = new QGroupBox(supprimer);
-        groupBox_7->setObjectName("groupBox_7");
-        groupBox_7->setGeometry(QRect(20, 10, 1191, 671));
-        groupBox_7->setFont(font1);
-        groupBox_7->setStyleSheet(QString::fromUtf8("/* Style de base pour la QGroupBox */\n"
-"QGroupBox {\n"
-"    border: 4px solid #999DF2; /* Bordure de la m\303\252me couleur que le fond du titre */\n"
-"    border-radius: 25px; /* Coins arrondis */\n"
-"    margin-top: 10px; /* Marge en haut */\n"
-"}\n"
-"\n"
-"/* Style du titre de la QGroupBox */\n"
-"QGroupBox::title {\n"
-"    subcontrol-origin: margin;\n"
-"    subcontrol-position: top center;\n"
-"    padding: 0 3px;\n"
-"    background-color: #999DF2; /* Fond remplac\303\251 par #999DF2 */\n"
-"    color: #ffffff; /* Texte blanc pour le titre */\n"
-"    border-radius: 10px; /* Coins arrondis du titre */\n"
-"}\n"
-"\n"
-"/* Style des QLabel \303\240 l'int\303\251rieur de la QGroupBox */\n"
-"QLabel {\n"
-"    color: #000000; /* Couleur du texte */\n"
-"}\n"
-"\n"
-"/* Style des QRadioButton \303\240 l'int\303\251rieur de la QGroupBox */\n"
-"QRadioButton {\n"
-"    color: #333333; /* Couleur du texte */\n"
-"}\n"
-"\n"
-"/* Style des QComboBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
-"QComboBox {\n"
-"    background"
-                        "-color: #ffffff; /* Fond blanc */\n"
-"    color: #333333; /* Couleur du texte */\n"
-"    border: 1px solid #3498db; /* Bordure bleue */\n"
-"    border-radius: 3px; /* Coins arrondis */\n"
-"    padding: 2px; /* Espacement interne */\n"
-"}\n"
-"\n"
-"/* Style des QLineEdit \303\240 l'int\303\251rieur de la QGroupBox */\n"
-"QLineEdit {\n"
-"    background-color: #ffffff; /* Fond blanc */\n"
-"    color: #333333; /* Couleur du texte */\n"
-"    border: 1px solid #3498db; /* Bordure bleue */\n"
-"    border-radius: 3px; /* Coins arrondis */\n"
-"    padding: 2px; /* Espacement interne */\n"
-"}\n"
-"\n"
-"/* Style des QSpinBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
-"QSpinBox {\n"
-"    background-color: #ffffff; /* Fond blanc */\n"
-"    color: #333333; /* Couleur du texte */\n"
-"    border: 1px solid #3498db; /* Bordure bleue */\n"
-"    border-radius: 3px; /* Coins arrondis */\n"
-"    padding: 2px; /* Espacement interne */\n"
-"}\n"
-"\n"
-"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sacti"
-                        "v\303\251s */\n"
-"QWidget:disabled {\n"
-"    background-color: #f0f0f0; /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
-"    color: #a0a0a0; /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
-"}"));
-        groupBox_7->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        tabWidget->addTab(supprimer, QString());
         label_17 = new QLabel(centralwidget);
         label_17->setObjectName("label_17");
         label_17->setGeometry(QRect(80, 610, 101, 41));
@@ -1280,6 +1245,7 @@ public:
         trierButton->setText(QCoreApplication::translate("MainWindow", "Trier", nullptr));
         statistiqueButton->setText(QCoreApplication::translate("MainWindow", "statistiques", nullptr));
         statistiqueButton_2->setText(QCoreApplication::translate("MainWindow", "statistiques par graphique", nullptr));
+        pb_historiqueService->setText(QCoreApplication::translate("MainWindow", "Historique", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(afficher), QCoreApplication::translate("MainWindow", "Liste", nullptr));
         groupBox->setTitle(QCoreApplication::translate("MainWindow", "AJOUTER", nullptr));
         label->setText(QCoreApplication::translate("MainWindow", "Prix:", nullptr));
@@ -1308,12 +1274,8 @@ public:
         l7->setPlaceholderText(QCoreApplication::translate("MainWindow", "Modifier le prix", nullptr));
         label_46->setText(QCoreApplication::translate("MainWindow", "1:Disponible", nullptr));
         label_47->setText(QCoreApplication::translate("MainWindow", "0:Non disponible", nullptr));
-        lineedit_nom_supp_2->setPlaceholderText(QCoreApplication::translate("MainWindow", "ID service de SMS", nullptr));
-        label_42->setText(QCoreApplication::translate("MainWindow", "Id:", nullptr));
-        pushButton_rechercher_2->setText(QCoreApplication::translate("MainWindow", "SMS", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(Modifier), QCoreApplication::translate("MainWindow", "Modifier ", nullptr));
-        groupBox_7->setTitle(QCoreApplication::translate("MainWindow", "metier avancer", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(supprimer), QCoreApplication::translate("MainWindow", "metier avancer", nullptr));
+        sendSMSButton->setText(QCoreApplication::translate("MainWindow", "SMS", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Modifier), QCoreApplication::translate("MainWindow", "modifier+SMS ", nullptr));
         label_17->setText(QString());
         label_18->setText(QString());
         pushButton_11->setText(QCoreApplication::translate("MainWindow", "Gestion Services", nullptr));

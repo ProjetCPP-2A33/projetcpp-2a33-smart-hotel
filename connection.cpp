@@ -1,3 +1,4 @@
+
 #include "Connection.h"
 #include <QSqlError>
 connection::connection()

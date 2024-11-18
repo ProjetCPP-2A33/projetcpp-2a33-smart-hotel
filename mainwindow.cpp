@@ -10,8 +10,13 @@
 #include <QtCharts/QPieSeries>
 #include <QMap>
 #include <QFileDialog>
-
-
+#include <QDesktopServices>
+ #include <QNetworkAccessManager>
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QUrl>
+#include <QUrlQuery>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) {
@@ -31,6 +36,7 @@ void MainWindow::on_supprimerButton_clicked() {
     if (test) {
         // Rafraîchissement du modèle pour afficher les données mises à jour
         ui->tableView->setModel(serviceModel.afficher());
+        addToHistory("Supprimer", ids);
         QMessageBox::information(this, QObject::tr("Succès"),
                                  QObject::tr("Suppression effectuée.\nCliquez sur Annuler pour quitter."), QMessageBox::Cancel);
     } else {
@@ -67,6 +73,7 @@ void MainWindow::on_ajouterButton_clicked() {
 
     if (serviceModel.ajouter(ids, noms, prix, disponibilite)) {
         ui->tableView->setModel(serviceModel.afficher());
+        addToHistory("Ajouter", ids);
         QMessageBox::information(this, "Succès", "Service ajouté avec succès.");
     } else {
         QMessageBox::warning(this, "Erreur", "Erreur lors de l'ajout du service.");
@@ -105,6 +112,7 @@ void MainWindow::on_modifierButton_clicked() {
                               isPrixFloat ? prix : -1,
                               (disponibilite == 0 || disponibilite == 1) ? disponibilite : -1)) {
         ui->tableView->setModel(serviceModel.afficher());
+        addToHistory("Modifier", ids);
         QMessageBox::information(this, "Succès", "Service modifié avec succès.");
     } else {
         QMessageBox::warning(this, "Erreur", "Erreur : l'ID n'existe pas dans la base de données.");
@@ -123,6 +131,7 @@ void MainWindow::on_pb_pdf_clicked() {
 
         // Libération de mémoire
         delete model;
+        addToHistory("pdf", 0);
 
         QMessageBox::information(this, "Exportation PDF", "Exportation vers PDF réussie !");
     }
@@ -141,6 +150,7 @@ void MainWindow::on_rechercherButton_clicked() {
     if (model && model->rowCount() > 0) {
         // Si le modèle contient la ligne recherchée, l'afficher
         ui->tableView->setModel(model);
+        addToHistory("Rechercher", ids);
         QMessageBox::information(this, "Recherche réussie", "L'ID recherché a été trouvé.");
     } else {
         // Si l'ID n'existe pas, afficher un message d'erreur
@@ -166,6 +176,7 @@ void MainWindow::on_statistiqueButton_clicked() {
         QString result = QString("%1 : %2%").arg(it.key()).arg(QString::number(it.value(), 'f', 2));
         ui->listWidget->addItem(result);
     }
+    addToHistory("Statistique numerique", 0);
 }
 
 void MainWindow::on_statistiqueButton_2_clicked() {
@@ -204,4 +215,77 @@ void MainWindow::on_statistiqueButton_2_clicked() {
 
     // Afficher le graphique dans le layout
     ui->verticalLayout->addWidget(chartView);
+    addToHistory("Statistique par graphe", 0);
 }
+void MainWindow::afficherHistoriqueService() {
+    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUDhistorique_service.txt";
+    QFile file(cheminFichier);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Erreur", "Impossible d'ouvrir le fichier d'historique.");
+        return;
+    }
+
+    QTextStream in(&file);
+    QString historique = in.readAll();
+    file.close();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Historique des services");
+    msgBox.setText(historique);
+    msgBox.exec();
+}
+void MainWindow::addToHistory(const QString &action, int idService) {
+    Service Stemp;
+    Stemp.addToHistory(action, idService);
+}
+void MainWindow::on_pb_historiqueService_clicked() {
+    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
+    QDesktopServices::openUrl(QUrl::fromLocalFile(cheminFichier));
+    QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
+}
+
+void MainWindow::on_sendSMSButton_clicked()
+{
+    QString destinataire = "+21624119339";
+    QString message = ui->contenu->toPlainText();
+
+    envoyerSMS(destinataire, message);
+
+
+}
+void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
+{
+    // SID et auth token de Twilio
+    QString sid = "AC23f6573f85d049a9c4e5525382eef6bc";
+    QString authToken = "49b9200ccf31e547b68531af60a8dc75";
+
+    // URL de l'API Twilio
+    QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
+
+    // Créer un gestionnaire de requêtes
+    QNetworkAccessManager *networkAccessManager = new QNetworkAccessManager(this);
+
+    // Connecter le signal pour traiter la réponse
+ //   connect(networkAccessManager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
+
+    // Construire les données POST
+    QByteArray postData;
+    postData.append("To=" + QUrl::toPercentEncoding(destinataire)); // Encodage pour les caractères spéciaux
+    postData.append("&From=%2B12565484720"); // Numéro de l'expéditeur avec "%2B" pour "+"
+    postData.append("&Body=" + QUrl::toPercentEncoding(message));
+
+    // Configurer la requête HTTP
+    QNetworkRequest request;
+    request.setUrl(QUrl(url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // Ajouter l'autorisation avec Basic Auth
+    QString credentials = QString("%1:%2").arg(sid).arg(authToken);
+    request.setRawHeader("Authorization", "Basic " + credentials.toUtf8().toBase64());
+
+    // Envoyer la requête
+    networkAccessManager->post(request, postData);
+
+    QMessageBox::information(this, "Envoi SMS", "Le SMS est en cours d'envoi...");
+}
+

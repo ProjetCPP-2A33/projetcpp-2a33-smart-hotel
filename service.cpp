@@ -8,6 +8,9 @@
 #include <QStandardItemModel>
 #include <QPdfWriter>
 #include <QPainter>
+#include <QFile>
+#include <QTextStream>
+#include <QDateTime>
 
 
 Service::Service() : ids(0), noms(""), prix(0.0), disponibilite(1) {}
@@ -49,7 +52,7 @@ QSqlQueryModel* Service::afficher() {
     return model;
 }
 bool Service::supprimer(int ids) {
-    // Vérification de l'existence de l'ID dans la base de données
+
     QSqlQuery query;
     query.prepare("SELECT COUNT(*) FROM SERVICE WHERE IDS = :ids");
     query.bindValue(":ids", ids);
@@ -60,12 +63,12 @@ bool Service::supprimer(int ids) {
     }
 
     query.next();
-    if (query.value(0).toInt() == 0) {  // Si aucun enregistrement trouvé avec cet ID
+    if (query.value(0).toInt() == 0) {
         qDebug() << "ID non trouvé dans la base de données pour suppression.";
         return false;
     }
 
-    // Si l'ID existe, effectuer la suppression
+
     query.prepare("DELETE FROM SERVICE WHERE IDS = :ids");
     query.bindValue(":ids", ids);
 
@@ -78,7 +81,7 @@ bool Service::supprimer(int ids) {
     return true;
 }
 bool Service::modifier(int ids, const QString& noms, float prix, int disponibilite) {
-    // Vérification de l'existence de l'ID dans la base de données
+
     QSqlQuery query;
     query.prepare("SELECT COUNT(*) FROM SERVICE WHERE IDS = :ids");
     query.bindValue(":ids", ids);
@@ -89,12 +92,12 @@ bool Service::modifier(int ids, const QString& noms, float prix, int disponibili
     }
 
     query.next();
-    if (query.value(0).toInt() == 0) {  // Si aucun enregistrement trouvé avec cet ID
+    if (query.value(0).toInt() == 0) {
         qDebug() << "ID non trouvé dans la base de données pour modification.";
         return false;
     }
 
-    // Si l'ID existe, effectuer la mise à jour
+
     query.prepare("UPDATE SERVICE SET NOMS = :noms, PRIX = :prix, DISPONIBILITE = :disponibilite WHERE IDS = :ids");
     query.bindValue(":ids", ids);
     query.bindValue(":noms", noms);
@@ -116,16 +119,15 @@ void Service::exporterPDF(const QString &nomFichier, QAbstractItemModel *model) 
     painter.setPen(Qt::black);
     painter.setFont(QFont("Arial", 20));
 
-    // Titre du PDF
+
     painter.drawText(2500, 1100, "Liste des Services");
 
-    // Coordonnées et dimensions des cellules
     int startX = 200;
     int startY = 1800;
     int cellWidth = 1100;
     int cellHeight = 450;
 
-    // En-têtes du tableau
+
     QStringList headers = {"ID Service", "Nom", "Prix", "Disponibilité"};
     painter.setFont(QFont("Arial", 10, QFont::Bold));
     for (int col = 0; col < headers.size(); ++col) {
@@ -155,34 +157,35 @@ QSqlQueryModel* Service::recherche(int ids) {
     QSqlQueryModel* model = new QSqlQueryModel();
     QSqlQuery query;
 
-    // Vérification de l'existence de l'ID dans la base de données
-    query.prepare("SELECT * FROM SERVICE WHERE IDS = :ids");  // Assurez-vous que la colonne s'appelle 'IDS' dans la table
+
+    query.prepare("SELECT * FROM SERVICE WHERE IDS = :ids");
     query.bindValue(":ids", ids);
 
     if (!query.exec()) {
         qDebug() << "Erreur lors de la recherche :" << query.lastError().text();
-        delete model;  // Libérer la mémoire si la requête échoue
-        return nullptr;  // Retourner nullptr en cas d'erreur
+        delete model;
+        return nullptr;
     }
 
-    // Charger les résultats de la requête dans le modèle s'ils existent
+
     model->setQuery(query);
 
-    if (model->rowCount() == 0) {  // Si aucune ligne n'est retournée
+    if (model->rowCount() == 0) {
         delete model;
-        return nullptr;  // Aucun résultat trouvé
+        return nullptr;
     }
 
-    return model;  // Retourner le modèle avec les données
+    return model;
 }
 
 QSqlQueryModel* Service::trierParPrix() {
     QSqlQueryModel *model = new QSqlQueryModel();
-    model->setQuery("SELECT * FROM SERVICE ORDER BY PRIX DESC");  // Tri par prix décroissant
+    model->setQuery("SELECT * FROM SERVICE ORDER BY PRIX DESC");
     model->setHeaderData(0, Qt::Horizontal, QObject::tr("ids"));
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("noms"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prix"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("disponibilite"));
+    addToHistory("Afficher", ids);
     return model;
 }
 
@@ -190,7 +193,6 @@ QMap<QString, double> Service::obtenirStatistiquesDisponibilite() {
     QMap<QString, double> stats;
     QSqlQuery query;
 
-    // Compter le nombre total de services
     query.prepare("SELECT COUNT(*) FROM SERVICE");
     if (!query.exec()) {
         qDebug() << "Erreur lors de la récupération du nombre total de services :" << query.lastError().text();
@@ -200,10 +202,9 @@ QMap<QString, double> Service::obtenirStatistiquesDisponibilite() {
     query.next();
     int totalServices = query.value(0).toInt();
     if (totalServices == 0) {
-        return stats; // Si aucun service, retournez un map vide
+        return stats;
     }
 
-    // Compter le nombre de services disponibles et non disponibles
     query.prepare("SELECT DISPONIBILITE, COUNT(*) FROM SERVICE GROUP BY DISPONIBILITE");
     if (!query.exec()) {
         qDebug() << "Erreur lors de la récupération des statistiques de disponibilité :" << query.lastError().text();
@@ -214,7 +215,7 @@ QMap<QString, double> Service::obtenirStatistiquesDisponibilite() {
         int disponibilite = query.value(0).toInt();
         int count = query.value(1).toInt();
 
-        double percentage = (count * 100.0) / totalServices;  // Calcul du pourcentage
+        double percentage = (count * 100.0) / totalServices;
 
         if (disponibilite == 1) {
             stats["Disponible"] = percentage;
@@ -229,7 +230,7 @@ QMap<QString, double> Service::statistiquesParDisponibilite() {
     QMap<QString, double> stats;
     QSqlQuery query;
 
-    // Compter le nombre total de services
+
     query.prepare("SELECT COUNT(*) FROM SERVICE");
     if (!query.exec()) {
         qDebug() << "Erreur lors de la récupération du nombre total de services :" << query.lastError().text();
@@ -239,10 +240,10 @@ QMap<QString, double> Service::statistiquesParDisponibilite() {
     query.next();
     int totalServices = query.value(0).toInt();
     if (totalServices == 0) {
-        return stats; // Si aucun service, retourne un map vide
+        return stats;
     }
 
-    // Compter le nombre de services disponibles et non disponibles
+
     query.prepare("SELECT DISPONIBILITE, COUNT(*) FROM SERVICE GROUP BY DISPONIBILITE");
     if (!query.exec()) {
         qDebug() << "Erreur lors de la récupération des statistiques de disponibilité :" << query.lastError().text();
@@ -252,7 +253,7 @@ QMap<QString, double> Service::statistiquesParDisponibilite() {
     while (query.next()) {
         int disponibilite = query.value(0).toInt();
         int count = query.value(1).toInt();
-        double percentage = (count * 100.0) / totalServices;  // Calcul du pourcentage
+        double percentage = (count * 100.0) / totalServices;
 
         if (disponibilite == 1) {
             stats["Disponible"] = percentage;
@@ -262,4 +263,21 @@ QMap<QString, double> Service::statistiquesParDisponibilite() {
     }
 
     return stats;
+}
+void Service::addToHistory(const QString &action, int ids) {
+    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
+    QFile file(cheminFichier);
+    if (!file.open(QIODevice::Append | QIODevice::Text)) {
+        qDebug() << "Erreur lors de l'ouverture du fichier historique.";
+        return;
+    }
+
+    QTextStream out(&file);
+    QDateTime currentDateTime = QDateTime::currentDateTime();
+    out << currentDateTime.toString("yyyy-MM-dd hh:mm:ss") << " - " << action;
+    if (ids != 0) {
+        out << " pour l'ID " << ids;
+    }
+    out << "\n";
+    file.close();
 }

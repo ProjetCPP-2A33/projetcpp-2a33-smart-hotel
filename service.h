@@ -31,6 +31,7 @@ public:
     static QMap<QString, double> obtenirStatistiquesDisponibilite();
     QMap<QString, double> statistiquesParDisponibilite();
     void exporterPDF(const QString &nomFichier, QAbstractItemModel *model);
+    void addToHistory(const QString &action, int ids);
 
 private:
     int ids;

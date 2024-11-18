@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <qnetworkreply.h>
 #include "service.h"
 
 QT_BEGIN_NAMESPACE
@@ -25,10 +26,17 @@ private slots:
     void on_statistiqueButton_clicked();
     void on_statistiqueButton_2_clicked();
     void on_pb_pdf_clicked();
+    void on_pb_historiqueService_clicked();
+
+    void on_sendSMSButton_clicked();
+    void envoyerSMS(const QString &destinataire, const QString &message);
+
 
 private:
     Ui::MainWindow *ui;
     Service serviceModel;
+    void afficherHistoriqueService();
+    void addToHistory(const QString &action, int ids);
 };
 
 #endif // MAINWINDOW_H

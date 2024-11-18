@@ -18,7 +18,6 @@
 #define __WINT_MAX__ 0xffff
 #define __FLT32_MIN_EXP__ (-125)
 #define __cpp_static_assert 201411L
-#define QT_NEEDS_QMAIN 1
 #define QT_GUI_LIB 1
 #define __ORDER_LITTLE_ENDIAN__ 1234
 #define __SIZE_MAX__ 0xffffffffffffffffULL
@@ -278,6 +277,7 @@
 #define __INT_LEAST16_MAX__ 0x7fff
 #define __DEC64_MANT_DIG__ 16
 #define __INT64_MAX__ 0x7fffffffffffffffLL
+#define QT_NETWORK_LIB 1
 #define __SEG_GS 1
 #define __FLT32_DENORM_MIN__ 1.40129846432481707092372958328991613e-45F32
 #define __SIG_ATOMIC_WIDTH__ 32

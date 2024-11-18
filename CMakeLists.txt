@@ -8,54 +8,39 @@ set(CMAKE_AUTORCC ON)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
+# Spécifier le chemin d'installation de Qt (ajustez si nécessaire)
 set(CMAKE_PREFIX_PATH "C:/Users/nour1/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Qt/6.6.3/mingw_64")
 
-# Find required Qt packages
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Charts)
+# Rechercher les composants nécessaires de Qt
+find_package(Qt6 REQUIRED COMPONENTS Widgets Network Sql Charts)
 
-# Set project sources
+# Déclaration des fichiers sources du projet
 set(PROJECT_SOURCES
     main.cpp
     mainwindow.cpp
     mainwindow.h
     mainwindow.ui
-    connection.h
-    connection.cpp
     service.h
     service.cpp
+    connection.cpp
+    connection.h
 )
 
-# Add executable and link libraries
-if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
-    qt_add_executable(InterfaceCRUD
-        MANUAL_FINALIZATION
-        ${PROJECT_SOURCES}
-    )
-else()
-    add_executable(InterfaceCRUD
-        ${PROJECT_SOURCES}
-    )
-endif()
-
-# Link the necessary Qt libraries
-target_link_libraries(InterfaceCRUD PRIVATE Qt${QT_VERSION_MAJOR}::Widgets Qt6::Sql Qt6::Charts)
-
-# Set properties for macOS bundle or Windows executable
-set_target_properties(InterfaceCRUD PROPERTIES
-    MACOSX_BUNDLE TRUE
-    WIN32_EXECUTABLE TRUE
+# Création de l'exécutable
+qt_add_executable(InterfaceCRUD
+    MANUAL_FINALIZATION
+    ${PROJECT_SOURCES}
 )
 
-include(GNUInstallDirs)
-install(TARGETS InterfaceCRUD
-    BUNDLE DESTINATION .
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+# Lier les bibliothèques nécessaires
+target_link_libraries(InterfaceCRUD
+    PRIVATE
+    Qt6::Widgets
+    Qt6::Network
+    Qt6::Sql
+    Qt6::Charts
 )
 
-# Finalize the executable if using Qt 6
-if(QT_VERSION_MAJOR EQUAL 6)
-    qt_finalize_executable(InterfaceCRUD)
-endif()
-
+# Finalisation de l'exécutable pour Qt6
+qt_finalize_executable(InterfaceCRUD)
