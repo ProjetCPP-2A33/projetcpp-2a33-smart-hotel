@@ -399,7 +399,7 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.h
  mdp:C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.h
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.h
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/connection.cpp
+C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/main.cpp
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.cpp
  uic:ui_mainwindow.h
-C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/main.cpp
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.cpp

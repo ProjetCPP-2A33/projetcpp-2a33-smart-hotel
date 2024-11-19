@@ -259,7 +259,7 @@ void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
 
 
     // URL de l'API Twilio
-    QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
+
 
     // Créer un gestionnaire de requêtes
     QNetworkAccessManager *networkAccessManager = new QNetworkAccessManager(this);
