@@ -360,7 +360,7 @@ public:
         tableView->setGeometry(QRect(25, 51, 811, 311));
         lineedit_id_rech = new QLineEdit(groupBox_2);
         lineedit_id_rech->setObjectName("lineedit_id_rech");
-        lineedit_id_rech->setGeometry(QRect(590, 420, 221, 51));
+        lineedit_id_rech->setGeometry(QRect(590, 440, 221, 51));
         QFont font2;
         font2.setPointSize(14);
         lineedit_id_rech->setFont(font2);
@@ -374,7 +374,7 @@ public:
         label_49->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_48 = new QLabel(groupBox_2);
         label_48->setObjectName("label_48");
-        label_48->setGeometry(QRect(420, 430, 151, 31));
+        label_48->setGeometry(QRect(410, 440, 151, 31));
         label_48->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
 "border-radius :15px"));
         label_48->setAlignment(Qt::AlignmentFlag::AlignCenter);
@@ -1054,7 +1054,7 @@ public:
         label_15->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_16 = new QLabel(groupBox_3);
         label_16->setObjectName("label_16");
-        label_16->setGeometry(QRect(760, 160, 371, 31));
+        label_16->setGeometry(QRect(760, 130, 371, 31));
         label_16->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
 "border-radius :15px"));
         label_16->setAlignment(Qt::AlignmentFlag::AlignCenter);
@@ -1078,7 +1078,7 @@ public:
         label_47->setAlignment(Qt::AlignmentFlag::AlignCenter);
         sendSMSButton = new QPushButton(groupBox_3);
         sendSMSButton->setObjectName("sendSMSButton");
-        sendSMSButton->setGeometry(QRect(950, 500, 221, 51));
+        sendSMSButton->setGeometry(QRect(940, 590, 221, 51));
         sendSMSButton->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
 "QPushButton {\n"
 "    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
@@ -1123,7 +1123,7 @@ public:
 ""));
         contenu = new QPlainTextEdit(groupBox_3);
         contenu->setObjectName("contenu");
-        contenu->setGeometry(QRect(950, 330, 211, 151));
+        contenu->setGeometry(QRect(940, 410, 211, 151));
         tabWidget->addTab(Modifier, QString());
         label_17 = new QLabel(centralwidget);
         label_17->setObjectName("label_17");
@@ -1217,7 +1217,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(2);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(MainWindow);

@@ -36,3 +36,26 @@
 2024-11-18 13:59:24 - Statistique numerique
 2024-11-18 13:59:25 - Statistique par graphe
 2024-11-18 13:59:43 - Supprimer pour l'ID 1
+2024-11-18 22:55:45 - Ajouter pour l'ID 100
+2024-11-18 22:56:03 - Supprimer pour l'ID 25
+2024-11-18 22:56:06 - Statistique numerique
+2024-11-18 22:56:07 - Statistique par graphe
+2024-11-18 22:56:19 - Afficher
+2024-11-18 22:57:19 - Statistique par graphe
+2024-11-19 09:33:04 - Trie
+2024-11-19 09:33:38 - Rechercher pour l'ID 26
+2024-11-19 09:33:53 - Statistique numerique
+2024-11-19 09:33:57 - Statistique par graphe
+2024-11-19 09:34:10 - Trie
+2024-11-19 09:34:37 - Supprimer pour l'ID 258
+2024-11-19 09:34:42 - Statistique par graphe
+2024-11-19 09:35:03 - pdf
+2024-11-19 09:58:03 - Trie
+2024-11-19 09:58:27 - Trie
+2024-11-19 10:12:41 - Statistique par graphe
+2024-11-19 10:12:59 - Supprimer pour l'ID 26
+2024-11-19 10:13:02 - Statistique par graphe
+2024-11-19 10:13:15 - Ajouter pour l'ID 45
+2024-11-19 10:13:27 - Ajouter pour l'ID 46
+2024-11-19 10:13:31 - Statistique par graphe
+2024-11-19 10:13:59 - Statistique numerique

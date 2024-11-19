@@ -394,7 +394,7 @@ QWidget:disabled {
        <property name="geometry">
         <rect>
          <x>590</x>
-         <y>420</y>
+         <y>440</y>
          <width>221</width>
          <height>51</height>
         </rect>
@@ -437,8 +437,8 @@ border-radius :15px</string>
       <widget class="QLabel" name="label_48">
        <property name="geometry">
         <rect>
-         <x>420</x>
-         <y>430</y>
+         <x>410</x>
+         <y>440</y>
          <width>151</width>
          <height>31</height>
         </rect>
@@ -1597,7 +1597,7 @@ border-radius :15px</string>
        <property name="geometry">
         <rect>
          <x>760</x>
-         <y>160</y>
+         <y>130</y>
          <width>371</width>
          <height>31</height>
         </rect>
@@ -1680,8 +1680,8 @@ border-radius :15px</string>
       <widget class="QPushButton" name="sendSMSButton">
        <property name="geometry">
         <rect>
-         <x>950</x>
-         <y>500</y>
+         <x>940</x>
+         <y>590</y>
          <width>221</width>
          <height>51</height>
         </rect>
@@ -1736,8 +1736,8 @@ QWidget:disabled {
       <widget class="QPlainTextEdit" name="contenu">
        <property name="geometry">
         <rect>
-         <x>950</x>
-         <y>330</y>
+         <x>940</x>
+         <y>410</y>
          <width>211</width>
          <height>151</height>
         </rect>

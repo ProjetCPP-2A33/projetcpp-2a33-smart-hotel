@@ -185,7 +185,7 @@ QSqlQueryModel* Service::trierParPrix() {
     model->setHeaderData(1, Qt::Horizontal, QObject::tr("noms"));
     model->setHeaderData(2, Qt::Horizontal, QObject::tr("Prix"));
     model->setHeaderData(3, Qt::Horizontal, QObject::tr("disponibilite"));
-    addToHistory("Afficher", ids);
+    addToHistory("Trie", ids);
     return model;
 }
 
