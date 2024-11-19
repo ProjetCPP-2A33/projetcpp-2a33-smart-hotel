@@ -688,11 +688,11 @@ void MainWindow::sendEmailWithPostmark() {
     // Préparer la requête HTTP vers l'API Postmark
     QNetworkRequest request(QUrl("https://api.postmarkapp.com/email"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("X-Postmark-Server-Token", "164aa4c8-0022-4a7a-b61c-9df18bbf0d56"); // Votre token API
+    request.setRawHeader("X-Postmark-Server-Token", ""); // Votre token API
 
     // Construire le contenu de l'email
     QJsonObject emailObject;
-    emailObject["From"] = "malek.knani@esprit.tn"; // Adresse email expéditeur (vérifiée dans Postmark)
+    emailObject["From"] = ""; // Adresse email expéditeur (vérifiée dans Postmark)
     emailObject["To"] = recipient; // Adresse email du destinataire
     emailObject["Subject"] = "Email de test depuis Qt et Postmark"; // Sujet de l'email
     emailObject["TextBody"] = "Bonjour,\nCeci est un test envoyé avec Qt et Postmark."; // Contenu texte de l'email
