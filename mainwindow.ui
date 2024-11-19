@@ -199,9 +199,9 @@ QWidget:disabled {
        <property name="geometry">
         <rect>
          <x>10</x>
-         <y>60</y>
+         <y>50</y>
          <width>791</width>
-         <height>531</height>
+         <height>481</height>
         </rect>
        </property>
        <property name="styleSheet">
@@ -235,8 +235,8 @@ QHeaderView::section {
       <widget class="QPushButton" name="pushButton_afficher">
        <property name="geometry">
         <rect>
-         <x>380</x>
-         <y>610</y>
+         <x>310</x>
+         <y>540</y>
          <width>201</width>
          <height>51</height>
         </rect>
@@ -292,7 +292,7 @@ QWidget:disabled {
        <property name="geometry">
         <rect>
          <x>810</x>
-         <y>330</y>
+         <y>310</y>
          <width>401</width>
          <height>341</height>
         </rect>
@@ -411,7 +411,7 @@ font: 15 8pt; /* Police avec un poids de 75 et taille de 15pt */
       <widget class="QPushButton" name="pushButton_export_pdf">
        <property name="geometry">
         <rect>
-         <x>600</x>
+         <x>720</x>
          <y>620</y>
          <width>41</width>
          <height>41</height>
@@ -441,6 +441,78 @@ font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
        </property>
        <property name="autoRepeat">
         <bool>false</bool>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_28">
+       <property name="geometry">
+        <rect>
+         <x>20</x>
+         <y>620</y>
+         <width>221</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>14</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="text">
+        <string>Le client le plus fidèle:</string>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButton_client_fidele">
+       <property name="geometry">
+        <rect>
+         <x>240</x>
+         <y>620</y>
+         <width>41</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: #999DF2; /* Nouveau bleu pour l'arrière-plan */
+color: #ffffff; /* Texte blanc */
+border: 5px solid #999DF2; /* Bordure de la même couleur que l'arrière-plan */
+border-radius: 10px; /* Coins arrondis */
+padding: 5px 10px; /* Espacement interne */
+font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */
+</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="icon">
+        <iconset resource="ressource.qrc">
+         <normaloff>:/img/fidelite-removebg-preview.png</normaloff>:/img/fidelite-removebg-preview.png</iconset>
+       </property>
+       <property name="iconSize">
+        <size>
+         <width>40</width>
+         <height>40</height>
+        </size>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_29">
+       <property name="geometry">
+        <rect>
+         <x>650</x>
+         <y>630</y>
+         <width>63</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>14</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="text">
+        <string>PDF:</string>
        </property>
       </widget>
      </widget>
@@ -2317,6 +2389,223 @@ QWidget:disabled {
       </widget>
      </widget>
     </widget>
+    <widget class="QWidget" name="Mailing">
+     <attribute name="title">
+      <string>Mailing</string>
+     </attribute>
+     <widget class="QGroupBox" name="groupBox_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>1191</width>
+        <height>671</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Trebuchet MS</family>
+        <pointsize>24</pointsize>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">/* Style de base pour la QGroupBox */
+QGroupBox {
+    border: 4px solid #999DF2; /* Bordure de la même couleur que le fond du titre */
+    border-radius: 25px; /* Coins arrondis */
+    margin-top: 10px; /* Marge en haut */
+}
+
+/* Style du titre de la QGroupBox */
+QGroupBox::title {
+    subcontrol-origin: margin;
+    subcontrol-position: top center;
+    padding: 0 3px;
+    background-color: #999DF2; /* Fond remplacé par #999DF2 */
+    color: #ffffff; /* Texte blanc pour le titre */
+    border-radius: 10px; /* Coins arrondis du titre */
+}
+
+/* Style des QLabel à l'intérieur de la QGroupBox */
+QLabel {
+    color: #000000; /* Couleur du texte */
+}
+
+/* Style des QRadioButton à l'intérieur de la QGroupBox */
+QRadioButton {
+    color: #333333; /* Couleur du texte */
+}
+
+/* Style des QComboBox à l'intérieur de la QGroupBox */
+QComboBox {
+    background-color: #ffffff; /* Fond blanc */
+    color: #333333; /* Couleur du texte */
+    border: 1px solid #3498db; /* Bordure bleue */
+    border-radius: 3px; /* Coins arrondis */
+    padding: 2px; /* Espacement interne */
+}
+
+/* Style des QLineEdit à l'intérieur de la QGroupBox */
+QLineEdit {
+    background-color: #ffffff; /* Fond blanc */
+    color: #333333; /* Couleur du texte */
+    border: 1px solid #3498db; /* Bordure bleue */
+    border-radius: 3px; /* Coins arrondis */
+    padding: 2px; /* Espacement interne */
+}
+
+/* Style des QSpinBox à l'intérieur de la QGroupBox */
+QSpinBox {
+    background-color: #ffffff; /* Fond blanc */
+    color: #333333; /* Couleur du texte */
+    border: 1px solid #3498db; /* Bordure bleue */
+    border-radius: 3px; /* Coins arrondis */
+    padding: 2px; /* Espacement interne */
+}
+
+/* Style général pour les widgets lorsqu'ils sont désactivés */
+QWidget:disabled {
+    background-color: #f0f0f0; /* Fond gris clair pour les widgets désactivés */
+    color: #a0a0a0; /* Couleur du texte grise pour les widgets désactivés */
+}</string>
+      </property>
+      <property name="title">
+       <string>Mailing</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignmentFlag::AlignCenter</set>
+      </property>
+      <widget class="QLineEdit" name="lineEditRecipient">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>200</y>
+         <width>311</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius :15px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="lineEditSubject">
+       <property name="geometry">
+        <rect>
+         <x>440</x>
+         <y>300</y>
+         <width>311</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius :15px</string>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="pushButtonSend">
+       <property name="geometry">
+        <rect>
+         <x>530</x>
+         <y>440</y>
+         <width>141</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Style de base pour le QPushButton */
+QPushButton {
+    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */
+    color: #ffffff;              /* Texte blanc */
+    border: 3px solid #435AD9;  /* Bordure de la même couleur que le fond */
+    border-radius: 12px;        /* Coins arrondis */
+    padding: 8px 12px;          /* Espacement interne */
+    font: 75 18pt &quot;Times New Roman&quot;; /* Police en gras */
+}
+
+/* Style du QPushButton lorsqu'il est survolé */
+QPushButton:hover {
+    background-color: #5f7cd8;   /* Bleu plus clair au survol */
+    border: 3px solid #5f7cd8;   /* Bordure de la même couleur que le fond survolé */
+}
+
+/* Style du QPushButton lorsqu'il est pressé (clic) */
+QPushButton:pressed {
+    background-color: #3b4fbf;   /* Bleu foncé au clic */
+    border: 3px solid #3b4fbf;   /* Bordure de la même couleur que le fond pressé */
+}
+
+/* Style du QPushButton lorsqu'il est en focus (tabulation) */
+QPushButton:focus {
+    outline: none;               /* Supprimer le contour par défaut */
+    border: 2px solid #2e8a56;  /* Bordure plus foncée lorsqu'en focus */
+}
+
+/* Style du QPushButton lorsqu'il est désactivé */
+QPushButton:disabled {
+    background-color: #b0b0b0;   /* Fond gris clair pour les boutons désactivés */
+    color: #707070;              /* Couleur du texte grise pour les boutons désactivés */
+    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons désactivés */
+}
+
+/* Style général pour les widgets lorsqu'ils sont désactivés */
+QWidget:disabled {
+    background-color: #f0f0f0;   /* Fond gris clair pour les widgets désactivés */
+    color: #a0a0a0;              /* Couleur du texte grise pour les widgets désactivés */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Envoyer</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_17">
+       <property name="geometry">
+        <rect>
+         <x>270</x>
+         <y>190</y>
+         <width>141</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>14</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="text">
+        <string>destinataire:</string>
+       </property>
+      </widget>
+      <widget class="QLabel" name="label_18">
+       <property name="geometry">
+        <rect>
+         <x>310</x>
+         <y>300</y>
+         <width>101</width>
+         <height>31</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <family>Times New Roman</family>
+         <pointsize>14</pointsize>
+         <italic>true</italic>
+        </font>
+       </property>
+       <property name="text">
+        <string>objet:</string>
+       </property>
+      </widget>
+     </widget>
+    </widget>
    </widget>
    <widget class="QPushButton" name="pushButton_4">
     <property name="geometry">
@@ -2564,71 +2853,6 @@ QPushButton:disabled {
     </property>
     <property name="styleSheet">
      <string notr="true">image: url(:/res/y.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_17">
-    <property name="geometry">
-     <rect>
-      <x>90</x>
-      <y>590</y>
-      <width>101</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/res/vv-removebg-preview.png)
-</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_18">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>640</y>
-      <width>81</width>
-      <height>41</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/res/pp-removebg-preview.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_19">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>680</y>
-      <width>81</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/res/n-removebg-preview.png)</string>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="label_20">
-    <property name="geometry">
-     <rect>
-      <x>100</x>
-      <y>730</y>
-      <width>81</width>
-      <height>51</height>
-     </rect>
-    </property>
-    <property name="styleSheet">
-     <string notr="true">image: url(:/res/www-removebg-preview.png)</string>
     </property>
     <property name="text">
      <string/>

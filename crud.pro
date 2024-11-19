@@ -1,5 +1,5 @@
 QT       += core gui sql printsupport charts
-
+QT += network
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -12,12 +12,14 @@ SOURCES += \
     client.cpp \
     connection.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    smtp.cpp
 
 HEADERS += \
     client.h \
     connection.h \
-    mainwindow.h
+    mainwindow.h \
+    smtp.h
 
 FORMS += \
     mainwindow.ui
@@ -41,4 +43,5 @@ DISTFILES += \
     img/0b26b188-484e-4955-b620-a8405c76b74e.jfif \
     img/29abf6e7-23c4-4564-b07f-5229067fda50.jfif \
     img/6fa8be47-cec4-4270-ae1f-b0962243668d.jfif \
-    img/8051f3d1-c574-4c63-b54e-83dfdd52aa02.jfif
+    img/8051f3d1-c574-4c63-b54e-83dfdd52aa02.jfif \
+    img/fidelite-removebg-preview.png

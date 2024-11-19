@@ -1,6 +1,9 @@
 #include "client.h"
 #include "mainwindow.h"
 #include <QSqlError>
+#include <QSqlQueryModel>
+#include<QSqlQuery>
+
 
 Client::Client()
 {
@@ -52,6 +55,7 @@ bool Client::ajouter()
     if (!query.exec()) {
         qDebug() << "Erreur lors de l'ajout : " << query.lastError().text();
         return false;
+        //smtp->sendMail;
     }
     return true;
 }
@@ -193,8 +197,191 @@ QSqlQueryModel* Client::rechercher(const QString& critere, const QString& typeRe
         return nullptr;
     }
 }
+/*QString Client::clientLePlusFidele() {
+    QSqlQuery query;
+    // Requête SQL pour récupérer le client avec le plus grand nombre de réservations
+    query.prepare("SELECT CLIENTS.NOMC, CLIENTS.PRENOMC, COUNT(RESERVATION.IDR) AS nombre_reservations "
+                  "FROM CLIENTS "
+                  "JOIN RESERVATION ON CLIENTS.IDC = RESERVATION.IDC "
+                  "GROUP BY CLIENTS.IDC "
+                  "ORDER BY nombre_reservations DESC "
+                  "LIMIT 1");
+
+    if (query.exec()) {
+        if (query.next()) { // Si un client est trouvé
+            QString nom = query.value("NOMC").toString();
+            QString prenom = query.value("PRENOMC").toString();
+
+            qDebug() << "Client le plus fidèle : "
+                     << "Nom: " << nom
+                     << "Prénom: " << prenom;
+
+            return nom + " " + prenom; // Retourner le nom complet du client fidèle
+        }
+    } else {
+        qDebug() << "Erreur lors de la recherche du client fidèle :" << query.lastError().text();
+    }
+
+    return ""; // Retourner une chaîne vide si aucun client n'est trouvé
+}*/
+
+/*Client Client::clientLePlusFidele() {
+    QSqlQuery query;
+    query.prepare("SELECT C.IDC, C.NOMC, C.PRENOMC, COUNT(R.IDC) AS nombre_reservations "
+                  "FROM CLIENTS C "
+                  "JOIN RESERVATION R ON C.IDC = R.IDC "
+                  "GROUP BY C.IDC, C.NOMC, C.PRENOMC "
+                  "ORDER BY nombre_reservations DESC "
+                  "FETCH FIRST 1 ROWS ONLY");
+
+    if (query.exec()) {
+        if (query.next()) {  // Si un client est trouvé
+            Client client;
+            client.setIdC(query.value("IDC").toInt());
+            client.setNomC(query.value("NOMC").toString());
+            client.setPrenomC(query.value("PRENOMC").toString());
+            return client;  // Retourner le client avec le plus grand nombre de réservations
+        }
+    } else {
+        qDebug() << "Erreur lors de la recherche du client fidèle :" << query.lastError().text();
+    }
+
+    return Client();  // Retourner un client vide si aucun client n'est trouvé
+}*/
 
 
+/*QSqlQueryModel* Client::obtenirReservationsParClient() {
+    QSqlQueryModel* model = new QSqlQueryModel;
+    QSqlQuery query;
+    // Ajouter d'abord le client le plus fidèle
+    Client clientFidele = clientLePlusFidele();
+    QString messageFidele = "Client le plus fidèle :\n";
+    messageFidele += "ID: " + QString::number(clientFidele.getIdC()) + "\n";
+    messageFidele += "Nom: " + clientFidele.getNomC() + "\n";
+    messageFidele += "Prénom: " + clientFidele.getPrenomC() + "\n";
 
+    query.prepare("SELECT R.IDC, COUNT(R.IDC) AS nbr_reservations, C.NOMC, C.PRENOMC "
+                  "FROM RESERVATION R "
+                  "JOIN CLIENTS C ON R.IDC = C.IDC "
+                  "GROUP BY R.IDC, C.NOMC, C.PRENOMC");
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête : " << query.lastError().text();
+    } else {
+        model->setQuery(query);
+        // Ajouter une ligne pour le client fidèle en haut de la liste
+        model->insertRow(0);
+        model->setData(model->index(0, 0), clientFidele.getIdC());
+        model->setData(model->index(0, 1), clientFidele.getNomC());
+        model->setData(model->index(0, 2), clientFidele.getPrenomC());
+        model->setData(model->index(0, 3), 0); // nombre_reservations à 0 pour le client fidèle
+    }
+
+    return model;
+}*/
+/*Client Client::clientLePlusFidele() {
+    QSqlQuery query;
+    query.prepare("SELECT C.IDC, C.NOMC, C.PRENOMC, COUNT(R.IDC) AS nombre_reservations "
+                  "FROM CLIENTS C "
+                  "JOIN RESERVATION R ON C.IDC = R.IDC "
+                  "GROUP BY C.IDC, C.NOMC, C.PRENOMC "
+                  "ORDER BY nombre_reservations DESC "
+                  "FETCH FIRST 1 ROWS ONLY");
+
+    if (query.exec()) {
+        if (query.next()) {  // Si un client est trouvé
+            Client client;
+            client.setIdC(query.value("IDC").toInt());
+            client.setNomC(query.value("NOMC").toString());
+            client.setPrenomC(query.value("PRENOMC").toString());
+            return client;  // Retourner le client avec le plus grand nombre de réservations
+        }
+    } else {
+        qDebug() << "Erreur lors de la recherche du client fidèle :" << query.lastError().text();
+    }
+
+    return Client();  // Retourner un client vide si aucun client n'est trouvé
+}*/
+
+/*QString Client::clientLePlusFidele()
+{
+    QSqlQuery query("SELECT CLIENTS.IDC, CLIENTS.NOMC, CLIENTS.PRENOMC, COUNT(RESERVATION.idR) AS total_reservations "
+                    "FROM CLIENTS "
+                    "JOIN RESERVATION ON CLIENTS.IDC = RESERVATION.IDC "
+                    "GROUP BY CLIENTS.IDC "
+                    "ORDER BY total_reservations DESC LIMIT 1");
+
+    if (query.next()) {
+        return query.value("NOMC").toString() + " " + query.value("PRENOMC").toString();
+    }
+    return "Aucun client fidèle trouvé.";
+}*/
+/*QString Client::afficherNbReservationsParClient()
+{
+    // Exécuter la requête pour obtenir le nombre de réservations par client
+    QSqlQuery query("SELECT CLIENTS.NOMC, CLIENTS.PRENOMC, CLIENTS.IDC, COUNT(RESERVATION.IDR) AS total_reservations "
+                    "FROM CLIENTS "
+                    "LEFT JOIN RESERVATION ON CLIENTS.IDC = RESERVATION.IDC "
+                    "GROUP BY CLIENTS.IDC");
+
+    QString result;
+    while (query.next()) {
+        // Extraire les données de la requête
+        QString nom = query.value("NOMC").toString();
+        QString prenom = query.value("PRENOMC").toString();
+        int nbReservations = query.value("total_reservations").toInt();
+
+        // Ajouter les informations à la chaîne de résultat
+        result += nom + " " + prenom + " (ID: " + QString::number(query.value("IDC").toInt()) + ") a " + QString::number(nbReservations) + " réservations\n";
+    }
+
+    if (result.isEmpty()) {
+        return "Aucun client trouvé avec des réservations.";
+    }
+    return result;
+}*/
+QSqlQueryModel* Client::obtenirReservationsParClient() {
+    QSqlQueryModel* model = new QSqlQueryModel();
+    QSqlQuery query;
+
+    // Requête pour compter le nombre de réservations par client
+    query.prepare("SELECT R.IDC, COUNT(R.IDC) AS nbr_reservations, C.NOMC, C.PRENOMC "
+                  "FROM RESERVATION R "
+                  "JOIN CLIENTS C ON R.IDC = C.IDC "
+                  "GROUP BY R.IDC, C.NOMC, C.PRENOMC");
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête : " << query.lastError().text();
+        delete model;
+        return nullptr;
+    }
+
+    model->setQuery(query);
+    // Requête pour trouver le client le plus fidèle
+   /* QSqlQuery queryFidele; // Assurez-vous que queryFidele est bien déclaré ici.
+    queryFidele.prepare("SELECT C.IDC, C.NOMC, C.PRENOMC, COUNT(R.IDC) AS nbr_reservations "
+                        "FROM RESERVATION R "
+                        "JOIN CLIENTS C ON R.IDC = C.IDC "
+                        "GROUP BY C.IDC, C.NOMC, C.PRENOMC "
+                        "ORDER BY nbr_reservations DESC "
+                        "FETCH FIRST 1 ROWS ONLY");
+    if (queryFidele.exec() && queryFidele.next()) {
+        int idFidele = queryFidele.value("IDC").toInt();
+        QString nomFidele = queryFidele.value("NOMC").toString();
+        QString prenomFidele = queryFidele.value("PRENOMC").toString();
+        int nbrReservations = queryFidele.value("nbr_reservations").toInt();
+
+        // Ajouter une ligne pour le client le plus fidèle au début du modèle
+        model->insertRow(0);
+        model->setData(model->index(0, 0), idFidele);
+        model->setData(model->index(0, 1), nbrReservations);
+        model->setData(model->index(0, 2), nomFidele);
+        model->setData(model->index(0, 3), prenomFidele);
+    } else {
+        qDebug() << "Erreur lors de la recherche du client fidèle : " << queryFidele.lastError().text();
+    }*/
+
+    return model;
+}
 
 

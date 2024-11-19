@@ -44,6 +44,9 @@ public:
     QPushButton *pushButton_trierParNom;
     QPushButton *pushButton_trierParNom_3;
     QPushButton *pushButton_export_pdf;
+    QLabel *label_28;
+    QPushButton *pushButton_client_fidele;
+    QLabel *label_29;
     QLineEdit *lineEdit_critereRecherche;
     QPushButton *pushButtonRechercher_met;
     QPushButton *pushButton_tri_desc;
@@ -113,16 +116,19 @@ public:
     QRadioButton *radioButton_femme_supp;
     QLineEdit *lineedit_cin_supp;
     QLabel *label_27;
+    QWidget *Mailing;
+    QGroupBox *groupBox_4;
+    QLineEdit *lineEditRecipient;
+    QLineEdit *lineEditSubject;
+    QPushButton *pushButtonSend;
+    QLabel *label_17;
+    QLabel *label_18;
     QPushButton *pushButton_4;
     QPushButton *pushButton_11;
     QPushButton *pushButton_9;
     QPushButton *pushButton_6;
     QPushButton *pushButton_menu;
     QLabel *label_14;
-    QLabel *label_17;
-    QLabel *label_18;
-    QLabel *label_19;
-    QLabel *label_20;
     QStatusBar *statusbar;
     QMenuBar *menuBar;
 
@@ -270,7 +276,7 @@ public:
         groupBox_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
         tableView = new QTableView(groupBox_2);
         tableView->setObjectName("tableView");
-        tableView->setGeometry(QRect(10, 60, 791, 531));
+        tableView->setGeometry(QRect(10, 50, 791, 481));
         tableView->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "image: url(:/c/cc.png);\n"
 "image: url(:/c/cc.png);\n"
@@ -298,7 +304,7 @@ public:
 ""));
         pushButton_afficher = new QPushButton(groupBox_2);
         pushButton_afficher->setObjectName("pushButton_afficher");
-        pushButton_afficher->setGeometry(QRect(380, 610, 201, 51));
+        pushButton_afficher->setGeometry(QRect(310, 540, 201, 51));
         pushButton_afficher->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
 "QPushButton {\n"
 "    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
@@ -343,7 +349,7 @@ public:
 ""));
         graphicsView_chart = new QGraphicsView(groupBox_2);
         graphicsView_chart->setObjectName("graphicsView_chart");
-        graphicsView_chart->setGeometry(QRect(810, 330, 401, 341));
+        graphicsView_chart->setGeometry(QRect(810, 310, 401, 341));
         graphicsView_chart->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         label_23 = new QLabel(groupBox_2);
         label_23->setObjectName("label_23");
@@ -389,7 +395,7 @@ public:
         pushButton_trierParNom_3->setAutoExclusive(false);
         pushButton_export_pdf = new QPushButton(groupBox_2);
         pushButton_export_pdf->setObjectName("pushButton_export_pdf");
-        pushButton_export_pdf->setGeometry(QRect(600, 620, 41, 41));
+        pushButton_export_pdf->setGeometry(QRect(720, 620, 41, 41));
         pushButton_export_pdf->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
 "color: #ffffff; /* Texte blanc */\n"
 "border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
@@ -402,12 +408,38 @@ public:
         pushButton_export_pdf->setIcon(icon2);
         pushButton_export_pdf->setIconSize(QSize(90, 90));
         pushButton_export_pdf->setAutoRepeat(false);
+        label_28 = new QLabel(groupBox_2);
+        label_28->setObjectName("label_28");
+        label_28->setGeometry(QRect(20, 620, 221, 31));
+        QFont font2;
+        font2.setFamilies({QString::fromUtf8("Times New Roman")});
+        font2.setPointSize(14);
+        font2.setItalic(true);
+        label_28->setFont(font2);
+        pushButton_client_fidele = new QPushButton(groupBox_2);
+        pushButton_client_fidele->setObjectName("pushButton_client_fidele");
+        pushButton_client_fidele->setGeometry(QRect(240, 620, 41, 41));
+        pushButton_client_fidele->setStyleSheet(QString::fromUtf8("background-color: #999DF2; /* Nouveau bleu pour l'arri\303\250re-plan */\n"
+"color: #ffffff; /* Texte blanc */\n"
+"border: 5px solid #999DF2; /* Bordure de la m\303\252me couleur que l'arri\303\250re-plan */\n"
+"border-radius: 10px; /* Coins arrondis */\n"
+"padding: 5px 10px; /* Espacement interne */\n"
+"font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
+""));
+        QIcon icon3;
+        icon3.addFile(QString::fromUtf8(":/img/fidelite-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_client_fidele->setIcon(icon3);
+        pushButton_client_fidele->setIconSize(QSize(40, 40));
+        label_29 = new QLabel(groupBox_2);
+        label_29->setObjectName("label_29");
+        label_29->setGeometry(QRect(650, 630, 63, 20));
+        label_29->setFont(font2);
         lineEdit_critereRecherche = new QLineEdit(afficher);
         lineEdit_critereRecherche->setObjectName("lineEdit_critereRecherche");
         lineEdit_critereRecherche->setGeometry(QRect(920, 120, 231, 41));
-        QFont font2;
-        font2.setPointSize(14);
-        lineEdit_critereRecherche->setFont(font2);
+        QFont font3;
+        font3.setPointSize(14);
+        lineEdit_critereRecherche->setFont(font3);
         lineEdit_critereRecherche->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
 "border-radius: 20px; "));
         lineEdit_critereRecherche->setAlignment(Qt::AlignmentFlag::AlignCenter);
@@ -421,9 +453,9 @@ public:
 "padding: 5px 10px; /* Espacement interne */\n"
 "font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
 ""));
-        QIcon icon3;
-        icon3.addFile(QString::fromUtf8(":/img/0b26b188-484e-4955-b620-a8405c76b74e-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButtonRechercher_met->setIcon(icon3);
+        QIcon icon4;
+        icon4.addFile(QString::fromUtf8(":/img/0b26b188-484e-4955-b620-a8405c76b74e-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButtonRechercher_met->setIcon(icon4);
         pushButtonRechercher_met->setIconSize(QSize(25, 25));
         pushButtonRechercher_met->setCheckable(false);
         pushButtonRechercher_met->setChecked(false);
@@ -439,9 +471,9 @@ public:
 "padding: 5px 10px; /* Espacement interne */\n"
 "font: 75 15pt; /* Police avec un poids de 75 et taille de 15pt */\n"
 ""));
-        QIcon icon4;
-        icon4.addFile(QString::fromUtf8(":/img/8051f3d1-c574-4c63-b54e-83dfdd52aa02-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
-        pushButton_tri_desc->setIcon(icon4);
+        QIcon icon5;
+        icon5.addFile(QString::fromUtf8(":/img/8051f3d1-c574-4c63-b54e-83dfdd52aa02-removebg-preview.png"), QSize(), QIcon::Normal, QIcon::Off);
+        pushButton_tri_desc->setIcon(icon5);
         pushButton_tri_desc->setIconSize(QSize(25, 25));
         comboBox_critereRecherche = new QComboBox(afficher);
         comboBox_critereRecherche->addItem(QString());
@@ -597,36 +629,36 @@ public:
         lineedit_nom = new QLineEdit(groupBox);
         lineedit_nom->setObjectName("lineedit_nom");
         lineedit_nom->setGeometry(QRect(370, 90, 471, 51));
-        lineedit_nom->setFont(font2);
+        lineedit_nom->setFont(font3);
         lineedit_nom->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_nom->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_prenom = new QLineEdit(groupBox);
         lineedit_prenom->setObjectName("lineedit_prenom");
         lineedit_prenom->setGeometry(QRect(370, 160, 471, 51));
-        lineedit_prenom->setFont(font2);
+        lineedit_prenom->setFont(font3);
         lineedit_prenom->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_prenom->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_adresse = new QLineEdit(groupBox);
         lineedit_adresse->setObjectName("lineedit_adresse");
         lineedit_adresse->setGeometry(QRect(370, 310, 471, 51));
-        lineedit_adresse->setFont(font2);
+        lineedit_adresse->setFont(font3);
         lineedit_adresse->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_adresse->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_tel = new QLineEdit(groupBox);
         lineedit_tel->setObjectName("lineedit_tel");
         lineedit_tel->setGeometry(QRect(370, 430, 471, 51));
-        lineedit_tel->setFont(font2);
+        lineedit_tel->setFont(font3);
         lineedit_tel->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_tel->setAlignment(Qt::AlignmentFlag::AlignCenter);
         radiobutton_homme = new QRadioButton(groupBox);
         radiobutton_homme->setObjectName("radiobutton_homme");
         radiobutton_homme->setGeometry(QRect(460, 380, 151, 31));
-        radiobutton_homme->setFont(font2);
+        radiobutton_homme->setFont(font3);
         radiobutton_homme->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         radiobutton_femme = new QRadioButton(groupBox);
         radiobutton_femme->setObjectName("radiobutton_femme");
         radiobutton_femme->setGeometry(QRect(670, 380, 151, 31));
-        radiobutton_femme->setFont(font2);
+        radiobutton_femme->setFont(font3);
         radiobutton_femme->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         pushButton_ajouter = new QPushButton(groupBox);
         pushButton_ajouter->setObjectName("pushButton_ajouter");
@@ -676,7 +708,7 @@ public:
         lineedit_cin = new QLineEdit(groupBox);
         lineedit_cin->setObjectName("lineedit_cin");
         lineedit_cin->setGeometry(QRect(370, 230, 471, 51));
-        lineedit_cin->setFont(font2);
+        lineedit_cin->setFont(font3);
         lineedit_cin->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_cin->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_13 = new QLabel(groupBox);
@@ -687,11 +719,11 @@ public:
         lineedit_nationalite = new QLineEdit(groupBox);
         lineedit_nationalite->setObjectName("lineedit_nationalite");
         lineedit_nationalite->setGeometry(QRect(370, 510, 471, 51));
-        QFont font3;
-        font3.setFamilies({QString::fromUtf8("Segoe UI")});
-        font3.setPointSize(14);
-        font3.setItalic(false);
-        lineedit_nationalite->setFont(font3);
+        QFont font4;
+        font4.setFamilies({QString::fromUtf8("Segoe UI")});
+        font4.setPointSize(14);
+        font4.setItalic(false);
+        lineedit_nationalite->setFont(font4);
         lineedit_nationalite->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_nationalite->setMaxLength(32778);
         lineedit_nationalite->setAlignment(Qt::AlignmentFlag::AlignCenter);
@@ -803,36 +835,36 @@ public:
         lineedit_nom_modif = new QLineEdit(groupBox_3);
         lineedit_nom_modif->setObjectName("lineedit_nom_modif");
         lineedit_nom_modif->setGeometry(QRect(260, 90, 471, 51));
-        lineedit_nom_modif->setFont(font2);
+        lineedit_nom_modif->setFont(font3);
         lineedit_nom_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_nom_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_prenom_modif = new QLineEdit(groupBox_3);
         lineedit_prenom_modif->setObjectName("lineedit_prenom_modif");
         lineedit_prenom_modif->setGeometry(QRect(260, 180, 471, 51));
-        lineedit_prenom_modif->setFont(font2);
+        lineedit_prenom_modif->setFont(font3);
         lineedit_prenom_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_prenom_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_adresse_modif = new QLineEdit(groupBox_3);
         lineedit_adresse_modif->setObjectName("lineedit_adresse_modif");
         lineedit_adresse_modif->setGeometry(QRect(260, 400, 471, 51));
-        lineedit_adresse_modif->setFont(font2);
+        lineedit_adresse_modif->setFont(font3);
         lineedit_adresse_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_adresse_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_tel_modif = new QLineEdit(groupBox_3);
         lineedit_tel_modif->setObjectName("lineedit_tel_modif");
         lineedit_tel_modif->setGeometry(QRect(260, 520, 471, 51));
-        lineedit_tel_modif->setFont(font2);
+        lineedit_tel_modif->setFont(font3);
         lineedit_tel_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_tel_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         radiobutton_homme_modif = new QRadioButton(groupBox_3);
         radiobutton_homme_modif->setObjectName("radiobutton_homme_modif");
         radiobutton_homme_modif->setGeometry(QRect(270, 470, 151, 31));
-        radiobutton_homme_modif->setFont(font2);
+        radiobutton_homme_modif->setFont(font3);
         radiobutton_homme_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         radiobutton_femme_modif = new QRadioButton(groupBox_3);
         radiobutton_femme_modif->setObjectName("radiobutton_femme_modif");
         radiobutton_femme_modif->setGeometry(QRect(510, 470, 151, 31));
-        radiobutton_femme_modif->setFont(font2);
+        radiobutton_femme_modif->setFont(font3);
         radiobutton_femme_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         pushButton_modifier = new QPushButton(groupBox_3);
         pushButton_modifier->setObjectName("pushButton_modifier");
@@ -882,7 +914,7 @@ public:
         lineedit_id_modif = new QLineEdit(groupBox_3);
         lineedit_id_modif->setObjectName("lineedit_id_modif");
         lineedit_id_modif->setGeometry(QRect(940, 250, 221, 51));
-        lineedit_id_modif->setFont(font2);
+        lineedit_id_modif->setFont(font3);
         lineedit_id_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_id_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_15 = new QLabel(groupBox_3);
@@ -945,21 +977,17 @@ public:
         lineedit_nationalite_modif = new QLineEdit(groupBox_3);
         lineedit_nationalite_modif->setObjectName("lineedit_nationalite_modif");
         lineedit_nationalite_modif->setGeometry(QRect(260, 320, 471, 51));
-        lineedit_nationalite_modif->setFont(font2);
+        lineedit_nationalite_modif->setFont(font3);
         lineedit_nationalite_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_nationalite_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_26 = new QLabel(groupBox_3);
         label_26->setObjectName("label_26");
         label_26->setGeometry(QRect(90, 270, 63, 20));
-        QFont font4;
-        font4.setFamilies({QString::fromUtf8("Times New Roman")});
-        font4.setPointSize(14);
-        font4.setItalic(true);
-        label_26->setFont(font4);
+        label_26->setFont(font2);
         lineedit_cin_modif = new QLineEdit(groupBox_3);
         lineedit_cin_modif->setObjectName("lineedit_cin_modif");
         lineedit_cin_modif->setGeometry(QRect(260, 250, 471, 51));
-        lineedit_cin_modif->setFont(font2);
+        lineedit_cin_modif->setFont(font3);
         lineedit_cin_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_cin_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
         tabWidget->addTab(Modifier, QString());
@@ -1058,14 +1086,14 @@ public:
         lineedit_nom_supp = new QLineEdit(groupBox_7);
         lineedit_nom_supp->setObjectName("lineedit_nom_supp");
         lineedit_nom_supp->setGeometry(QRect(260, 100, 471, 51));
-        lineedit_nom_supp->setFont(font2);
+        lineedit_nom_supp->setFont(font3);
         lineedit_nom_supp->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_nom_supp->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_nom_supp->setReadOnly(false);
         lineedit_prenom_supp = new QLineEdit(groupBox_7);
         lineedit_prenom_supp->setObjectName("lineedit_prenom_supp");
         lineedit_prenom_supp->setGeometry(QRect(260, 170, 471, 51));
-        lineedit_prenom_supp->setFont(font2);
+        lineedit_prenom_supp->setFont(font3);
         lineedit_prenom_supp->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_prenom_supp->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_prenom_supp->setReadOnly(false);
@@ -1117,7 +1145,7 @@ public:
         lineedit_id_rech = new QLineEdit(groupBox_7);
         lineedit_id_rech->setObjectName("lineedit_id_rech");
         lineedit_id_rech->setGeometry(QRect(900, 250, 221, 51));
-        lineedit_id_rech->setFont(font2);
+        lineedit_id_rech->setFont(font3);
         lineedit_id_rech->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_id_rech->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_48 = new QLabel(groupBox_7);
@@ -1180,49 +1208,179 @@ public:
         lineedit_nationalite_supp = new QLineEdit(groupBox_7);
         lineedit_nationalite_supp->setObjectName("lineedit_nationalite_supp");
         lineedit_nationalite_supp->setGeometry(QRect(260, 310, 471, 51));
-        lineedit_nationalite_supp->setFont(font2);
+        lineedit_nationalite_supp->setFont(font3);
         lineedit_nationalite_supp->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_nationalite_supp->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_nationalite_supp->setReadOnly(false);
         label_24 = new QLabel(groupBox_7);
         label_24->setObjectName("label_24");
         label_24->setGeometry(QRect(60, 440, 151, 41));
-        label_24->setFont(font4);
+        label_24->setFont(font2);
         label_25 = new QLabel(groupBox_7);
         label_25->setObjectName("label_25");
         label_25->setGeometry(QRect(50, 510, 171, 31));
-        label_25->setFont(font4);
+        label_25->setFont(font2);
         lineedit_adresse_supp = new QLineEdit(groupBox_7);
         lineedit_adresse_supp->setObjectName("lineedit_adresse_supp");
         lineedit_adresse_supp->setGeometry(QRect(260, 440, 471, 51));
-        lineedit_adresse_supp->setFont(font2);
+        lineedit_adresse_supp->setFont(font3);
         lineedit_adresse_supp->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_adresse_supp->setAlignment(Qt::AlignmentFlag::AlignCenter);
         lineedit_tel_supp = new QLineEdit(groupBox_7);
         lineedit_tel_supp->setObjectName("lineedit_tel_supp");
         lineedit_tel_supp->setGeometry(QRect(260, 510, 471, 51));
-        lineedit_tel_supp->setFont(font2);
+        lineedit_tel_supp->setFont(font3);
         lineedit_tel_supp->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_tel_supp->setAlignment(Qt::AlignmentFlag::AlignCenter);
         radioButton_homme_supp = new QRadioButton(groupBox_7);
         radioButton_homme_supp->setObjectName("radioButton_homme_supp");
         radioButton_homme_supp->setGeometry(QRect(320, 380, 110, 24));
-        radioButton_homme_supp->setFont(font2);
+        radioButton_homme_supp->setFont(font3);
         radioButton_femme_supp = new QRadioButton(groupBox_7);
         radioButton_femme_supp->setObjectName("radioButton_femme_supp");
         radioButton_femme_supp->setGeometry(QRect(570, 380, 110, 24));
-        radioButton_femme_supp->setFont(font2);
+        radioButton_femme_supp->setFont(font3);
         lineedit_cin_supp = new QLineEdit(groupBox_7);
         lineedit_cin_supp->setObjectName("lineedit_cin_supp");
         lineedit_cin_supp->setGeometry(QRect(260, 240, 471, 51));
-        lineedit_cin_supp->setFont(font2);
+        lineedit_cin_supp->setFont(font3);
         lineedit_cin_supp->setStyleSheet(QString::fromUtf8("border-radius :15px"));
         lineedit_cin_supp->setAlignment(Qt::AlignmentFlag::AlignCenter);
         label_27 = new QLabel(groupBox_7);
         label_27->setObjectName("label_27");
         label_27->setGeometry(QRect(100, 260, 141, 31));
-        label_27->setFont(font4);
+        label_27->setFont(font2);
         tabWidget->addTab(supprimer, QString());
+        Mailing = new QWidget();
+        Mailing->setObjectName("Mailing");
+        groupBox_4 = new QGroupBox(Mailing);
+        groupBox_4->setObjectName("groupBox_4");
+        groupBox_4->setGeometry(QRect(10, 10, 1191, 671));
+        groupBox_4->setFont(font1);
+        groupBox_4->setStyleSheet(QString::fromUtf8("/* Style de base pour la QGroupBox */\n"
+"QGroupBox {\n"
+"    border: 4px solid #999DF2; /* Bordure de la m\303\252me couleur que le fond du titre */\n"
+"    border-radius: 25px; /* Coins arrondis */\n"
+"    margin-top: 10px; /* Marge en haut */\n"
+"}\n"
+"\n"
+"/* Style du titre de la QGroupBox */\n"
+"QGroupBox::title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top center;\n"
+"    padding: 0 3px;\n"
+"    background-color: #999DF2; /* Fond remplac\303\251 par #999DF2 */\n"
+"    color: #ffffff; /* Texte blanc pour le titre */\n"
+"    border-radius: 10px; /* Coins arrondis du titre */\n"
+"}\n"
+"\n"
+"/* Style des QLabel \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLabel {\n"
+"    color: #000000; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QRadioButton \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QRadioButton {\n"
+"    color: #333333; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QComboBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QComboBox {\n"
+"    background"
+                        "-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QLineEdit \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLineEdit {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QSpinBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QSpinBox {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sacti"
+                        "v\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0; /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0; /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}"));
+        groupBox_4->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        lineEditRecipient = new QLineEdit(groupBox_4);
+        lineEditRecipient->setObjectName("lineEditRecipient");
+        lineEditRecipient->setGeometry(QRect(440, 200, 311, 31));
+        lineEditRecipient->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        lineEditSubject = new QLineEdit(groupBox_4);
+        lineEditSubject->setObjectName("lineEditSubject");
+        lineEditSubject->setGeometry(QRect(440, 300, 311, 31));
+        lineEditSubject->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        pushButtonSend = new QPushButton(groupBox_4);
+        pushButtonSend->setObjectName("pushButtonSend");
+        pushButtonSend->setGeometry(QRect(530, 440, 141, 51));
+        pushButtonSend->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        label_17 = new QLabel(groupBox_4);
+        label_17->setObjectName("label_17");
+        label_17->setGeometry(QRect(270, 190, 141, 31));
+        label_17->setFont(font2);
+        label_18 = new QLabel(groupBox_4);
+        label_18->setObjectName("label_18");
+        label_18->setGeometry(QRect(310, 300, 101, 31));
+        label_18->setFont(font2);
+        tabWidget->addTab(Mailing, QString());
         pushButton_4 = new QPushButton(centralwidget);
         pushButton_4->setObjectName("pushButton_4");
         pushButton_4->setGeometry(QRect(10, 370, 261, 51));
@@ -1407,23 +1565,6 @@ public:
         label_14->setObjectName("label_14");
         label_14->setGeometry(QRect(20, 10, 241, 211));
         label_14->setStyleSheet(QString::fromUtf8("image: url(:/res/y.png)"));
-        label_17 = new QLabel(centralwidget);
-        label_17->setObjectName("label_17");
-        label_17->setGeometry(QRect(90, 590, 101, 41));
-        label_17->setStyleSheet(QString::fromUtf8("image: url(:/res/vv-removebg-preview.png)\n"
-""));
-        label_18 = new QLabel(centralwidget);
-        label_18->setObjectName("label_18");
-        label_18->setGeometry(QRect(100, 640, 81, 41));
-        label_18->setStyleSheet(QString::fromUtf8("image: url(:/res/pp-removebg-preview.png)"));
-        label_19 = new QLabel(centralwidget);
-        label_19->setObjectName("label_19");
-        label_19->setGeometry(QRect(100, 680, 81, 51));
-        label_19->setStyleSheet(QString::fromUtf8("image: url(:/res/n-removebg-preview.png)"));
-        label_20 = new QLabel(centralwidget);
-        label_20->setObjectName("label_20");
-        label_20->setGeometry(QRect(100, 730, 81, 51));
-        label_20->setStyleSheet(QString::fromUtf8("image: url(:/res/www-removebg-preview.png)"));
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -1450,6 +1591,9 @@ public:
         label_22->setText(QCoreApplication::translate("MainWindow", "Trier la liste des clients par:", nullptr));
         pushButton_trierParNom->setText(QString());
         pushButton_export_pdf->setText(QString());
+        label_28->setText(QCoreApplication::translate("MainWindow", "Le client le plus fid\303\250le:", nullptr));
+        pushButton_client_fidele->setText(QString());
+        label_29->setText(QCoreApplication::translate("MainWindow", "PDF:", nullptr));
         lineEdit_critereRecherche->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher", nullptr));
         pushButtonRechercher_met->setText(QString());
         pushButton_tri_desc->setText(QString());
@@ -1527,16 +1671,19 @@ public:
         lineedit_cin_supp->setPlaceholderText(QCoreApplication::translate("MainWindow", "CIN \303\240 supprimer", nullptr));
         label_27->setText(QCoreApplication::translate("MainWindow", "CIN:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(supprimer), QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
+        groupBox_4->setTitle(QCoreApplication::translate("MainWindow", "Mailing", nullptr));
+        lineEditRecipient->setText(QString());
+        lineEditSubject->setText(QString());
+        pushButtonSend->setText(QCoreApplication::translate("MainWindow", "Envoyer", nullptr));
+        label_17->setText(QCoreApplication::translate("MainWindow", "destinataire:", nullptr));
+        label_18->setText(QCoreApplication::translate("MainWindow", "objet:", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Mailing), QCoreApplication::translate("MainWindow", "Mailing", nullptr));
         pushButton_4->setText(QCoreApplication::translate("MainWindow", "Gestion Clients", nullptr));
         pushButton_11->setText(QCoreApplication::translate("MainWindow", "Gestion Services", nullptr));
         pushButton_9->setText(QCoreApplication::translate("MainWindow", "Gestion R\303\251servations", nullptr));
         pushButton_6->setText(QCoreApplication::translate("MainWindow", "Gestion Emply\303\251es", nullptr));
         pushButton_menu->setText(QCoreApplication::translate("MainWindow", "Menu", nullptr));
         label_14->setText(QString());
-        label_17->setText(QString());
-        label_18->setText(QString());
-        label_19->setText(QString());
-        label_20->setText(QString());
     } // retranslateUi
 
 };

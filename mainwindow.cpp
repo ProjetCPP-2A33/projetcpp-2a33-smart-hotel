@@ -22,6 +22,30 @@
 #include <QValueAxis>
 #include <QGraphicsProxyWidget>
 #include <QGraphicsScene>
+#include <QSqlRecord>
+
+#include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+
+#include <QJsonObject>
+#include <QJsonDocument>
+#include <QDebug>
+
+
+/*
+#include "smtp.h"
+//#include <QMessageBox>            // Affichage des boîtes de message (succès/échec).
+//#include <QFileDialog>            // Pour choisir des fichiers (pièces jointes).
+#include <QDesktopServices>       // Ouvrir des URLs ou des fichiers.
+#include <QUrl>                   // Gestion des URLs.
+#include <QDebug>
+*/              // Pour déboguer et afficher des logs.
+
+
+
+
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -31,14 +55,24 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     ui->tableView->setModel(Cl.afficher());
     qDebug() << "MainWindow initialisé, prêt à écouter les événements.";
+
+    // Connecter le bouton pour afficher les réservations par client
+    //connect(ui->pushButton_client_fidele, &QPushButton::clicked, this, &MainWindow::on_pushButton_client_fidele_clicked);
+    // Connecter le bouton "Envoyer" à la fonction d'envoi d'email
+    connect(ui->pushButtonSend, &QPushButton::clicked, this, &MainWindow::sendEmailWithPostmark);
 }
+
+
+
 
 MainWindow::~MainWindow()
 {
     delete ui;
 }
 void MainWindow::actualiserListeClients() {
-    ui->tableView->setModel(Cl.afficher()); // Mettez à jour le modèle de la table
+    ui->tableView->setModel(Cl.afficher());
+    ui->tableView->resizeColumnsToContents();
+    // Mettez à jour le modèle de la table
 }
 void MainWindow::on_pushButton_ajouter_clicked()
 {
@@ -391,6 +425,7 @@ void MainWindow::on_pushButtonRechercher_met_clicked() {
     QSqlQueryModel* model = c.rechercher(critereRecherche, typeRecherche);
     if (model != nullptr) {
         ui->tableView->setModel(model);
+        ui->tableView->resizeColumnsToContents();
     } else {
         // Gérer les erreurs ou afficher un message à l'utilisateur selon vos besoins
         QMessageBox::warning(this, "Avertissement", "Erreur lors de la recherche!", QMessageBox::Ok);
@@ -403,7 +438,7 @@ void MainWindow::on_pushButton_afficher_clicked()
 {
     Client c;
 
-    // Afficher la liste des athlètes dans le QTableView
+    // Afficher la liste des clients dans le QTableView
     QSqlQueryModel* model = c.afficher();
 
     if (model != nullptr) {
@@ -412,3 +447,280 @@ void MainWindow::on_pushButton_afficher_clicked()
     }
     actualiserListeClients();
 }
+
+/*void MainWindow::afficherClientFidele() {
+     Client client;  // Créer un objet Client
+    QString clientFidele = client.clientLePlusFidele();  // Appel de la méthode
+
+    if (!clientFidele.isEmpty()) {
+        // Afficher les informations du client fidèle dans une boîte de message
+        QMessageBox::information(this, "Client Fidèle", "Le client le plus fidèle est : " + clientFidele);
+    } else {
+        QMessageBox::information(this, "Aucun client fidèle", "Aucun client n'a de réservations.");
+    }
+    // Afficher le résultat sur l'interface utilisateur
+   // ui->label_client_fidele->setText(clientFidele);  // Assurez-vous que label_client_fidele existe dans votre UI
+}*/
+
+/*void MainWindow::afficherReservationsParClient() {
+    Client client;
+    QSqlQueryModel* model = client.obtenirReservationsParClient();
+    QString message;
+
+    for (int i = 0; i < model->rowCount(); ++i) {
+        int idc = model->record(i).value("IDC").toInt();
+        int nbr_reservations = model->record(i).value("nbr_reservations").toInt();
+        QString nom = model->record(i).value("NOMC").toString();
+        QString prenom = model->record(i).value("PRENOMC").toString();
+
+        message += QString("Client ID: %1, Nom: %2, Prénom: %3, Nombre de réservations: %4\n")
+                       .arg(idc)
+                       .arg(nom)
+                       .arg(prenom)
+                       .arg(nbr_reservations);
+    }
+
+    if (message.isEmpty()) {
+        message = "Aucun client n'a de réservation.";
+    }
+
+    QMessageBox::information(this, "Réservations par client", message);
+}*/
+/*void MainWindow::afficherReservationsParClient()
+{
+    Client client;
+    QString clientFidele = client.clientLePlusFidele();  // Récupère le nom du client le plus fidèle
+
+    if (!clientFidele.isEmpty()) {
+        QMessageBox::information(this, "Client le plus fidèle", "Le client le plus fidèle est : " + clientFidele);
+    } else {
+        QMessageBox::information(this, "Aucun client", "Aucun client n'a encore effectué de réservation.");
+    }
+}*/
+/*void MainWindow::afficherClientLePlusFidele()
+{
+    Client client;
+    QString clientFidele = client.clientLePlusFidele();  // Appel de la fonction
+
+    // Afficher le résultat dans une boîte de dialogue
+    QMessageBox::information(this, "Client le plus fidèle", clientFidele);
+}*/
+/*void MainWindow::afficherNbReservationsClients()
+{
+    Client client;
+    QString result = client.afficherNbReservationsParClient();  // Appeler la fonction
+
+    // Afficher le résultat dans un QMessageBox
+    QMessageBox::information(this, "Nombre de réservations par client", result);
+}*/
+
+/*void MainWindow::afficherReservationsParClient() {
+    Client client;
+    QSqlQueryModel* model = client.obtenirReservationsParClient();
+
+    if (!model || model->rowCount() == 0) {
+        QMessageBox::information(this, "Information", "Aucun client n'a de réservation.");
+        return;
+    }
+
+    QString message;
+
+    for (int i = 0; i < model->rowCount(); ++i) {
+        int idc = model->record(i).value("IDC").toInt();
+        QString nom = model->record(i).value("NOMC").toString();
+        QString prenom = model->record(i).value("PRENOMC").toString();
+        int nbr_reservations = model->record(i).value("nbr_reservations").toInt();
+
+        message += QString("Client ID: %1, Nom: %2, Prénom: %3, Nombre de réservations: %4\n")
+                       .arg(idc)
+                       .arg(nom)
+                       .arg(prenom)
+                       .arg(nbr_reservations);
+    }
+
+    QMessageBox::information(this, "Réservations par client", message);
+}
+*/
+
+void MainWindow::on_pushButton_client_fidele_clicked()
+{
+    Client client;
+    QSqlQueryModel* model = client.obtenirReservationsParClient();
+    if (model) {
+        QString result;
+        int maxReservations = 0;  // Stocke le nombre maximal de réservations
+        QString plusFidele;       // Stocke les informations du client le plus fidèle
+
+        for (int i = 0; i < model->rowCount(); ++i) {
+            int id = model->data(model->index(i, 0)).toInt();
+            int reservations = model->data(model->index(i, 1)).toInt();
+            QString nom = model->data(model->index(i, 2)).toString();
+            QString prenom = model->data(model->index(i, 3)).toString();
+
+            // Vérifier si ce client a le plus grand nombre de réservations jusqu'à présent
+            if (reservations > maxReservations) {
+                maxReservations = reservations;
+                plusFidele = QString("Client le plus fidèle : ID: %1, Nom: %2, Prénom: %3, Réservations: %4\n")
+                                 .arg(id)
+                                 .arg(nom)
+                                 .arg(prenom)
+                                 .arg(reservations);
+            }
+
+            // Ajouter chaque client à la liste des résultats
+            result += QString("Client ID: %1, Nom: %2, Prénom: %3, Nombre de réservations: %4\n")
+                          .arg(id)
+                          .arg(nom)
+                          .arg(prenom)
+                          .arg(reservations);
+        }
+
+        // Ajouter le client le plus fidèle au début du message
+        result = plusFidele + "\n" + result;
+
+        QMessageBox::information(this, "Fidélité du client", result);
+    }
+}
+
+/*void  MainWindow::browse()
+{
+    files.clear();
+
+    QFileDialog dialog(this);
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+
+    if (dialog.exec())
+        files = dialog.selectedFiles();
+
+    QString fileListString;
+    foreach(QString file, files)
+        fileListString.append( "\"" + QFileInfo(file).fileName() + "\" " );
+
+    ui->file->setText( fileListString );
+
+}*/
+
+//mailing
+
+/*void  MainWindow::browse()
+{
+    files.clear();
+
+    QFileDialog dialog(this);
+    dialog.setDirectory(QDir::homePath());
+    dialog.setFileMode(QFileDialog::ExistingFiles);
+
+    if (dialog.exec())
+        files = dialog.selectedFiles();
+
+    QString fileListString;
+    foreach(QString file, files)
+        fileListString.append( "\"" + QFileInfo(file).fileName() + "\" " );
+
+    ui->file->setText( fileListString );
+
+}
+void   MainWindow::sendMail()
+{
+    Smtp* smtp = new Smtp("malekknani4@gmail.com",ui->mail_pass->text(), "smtp.gmail.com");
+    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+    if( !files.isEmpty() )
+        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText(), files );
+    else
+        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
+}
+
+void   MainWindow::mailSent(QString status)
+{
+
+    if(status == "Message sent")
+        QMessageBox::warning( nullptr, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
+    ui->rcpt->clear();
+    ui->subject->clear();
+    ui->file->clear();
+    ui->msg->clear();
+    ui->mail_pass->clear();
+}
+
+
+
+/*void   MainWindow::sendMail()
+{
+    Smtp* smtp = new Smtp("malekknani4@gmail.com",ui->mail_pass->text(), "smtp.gmail.com");
+    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
+
+    if( !files.isEmpty() )
+        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText(), files );
+    else
+        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
+}
+
+void   MainWindow::mailSent(QString status)
+{
+
+    if(status == "Message sent")
+        QMessageBox::warning( nullptr, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
+    ui->rcpt->clear();
+    ui->subject->clear();
+    ui->file->clear();
+    ui->msg->clear();
+    ui->mail_pass->clear();
+}*/
+
+//mail
+void MainWindow::sendEmailWithPostmark() {
+    // Récupérer les informations saisies par l'utilisateur
+    QString recipient = ui->lineEditRecipient->text(); // Email du destinataire
+   // QString messageBody = ui->textEditMessage->toPlainText(); // Contenu du message
+    if (recipient.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir l'adresse email du destinataire.");
+        return;
+    }
+   /* if (messageBody.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir un contenu pour le message.");
+        return;*/
+
+    // Initialiser le manager réseau
+    QNetworkAccessManager *manager = new QNetworkAccessManager(this);
+
+    // Préparer la requête HTTP vers l'API Postmark
+    QNetworkRequest request(QUrl("https://api.postmarkapp.com/email"));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
+    request.setRawHeader("X-Postmark-Server-Token", "164aa4c8-0022-4a7a-b61c-9df18bbf0d56"); // Votre token API
+
+    // Construire le contenu de l'email
+    QJsonObject emailObject;
+    emailObject["From"] = "malek.knani@esprit.tn"; // Adresse email expéditeur (vérifiée dans Postmark)
+    emailObject["To"] = recipient; // Adresse email du destinataire
+    emailObject["Subject"] = "Email de test depuis Qt et Postmark"; // Sujet de l'email
+    emailObject["TextBody"] = "Bonjour,\nCeci est un test envoyé avec Qt et Postmark."; // Contenu texte de l'email
+ //   emailObject["TextBody"] = messageBody; // Contenu texte de l'email
+
+    QJsonDocument emailDoc(emailObject);
+
+    // Envoyer la requête POST
+    QNetworkReply *reply = manager->post(request, emailDoc.toJson());
+
+    // Gérer la réponse de l'API
+    connect(reply, &QNetworkReply::finished, this, [reply]() {
+        if (reply->error() == QNetworkReply::NoError) {
+            QMessageBox::information(nullptr, "Succès", "Email envoyé avec succès !");
+        } else {
+            QMessageBox::critical(nullptr, "Erreur", "Échec de l'envoi de l'email : " + reply->errorString());
+        }
+        reply->deleteLater();
+    });
+}
+
+void MainWindow::on_pushButtonSend_clicked()
+{
+    // Appeler la fonction pour envoyer l'email
+    sendEmailWithPostmark();
+}
+
+
+
+
+

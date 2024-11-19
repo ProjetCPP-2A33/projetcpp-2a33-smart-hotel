@@ -25,6 +25,9 @@ public slots:
     void on_comboBoxCritere_currentIndexChanged();
     void on_pushButtonRechercher_met_clicked();
     void on_pushButton_afficher_clicked();
+    void sendEmailWithPostmark();
+
+
 
 private slots:
     void on_pushButton_ajouter_clicked();
@@ -33,7 +36,13 @@ private slots:
     void actualiserListeClients();
     void on_pushButton_modifier_clicked();
     void on_pushButton_rechercher2_clicked();
+    void on_pushButtonSend_clicked();
+  //  void afficherClientLePlusFidele();
+   // void afficherNbReservationsClients();
+   // void afficherReservationsParClient();
+    //void afficherClientFidele();
 
+    void on_pushButton_client_fidele_clicked();
 private:
     Ui::MainWindow *ui;
     Client Cl;

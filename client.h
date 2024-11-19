@@ -44,10 +44,14 @@ public:
     QSqlQueryModel* rechercher(const QString& critere, const QString& typeRecherche);
 
     //QSqlQueryModel* rechercherClients(const QString& champ, const QString& valeur);
-
-
+    QSqlQueryModel* obtenirReservationsParClient();
+   // QString clientLePlusFidele();  // Déclaration de la fonction
+ // QString afficherNbReservationsParClient();  // Déclaration de la fonction
+ //  QString clientLePlusFidele();
+     Client clientLePlusFidele();
     QString CIN,nomC, prenomC, nationalite, emailC, genre;
     int num_telC;
+   //  QString clientLePlusFidele();
 
 
 
