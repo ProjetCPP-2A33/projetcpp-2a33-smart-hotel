@@ -4,6 +4,8 @@
 #include <QMainWindow>
 #include <qnetworkreply.h>
 #include "service.h"
+#include <QSerialPort>
+//#include <QSerialPortInfo>
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,13 +32,16 @@ private slots:
 
     void on_sendSMSButton_clicked();
     void envoyerSMS(const QString &destinataire, const QString &message);
-
+    void on_ButtonOuvrir_Clicked();
 
 private:
     Ui::MainWindow *ui;
     Service serviceModel;
     void afficherHistoriqueService();
     void addToHistory(const QString &action, int ids);
+    QSerialPort *serialPort; // Port série pour Arduino
+    //QString arduinoPortName; // Nom du port série utilisé
+    //bool arduinoIsAvailable;
 };
 
 #endif // MAINWINDOW_H

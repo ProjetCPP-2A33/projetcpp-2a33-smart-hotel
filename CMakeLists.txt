@@ -13,7 +13,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_PREFIX_PATH "C:/Users/nour1/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Qt/6.6.3/mingw_64")
 
 # Rechercher les composants nécessaires de Qt
-find_package(Qt6 REQUIRED COMPONENTS Widgets Network Sql Charts)
+#find_package(Qt6 REQUIRED COMPONENTS Widgets Network Sql Charts SerialPort)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Charts Network)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Charts Network)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets Sql Charts Network SerialPort)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Charts Network SerialPort)
 
 # Déclaration des fichiers sources du projet
 set(PROJECT_SOURCES
@@ -40,6 +44,7 @@ target_link_libraries(InterfaceCRUD
     Qt6::Network
     Qt6::Sql
     Qt6::Charts
+    Qt6::SerialPort # Ajout du module SerialPort
 )
 
 # Finalisation de l'exécutable pour Qt6

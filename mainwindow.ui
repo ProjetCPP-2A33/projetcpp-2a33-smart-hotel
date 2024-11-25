@@ -285,7 +285,7 @@ QTabBar {
 </string>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="iconSize">
      <size>
@@ -932,7 +932,7 @@ QWidget:disabled {
     </widget>
     <widget class="QWidget" name="Ajouter">
      <attribute name="title">
-      <string>Ajouter</string>
+      <string>Ajouter+ouverture</string>
      </attribute>
      <widget class="QGroupBox" name="groupBox">
       <property name="geometry">
@@ -1294,6 +1294,86 @@ border-radius :15px</string>
        </property>
        <property name="alignment">
         <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+      </widget>
+      <widget class="QPushButton" name="ButtonOuvrir">
+       <property name="geometry">
+        <rect>
+         <x>920</x>
+         <y>590</y>
+         <width>221</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">/* Style de base pour le QPushButton */
+QPushButton {
+    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */
+    color: #ffffff;              /* Texte blanc */
+    border: 3px solid #435AD9;  /* Bordure de la même couleur que le fond */
+    border-radius: 12px;        /* Coins arrondis */
+    padding: 8px 12px;          /* Espacement interne */
+    font: 75 18pt &quot;Times New Roman&quot;; /* Police en gras */
+}
+
+/* Style du QPushButton lorsqu'il est survolé */
+QPushButton:hover {
+    background-color: #5f7cd8;   /* Bleu plus clair au survol */
+    border: 3px solid #5f7cd8;   /* Bordure de la même couleur que le fond survolé */
+}
+
+/* Style du QPushButton lorsqu'il est pressé (clic) */
+QPushButton:pressed {
+    background-color: #3b4fbf;   /* Bleu foncé au clic */
+    border: 3px solid #3b4fbf;   /* Bordure de la même couleur que le fond pressé */
+}
+
+/* Style du QPushButton lorsqu'il est en focus (tabulation) */
+QPushButton:focus {
+    outline: none;               /* Supprimer le contour par défaut */
+    border: 2px solid #2e8a56;  /* Bordure plus foncée lorsqu'en focus */
+}
+
+/* Style du QPushButton lorsqu'il est désactivé */
+QPushButton:disabled {
+    background-color: #b0b0b0;   /* Fond gris clair pour les boutons désactivés */
+    color: #707070;              /* Couleur du texte grise pour les boutons désactivés */
+    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons désactivés */
+}
+
+/* Style général pour les widgets lorsqu'ils sont désactivés */
+QWidget:disabled {
+    background-color: #f0f0f0;   /* Fond gris clair pour les widgets désactivés */
+    color: #a0a0a0;              /* Couleur du texte grise pour les widgets désactivés */
+}
+</string>
+       </property>
+       <property name="text">
+        <string>Ouvrir</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="l11">
+       <property name="geometry">
+        <rect>
+         <x>890</x>
+         <y>510</y>
+         <width>271</width>
+         <height>51</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">border-radius :15px</string>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignmentFlag::AlignCenter</set>
+       </property>
+       <property name="placeholderText">
+        <string>Entrez votre id</string>
        </property>
       </widget>
      </widget>

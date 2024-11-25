@@ -175,6 +175,10 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetwork-config.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetworkexports.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetworkglobal.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/QSerialPort \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/qserialport.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/qserialportglobal.h \
+  C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/qtserialportexports.h \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlError \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlQuery \
   C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlQueryModel \

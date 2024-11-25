@@ -7,6 +7,7 @@
 #include <QSqlError>
 #include <qstandarditemmodel.h>
 #include <QStandardItemModel>
+
 class Service {
 public:
     Service();

@@ -59,3 +59,13 @@
 2024-11-19 10:13:27 - Ajouter pour l'ID 46
 2024-11-19 10:13:31 - Statistique par graphe
 2024-11-19 10:13:59 - Statistique numerique
+2024-11-24 14:00:02 - Ajouter pour l'ID 254
+2024-11-24 14:34:12 - Ajouter pour l'ID 147
+2024-11-25 15:52:32 - Ajouter pour l'ID 12
+2024-11-25 15:52:59 - Rechercher pour l'ID 20
+2024-11-25 15:53:02 - Trie
+2024-11-25 15:53:05 - Statistique numerique
+2024-11-25 15:53:10 - Statistique par graphe
+2024-11-25 15:53:20 - Supprimer pour l'ID 45
+2024-11-25 15:53:23 - Statistique par graphe
+2024-11-25 15:53:25 - Statistique numerique

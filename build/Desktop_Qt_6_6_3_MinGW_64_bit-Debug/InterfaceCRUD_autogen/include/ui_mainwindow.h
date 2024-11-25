@@ -72,6 +72,8 @@ public:
     QLineEdit *l3;
     QLabel *label_5;
     QLabel *label_6;
+    QPushButton *ButtonOuvrir;
+    QLineEdit *l11;
     QWidget *Modifier;
     QGroupBox *groupBox_3;
     QLabel *label_8;
@@ -896,6 +898,57 @@ public:
         label_6->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
 "border-radius :15px"));
         label_6->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        ButtonOuvrir = new QPushButton(groupBox);
+        ButtonOuvrir->setObjectName("ButtonOuvrir");
+        ButtonOuvrir->setGeometry(QRect(920, 590, 221, 51));
+        ButtonOuvrir->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        l11 = new QLineEdit(groupBox);
+        l11->setObjectName("l11");
+        l11->setGeometry(QRect(890, 510, 271, 51));
+        l11->setFont(font2);
+        l11->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        l11->setAlignment(Qt::AlignmentFlag::AlignCenter);
         tabWidget->addTab(Ajouter, QString());
         Modifier = new QWidget();
         Modifier->setObjectName("Modifier");
@@ -1217,7 +1270,7 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -1260,6 +1313,8 @@ public:
         l3->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez le prix", nullptr));
         label_5->setText(QCoreApplication::translate("MainWindow", "Disponible 1", nullptr));
         label_6->setText(QCoreApplication::translate("MainWindow", "non Disponible 0", nullptr));
+        ButtonOuvrir->setText(QCoreApplication::translate("MainWindow", "Ouvrir", nullptr));
+        l11->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre id", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Ajouter), QCoreApplication::translate("MainWindow", "Ajouter", nullptr));
         groupBox_3->setTitle(QCoreApplication::translate("MainWindow", "MODIFIER", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Nom : ", nullptr));

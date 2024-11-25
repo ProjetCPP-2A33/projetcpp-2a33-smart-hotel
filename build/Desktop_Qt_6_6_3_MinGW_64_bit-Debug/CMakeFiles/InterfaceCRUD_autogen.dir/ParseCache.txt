@@ -177,6 +177,10 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.h
  mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetwork-config.h
  mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetworkexports.h
  mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork/qtnetworkglobal.h
+ mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/QSerialPort
+ mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/qserialport.h
+ mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/qserialportglobal.h
+ mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort/qtserialportexports.h
  mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlError
  mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlQuery
  mdp:C:/Qt_6_6/6.6.3/mingw_64/include/QtSql/QSqlQueryModel
@@ -399,7 +403,7 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.h
  mdp:C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.h
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.h
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/connection.cpp
-C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/main.cpp
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.cpp
  uic:ui_mainwindow.h
+C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/main.cpp
 C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.cpp

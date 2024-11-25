@@ -19,12 +19,27 @@
 #include <QUrlQuery>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow) {
+    , ui(new Ui::MainWindow),  serialPort(new QSerialPort(this)){
     ui->setupUi(this);
+    connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
+    serialPort->setPortName("COM3"); // Remplacez COM3 par le port de votre Arduino
+    serialPort->setBaudRate(QSerialPort::Baud9600);
+    serialPort->setDataBits(QSerialPort::Data8);
+    serialPort->setParity(QSerialPort::NoParity);
+    serialPort->setStopBits(QSerialPort::OneStop);
+    serialPort->setFlowControl(QSerialPort::NoFlowControl);
+
+    // Ouvrir le port série
+    if (!serialPort->open(QIODevice::WriteOnly)) {
+        qDebug() << "Erreur: Impossible d'ouvrir le port série!";
+    } else {
+        qDebug() << "Port série ouvert avec succès.";
+    }
     ui->tableView->setModel(serviceModel.afficher());
 }
 
 MainWindow::~MainWindow() {
+    serialPort->close();
     delete ui;
 }
 void MainWindow::on_supprimerButton_clicked() {
@@ -244,47 +259,51 @@ void MainWindow::on_pb_historiqueService_clicked() {
     QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
 }
 
-void MainWindow::on_sendSMSButton_clicked()
+
+void MainWindow::on_ButtonOuvrir_Clicked()
 {
-    QString destinataire = "+21624119339";
-    QString message = ui->contenu->toPlainText();
+    // Récupérer l'ID saisi dans l'interface
+    int idReservation = ui->l11->text().toInt();
+    if (idReservation == 0) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID valide.");
+        return;
+    }
 
-    envoyerSMS(destinataire, message);
+    // Rechercher l'ID dans la table "reservation"
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM reservation WHERE id = :id");
+    query.bindValue(":id", idReservation);
 
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Erreur", "Erreur lors de l'accès à la base de données : " + query.lastError().text());
+        return;
+    }
 
-}
-void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
-{
-    // SID et auth token de Twilio
+    // Vérifier si l'ID existe dans la table
+    query.next(); // Accéder au premier (et unique) résultat
+    int count = query.value(0).toInt();
 
-
-    // URL de l'API Twilio
-
-
-    // Créer un gestionnaire de requêtes
-    QNetworkAccessManager *networkAccessManager = new QNetworkAccessManager(this);
-
-    // Connecter le signal pour traiter la réponse
- //   connect(networkAccessManager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
-
-    // Construire les données POST
-    QByteArray postData;
-    postData.append("To=" + QUrl::toPercentEncoding(destinataire)); // Encodage pour les caractères spéciaux
-    postData.append("&From=%2B12565484720"); // Numéro de l'expéditeur avec "%2B" pour "+"
-    postData.append("&Body=" + QUrl::toPercentEncoding(message));
-
-    // Configurer la requête HTTP
-    QNetworkRequest request;
-    request.setUrl(QUrl(url));
-    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
-
-    // Ajouter l'autorisation avec Basic Auth
-    QString credentials = QString("%1:%2").arg(sid).arg(authToken);
-    request.setRawHeader("Authorization", "Basic " + credentials.toUtf8().toBase64());
-
-    // Envoyer la requête
-    networkAccessManager->post(request, postData);
-
-    QMessageBox::information(this, "Envoi SMS", "Le SMS est en cours d'envoi...");
+    if (count > 0) {
+        // ID valide, envoyer la commande au servomoteur
+        if (serialPort->isOpen()) {
+            serialPort->write("ouvrir\n");
+            qDebug() << "Commande 'ouvrir' envoyée à l'Arduino.";
+            QMessageBox::information(this, "Succès", "L'ID est valide. Le servomoteur tourne.");
+        } else {
+            QMessageBox::critical(this, "Erreur", "Le port série n'est pas ouvert !");
+        }
+    } else {
+        // ID invalide, afficher un message d'erreur
+        QMessageBox::warning(this, "Erreur", "L'ID saisi n'existe pas dans la table 'reservation'.");
+    }
 }
 
+/*void MainWindow::on_ButtonOuvrir_Clicked()
+{
+    if (serialPort->isOpen()) {
+        serialPort->write("ouvrir\n");
+        qDebug() << "Commande 'ouvrir' envoyée à l'Arduino.";
+    } else {
+        qDebug() << "Erreur: Le port série n'est pas ouvert!";
+    }
+}*/
