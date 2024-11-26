@@ -271,11 +271,11 @@ void MainWindow::on_sendSMSButton_clicked()
 void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
 {
     // SID et auth token de Twilio
-    QString sid = "AC23f6573f85d049a9c4e5525382eef6bc";
-    QString authToken = "49b9200ccf31e547b68531af60a8dc75";
+    QString sid = "";
+    QString authToken = "";
 
     // URL de l'API Twilio
-    QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
+    QString url = "";
 
     // Créer un gestionnaire de requêtes
     QNetworkAccessManager *networkAccessManager = new QNetworkAccessManager(this);
