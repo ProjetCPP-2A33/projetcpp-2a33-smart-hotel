@@ -256,7 +256,7 @@ void MainWindow::addToHistory(const QString &action, int idService) {
 void MainWindow::on_pb_historiqueService_clicked() {
     QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
     QDesktopServices::openUrl(QUrl::fromLocalFile(cheminFichier));
-   // QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
+    QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
 }
 void MainWindow::on_sendSMSButton_clicked()
 {
