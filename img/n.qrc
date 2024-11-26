@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/res">
+        <file>pp-removebg-preview.png</file>
+        <file>n-removebg-preview.png</file>
+    </qresource>
+</RCC>

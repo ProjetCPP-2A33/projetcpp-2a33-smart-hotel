@@ -1,0 +1,12 @@
+release/Employe.o
+release/arduino.o
+release/connection.o
+release/main.o
+release/mainwindow.o
+release/qrcode.o
+release/qrc_b.o
+release/qrc_logo.o
+release/qrc_n.o
+release/qrc_t.o
+release/moc_arduino.o
+release/moc_mainwindow.o
