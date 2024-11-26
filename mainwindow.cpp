@@ -22,7 +22,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow),  serialPort(new QSerialPort(this)){
     ui->setupUi(this);
     connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
-    serialPort->setPortName("COM3"); // Remplacez COM3 par le port de votre Arduino
+    serialPort->setPortName("COM3");
     serialPort->setBaudRate(QSerialPort::Baud9600);
     serialPort->setDataBits(QSerialPort::Data8);
     serialPort->setParity(QSerialPort::NoParity);
@@ -256,9 +256,53 @@ void MainWindow::addToHistory(const QString &action, int idService) {
 void MainWindow::on_pb_historiqueService_clicked() {
     QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
     QDesktopServices::openUrl(QUrl::fromLocalFile(cheminFichier));
-    QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
+   // QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
+}
+void MainWindow::on_sendSMSButton_clicked()
+{
+    QString destinataire = "+21624119339";
+    QString message = ui->contenu->toPlainText();
+
+    envoyerSMS(destinataire, message);
+
+
 }
 
+void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
+{
+    // SID et auth token de Twilio
+    QString sid = "AC23f6573f85d049a9c4e5525382eef6bc";
+    QString authToken = "49b9200ccf31e547b68531af60a8dc75";
+
+    // URL de l'API Twilio
+    QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
+
+    // Créer un gestionnaire de requêtes
+    QNetworkAccessManager *networkAccessManager = new QNetworkAccessManager(this);
+
+    // Connecter le signal pour traiter la réponse
+    //   connect(networkAccessManager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
+
+    // Construire les données POST
+    QByteArray postData;
+    postData.append("To=" + QUrl::toPercentEncoding(destinataire)); // Encodage pour les caractères spéciaux
+    postData.append("&From=%2B12565484720"); // Numéro de l'expéditeur avec "%2B" pour "+"
+    postData.append("&Body=" + QUrl::toPercentEncoding(message));
+
+    // Configurer la requête HTTP
+    QNetworkRequest request;
+    request.setUrl(QUrl(url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // Ajouter l'autorisation avec Basic Auth
+    QString credentials = QString("%1:%2").arg(sid).arg(authToken);
+    request.setRawHeader("Authorization", "Basic " + credentials.toUtf8().toBase64());
+
+    // Envoyer la requête
+    networkAccessManager->post(request, postData);
+
+    QMessageBox::information(this, "Envoi SMS", "Le SMS est en cours d'envoi...");
+}
 
 void MainWindow::on_ButtonOuvrir_Clicked()
 {
@@ -298,12 +342,3 @@ void MainWindow::on_ButtonOuvrir_Clicked()
     }
 }
 
-/*void MainWindow::on_ButtonOuvrir_Clicked()
-{
-    if (serialPort->isOpen()) {
-        serialPort->write("ouvrir\n");
-        qDebug() << "Commande 'ouvrir' envoyée à l'Arduino.";
-    } else {
-        qDebug() << "Erreur: Le port série n'est pas ouvert!";
-    }
-}*/

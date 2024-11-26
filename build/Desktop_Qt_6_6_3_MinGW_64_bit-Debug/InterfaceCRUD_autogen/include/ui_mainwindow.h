@@ -1315,7 +1315,7 @@ public:
         label_6->setText(QCoreApplication::translate("MainWindow", "non Disponible 0", nullptr));
         ButtonOuvrir->setText(QCoreApplication::translate("MainWindow", "Ouvrir", nullptr));
         l11->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre id", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(Ajouter), QCoreApplication::translate("MainWindow", "Ajouter", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Ajouter), QCoreApplication::translate("MainWindow", "Ajouter+ouverture", nullptr));
         groupBox_3->setTitle(QCoreApplication::translate("MainWindow", "MODIFIER", nullptr));
         label_8->setText(QCoreApplication::translate("MainWindow", "Nom : ", nullptr));
         label_9->setText(QCoreApplication::translate("MainWindow", "Prix:", nullptr));
