@@ -41,3 +41,17 @@
 967	5052	7543163500757769	CMakeFiles/InterfaceCRUD.dir/service.cpp.obj	e6b1e37d5acaff7f
 962	6364	7543163500697862	CMakeFiles/InterfaceCRUD.dir/mainwindow.cpp.obj	3746955c1e2ba6f3
 6364	6928	7543163554731482	InterfaceCRUD.exe	bc8d4cab69667272
+16	43	7543166672931007	CMakeFiles/clean.additional	e9a7915015b5b294
+43	60	7543166673099143	clean	86011146bd39a42f
+35	80	7543166722459851	CMakeFiles/clean.additional	e9a7915015b5b294
+81	97	7543166722932478	clean	86011146bd39a42f
+31	932	7543166731947617	InterfaceCRUD_autogen/timestamp	ed4eca7765fae2e4
+31	932	7543166731947617	InterfaceCRUD_autogen/mocs_compilation.cpp	ed4eca7765fae2e4
+31	932	7543166731947617	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/InterfaceCRUD_autogen/timestamp	ed4eca7765fae2e4
+31	932	7543166731947617	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/InterfaceCRUD_autogen/mocs_compilation.cpp	ed4eca7765fae2e4
+950	2949	7543166733363955	CMakeFiles/InterfaceCRUD.dir/connection.cpp.obj	54e4e37417710e60
+936	3782	7543166733315554	CMakeFiles/InterfaceCRUD.dir/main.cpp.obj	97d4330ee8824726
+933	3956	7543166733283072	CMakeFiles/InterfaceCRUD.dir/InterfaceCRUD_autogen/mocs_compilation.cpp.obj	9bf2456dabf85027
+946	4810	7543166733363955	CMakeFiles/InterfaceCRUD.dir/service.cpp.obj	e6b1e37d5acaff7f
+941	6222	7543166733363955	CMakeFiles/InterfaceCRUD.dir/mainwindow.cpp.obj	3746955c1e2ba6f3
+6222	7023	7543166786177955	InterfaceCRUD.exe	bc8d4cab69667272
