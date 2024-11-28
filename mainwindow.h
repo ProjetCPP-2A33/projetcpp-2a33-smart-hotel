@@ -5,6 +5,7 @@
 #include <qnetworkreply.h>
 #include "service.h"
 #include <QSerialPort>
+#include "arduinoservices.h"
 //#include <QSerialPortInfo>
 
 QT_BEGIN_NAMESPACE
@@ -40,6 +41,7 @@ private:
     void afficherHistoriqueService();
     void addToHistory(const QString &action, int ids);
     QSerialPort *serialPort; // Port série pour Arduino
+    arduinoServices *arduinoServices;
     //QString arduinoPortName; // Nom du port série utilisé
     //bool arduinoIsAvailable;
 };

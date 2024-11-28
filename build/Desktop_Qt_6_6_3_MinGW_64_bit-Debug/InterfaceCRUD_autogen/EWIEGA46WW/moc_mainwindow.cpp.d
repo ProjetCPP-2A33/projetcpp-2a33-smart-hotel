@@ -396,4 +396,5 @@ C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_
   C:/Qt_6_6/Tools/mingw1120_64/x86_64-w64-mingw32/include/time.h \
   C:/Qt_6_6/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
   C:/Qt_6_6/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
+  C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/arduinoservices.h \
   C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.h

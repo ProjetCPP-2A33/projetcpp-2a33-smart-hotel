@@ -677,6 +677,8 @@ InterfaceCRUD_autogen/timestamp: \
 	C:/Qt_6_6/Tools/mingw1120_64/x86_64-w64-mingw32/include/vadefs.h \
 	C:/Qt_6_6/Tools/mingw1120_64/x86_64-w64-mingw32/include/wchar.h \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/CMakeLists.txt \
+	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/arduinoservices.cpp \
+	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/arduinoservices.h \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/.qtc/package-manager/auto-setup.cmake \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/3.29.3/CMakeCXXCompiler.cmake \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/3.29.3/CMakeRCCompiler.cmake \

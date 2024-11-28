@@ -446,6 +446,12 @@
 	"HEADERS" : 
 	[
 		[
+			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/arduinoservices.h",
+			"MU",
+			"EWIEGA46WW/moc_arduinoservices.cpp",
+			null
+		],
+		[
 			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/connection.h",
 			"MU",
 			"EWIEGA46WW/moc_connection.cpp",
@@ -545,6 +551,11 @@
 	"SETTINGS_FILE" : "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/CMakeFiles/InterfaceCRUD_autogen.dir/AutogenUsed.txt",
 	"SOURCES" : 
 	[
+		[
+			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/arduinoservices.cpp",
+			"MU",
+			null
+		],
 		[
 			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/connection.cpp",
 			"MU",

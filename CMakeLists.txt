@@ -35,6 +35,7 @@ set(PROJECT_SOURCES
 qt_add_executable(InterfaceCRUD
     MANUAL_FINALIZATION
     ${PROJECT_SOURCES}
+    arduinoservices.h arduinoservices.cpp
 )
 
 # Lier les bibliothèques nécessaires

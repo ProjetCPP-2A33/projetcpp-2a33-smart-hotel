@@ -69,3 +69,6 @@
 2024-11-25 15:53:20 - Supprimer pour l'ID 45
 2024-11-25 15:53:23 - Statistique par graphe
 2024-11-25 15:53:25 - Statistique numerique
+2024-11-27 05:21:39 - Supprimer pour l'ID 12
+2024-11-27 05:22:08 - Statistique numerique
+2024-11-27 05:22:09 - Statistique par graphe

@@ -1,4 +1,5 @@
 #include "mainwindow.h"
+#include "arduinoservices.h"
 #include "ui_mainwindow.h"
 #include <QMessageBox>
 #include <QSqlQuery>
@@ -19,9 +20,13 @@
 #include <QUrlQuery>
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow),  serialPort(new QSerialPort(this)){
+    , ui(new Ui::MainWindow),  arduinoServices(new class arduinoServices(this)){
     ui->setupUi(this);
+    if (!arduinoServices->ouvrirPort("COM3")) {
+        QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le port série.");
+    }
     connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
+    /*
     serialPort->setPortName("COM3");
     serialPort->setBaudRate(QSerialPort::Baud9600);
     serialPort->setDataBits(QSerialPort::Data8);
@@ -34,7 +39,7 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << "Erreur: Impossible d'ouvrir le port série!";
     } else {
         qDebug() << "Port série ouvert avec succès.";
-    }
+    }*/
     ui->tableView->setModel(serviceModel.afficher());
 }
 
@@ -329,10 +334,9 @@ void MainWindow::on_ButtonOuvrir_Clicked()
 
     if (count > 0) {
         // ID valide, envoyer la commande au servomoteur
-        if (serialPort->isOpen()) {
-            serialPort->write("ouvrir\n");
-            qDebug() << "Commande 'ouvrir' envoyée à l'Arduino.";
-            QMessageBox::information(this, "Succès", "L'ID est valide. Le servomoteur tourne.");
+        if (arduinoServices->estPortOuvert()) {
+            if(arduinoServices->envoyerCommande("ouvrir")){
+                QMessageBox::information(this, "Succès", "L'ID est valide. Le servomoteur tourne.");}
         } else {
             QMessageBox::critical(this, "Erreur", "Le port série n'est pas ouvert !");
         }
