@@ -22,9 +22,9 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets Sql Charts Networ
 # Déclaration des fichiers sources du projet
 set(PROJECT_SOURCES
     main.cpp
-    mainwindow.cpp
-    mainwindow.h
-    mainwindow.ui
+    mainservice.cpp
+    mainservice.h
+    mainservice.ui
     service.h
     service.cpp
     connection.cpp

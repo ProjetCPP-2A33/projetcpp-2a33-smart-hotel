@@ -687,9 +687,9 @@ InterfaceCRUD_autogen/timestamp: \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/connection.cpp \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/connection.h \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/main.cpp \
-	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.cpp \
-	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.h \
+	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainservice.cpp \
+	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainservice.h \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.cpp \
 	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/service.h \
-	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.ui \
+	C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainservice.ui \
 	C:/Qt_6_6/Tools/CMake_64/bin/cmake.exe

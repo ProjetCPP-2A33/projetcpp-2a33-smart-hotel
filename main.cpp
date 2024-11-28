@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "mainservice.h"
 #include <QApplication>
 #include <QSqlDatabase>
 #include <QSqlError>

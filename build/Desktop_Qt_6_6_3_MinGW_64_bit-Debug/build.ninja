@@ -65,9 +65,9 @@ build CMakeFiles/InterfaceCRUD.dir/main.cpp.obj: CXX_COMPILER__InterfaceCRUD_uns
   OBJECT_DIR = CMakeFiles\InterfaceCRUD.dir
   OBJECT_FILE_DIR = CMakeFiles\InterfaceCRUD.dir
 
-build CMakeFiles/InterfaceCRUD.dir/mainwindow.cpp.obj: CXX_COMPILER__InterfaceCRUD_unscanned_Debug C$:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.cpp || cmake_object_order_depends_target_InterfaceCRUD
+build CMakeFiles/InterfaceCRUD.dir/mainservice.cpp.obj: CXX_COMPILER__InterfaceCRUD_unscanned_Debug C$:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainservice.cpp || cmake_object_order_depends_target_InterfaceCRUD
   DEFINES = -DMINGW_HAS_SECURE_API=1 -DQT_CHARTS_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NETWORK_LIB -DQT_OPENGLWIDGETS_LIB -DQT_OPENGL_LIB -DQT_SERIALPORT_LIB -DQT_SQL_LIB -DQT_WIDGETS_LIB -DUNICODE -DWIN32 -DWIN64 -D_ENABLE_EXTENDED_ALIGNED_STORAGE -D_UNICODE -D_WIN64
-  DEP_FILE = CMakeFiles\InterfaceCRUD.dir\mainwindow.cpp.obj.d
+  DEP_FILE = CMakeFiles\InterfaceCRUD.dir\mainservice.cpp.obj.d
   FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fdiagnostics-color=always
   INCLUDES = -IC:/Users/nour1/OneDrive/Documents/InterfaceCRUD/build/Desktop_Qt_6_6_3_MinGW_64_bit-Debug/InterfaceCRUD_autogen/include -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtCore -isystem C:/Qt_6_6/6.6.3/mingw_64/include -isystem C:/Qt_6_6/6.6.3/mingw_64/mkspecs/win32-g++ -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtWidgets -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtGui -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtNetwork -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtSql -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtCharts -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtOpenGL -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtOpenGLWidgets -isystem C:/Qt_6_6/6.6.3/mingw_64/include/QtSerialPort
   OBJECT_DIR = CMakeFiles\InterfaceCRUD.dir
@@ -105,7 +105,7 @@ build CMakeFiles/InterfaceCRUD.dir/arduinoservices.cpp.obj: CXX_COMPILER__Interf
 #############################################
 # Link the executable InterfaceCRUD.exe
 
-build InterfaceCRUD.exe: CXX_EXECUTABLE_LINKER__InterfaceCRUD_Debug CMakeFiles/InterfaceCRUD.dir/InterfaceCRUD_autogen/mocs_compilation.cpp.obj CMakeFiles/InterfaceCRUD.dir/main.cpp.obj CMakeFiles/InterfaceCRUD.dir/mainwindow.cpp.obj CMakeFiles/InterfaceCRUD.dir/service.cpp.obj CMakeFiles/InterfaceCRUD.dir/connection.cpp.obj CMakeFiles/InterfaceCRUD.dir/arduinoservices.cpp.obj | C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Network.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Sql.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Charts.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6SerialPort.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6OpenGLWidgets.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Widgets.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6OpenGL.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Gui.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Core.a || InterfaceCRUD_autogen InterfaceCRUD_autogen_timestamp_deps
+build InterfaceCRUD.exe: CXX_EXECUTABLE_LINKER__InterfaceCRUD_Debug CMakeFiles/InterfaceCRUD.dir/InterfaceCRUD_autogen/mocs_compilation.cpp.obj CMakeFiles/InterfaceCRUD.dir/main.cpp.obj CMakeFiles/InterfaceCRUD.dir/mainservice.cpp.obj CMakeFiles/InterfaceCRUD.dir/service.cpp.obj CMakeFiles/InterfaceCRUD.dir/connection.cpp.obj CMakeFiles/InterfaceCRUD.dir/arduinoservices.cpp.obj | C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Network.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Sql.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Charts.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6SerialPort.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6OpenGLWidgets.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Widgets.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6OpenGL.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Gui.a C$:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Core.a || InterfaceCRUD_autogen InterfaceCRUD_autogen_timestamp_deps
   FLAGS = -DQT_QML_DEBUG -g
   LINK_LIBRARIES = C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Network.a  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Sql.a  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Charts.a  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6SerialPort.a  -lws2_32  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6OpenGLWidgets.a  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Widgets.a  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6OpenGL.a  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Gui.a  -ld3d11  -ldxgi  -ldxguid  -ld3d12  -luser32  C:/Qt_6_6/6.6.3/mingw_64/lib/libQt6Core.a  -lmpr  -luserenv  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\InterfaceCRUD.dir
@@ -149,7 +149,7 @@ build InterfaceCRUD_autogen_timestamp_deps: phony
 #############################################
 # Utility command for InterfaceCRUD_autogen
 
-build InterfaceCRUD_autogen: phony CMakeFiles/InterfaceCRUD_autogen InterfaceCRUD_autogen/include/ui_mainwindow.h InterfaceCRUD_autogen/timestamp InterfaceCRUD_autogen/mocs_compilation.cpp InterfaceCRUD_autogen_timestamp_deps
+build InterfaceCRUD_autogen: phony CMakeFiles/InterfaceCRUD_autogen InterfaceCRUD_autogen/include/ui_mainservice.h InterfaceCRUD_autogen/timestamp InterfaceCRUD_autogen/mocs_compilation.cpp InterfaceCRUD_autogen_timestamp_deps
 
 
 #############################################
@@ -166,7 +166,7 @@ build InterfaceCRUD_autogen/timestamp InterfaceCRUD_autogen/mocs_compilation.cpp
 #############################################
 # Phony custom command for CMakeFiles\InterfaceCRUD_autogen
 
-build CMakeFiles/InterfaceCRUD_autogen InterfaceCRUD_autogen/include/ui_mainwindow.h | ${cmake_ninja_workdir}CMakeFiles/InterfaceCRUD_autogen ${cmake_ninja_workdir}InterfaceCRUD_autogen/include/ui_mainwindow.h: phony InterfaceCRUD_autogen/timestamp || InterfaceCRUD_autogen_timestamp_deps
+build CMakeFiles/InterfaceCRUD_autogen InterfaceCRUD_autogen/include/ui_mainservice.h | ${cmake_ninja_workdir}CMakeFiles/InterfaceCRUD_autogen ${cmake_ninja_workdir}InterfaceCRUD_autogen/include/ui_mainservice.h: phony InterfaceCRUD_autogen/timestamp || InterfaceCRUD_autogen_timestamp_deps
 
 # =============================================================================
 # Target aliases.

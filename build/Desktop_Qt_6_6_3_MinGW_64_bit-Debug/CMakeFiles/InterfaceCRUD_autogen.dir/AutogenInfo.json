@@ -458,9 +458,9 @@
 			null
 		],
 		[
-			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.h",
+			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainservice.h",
 			"MU",
-			"EWIEGA46WW/moc_mainwindow.cpp",
+			"EWIEGA46WW/moc_mainservice.cpp",
 			null
 		],
 		[
@@ -567,7 +567,7 @@
 			null
 		],
 		[
-			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainwindow.cpp",
+			"C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/mainservice.cpp",
 			"MU",
 			null
 		],
