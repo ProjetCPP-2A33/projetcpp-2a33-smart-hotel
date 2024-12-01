@@ -1,0 +1,12 @@
+debug/Employe.o
+debug/arduino.o
+debug/connection.o
+debug/main.o
+debug/mainwindow.o
+debug/qrcode.o
+debug/qrc_b.o
+debug/qrc_logo.o
+debug/qrc_n.o
+debug/qrc_t.o
+debug/moc_arduino.o
+debug/moc_mainwindow.o
