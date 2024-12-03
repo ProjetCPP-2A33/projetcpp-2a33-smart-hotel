@@ -1,3 +1,4 @@
+release/Arduino.o
 release/client.o
 release/connection.o
 release/main.o

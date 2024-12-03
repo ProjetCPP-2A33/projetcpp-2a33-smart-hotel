@@ -1,3 +1,4 @@
+debug/Arduino.o
 debug/client.o
 debug/connection.o
 debug/main.o

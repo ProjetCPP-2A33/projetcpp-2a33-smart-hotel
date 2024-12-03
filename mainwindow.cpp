@@ -32,7 +32,9 @@
 #include <QJsonDocument>
 #include <QDebug>
 
-
+#include "Arduino.h"
+#include <QSerialPort>
+#include <QtSql/QSqlError>
 /*
 #include "smtp.h"
 //#include <QMessageBox>            // Affichage des boîtes de message (succès/échec).
@@ -50,7 +52,7 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
+    , ui (new Ui::MainWindow)
 {
     ui->setupUi(this);
     ui->tableView->setModel(Cl.afficher());
@@ -60,6 +62,23 @@ MainWindow::MainWindow(QWidget *parent)
     //connect(ui->pushButton_client_fidele, &QPushButton::clicked, this, &MainWindow::on_pushButton_client_fidele_clicked);
     // Connecter le bouton "Envoyer" à la fonction d'envoi d'email
     connect(ui->pushButtonSend, &QPushButton::clicked, this, &MainWindow::sendEmailWithPostmark);
+
+    connect(ui->pushButton_VerifyID, &QPushButton::clicked, this, &MainWindow::on_pushButton_VerifyID_clicked);
+
+
+
+
+
+
+    int ret=A.connect_arduino();
+    switch(ret){
+    case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
+        break;
+    case(1):qDebug() << "arduino is available but not connected to :" <<A.getarduino_port_name();
+        break;
+    case(-1):qDebug() << "arduino is not available";
+    }
+   // QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(readDataFromArduino()));
 }
 
 
@@ -69,6 +88,367 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
+// Slot pour vérifier l'ID de l'employé saisi dans le QLineEdit
+void MainWindow::verifyEmployeeID()
+{
+    QString employeeID = ui->lineEditEmployeeID->text().trimmed(); // Récupérer et nettoyer l'ID de l'employé
+
+    if (employeeID.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID de carte valide.");
+        return;
+    }
+
+    // Appeler la méthode processEmployeeID et stocker le résultat dans un QString
+    QString resultMessage = processEmployeeID(employeeID);
+
+    // Afficher le résultat dans le QLabel
+    ui->labelResult->setText(resultMessage);
+
+    // Envoyer le message correspondant à l'Arduino
+    QByteArray messageToArduino = resultMessage.toUtf8();
+    A.write_to_arduino(messageToArduino);
+}
+
+
+QString MainWindow::processEmployeeID(const QString &employeeID)
+{
+    QSqlQuery query;
+    query.prepare("SELECT NOME, PRENOME FROM MALEK.EMPLOYEES WHERE ID_E = :employeeID");
+    query.bindValue(":employeeID", employeeID);
+
+    if (!query.exec()) {
+        qDebug() << "Erreur lors de l'exécution de la requête SQL :" << query.lastError();
+        return "Erreur: Base de données inaccessible.";
+    }
+
+    if (query.next()) {
+        // Récupérer le nom et le prénom
+        QString employeeName = query.value("NOME").toString().toUpper();
+        QString employeeFirstName = query.value("PRENOME").toString().toUpper();
+
+        // Retourner le message de bienvenue
+        return "Welcome, " + employeeName + " " + employeeFirstName + "!";
+    }
+
+    // Si l'ID n'existe pas
+    return "Access Denied: Card Not Found";
+}
+
+// Slot déclenché lors du clic sur le bouton
+void MainWindow::on_pushButton_VerifyID_clicked()
+{
+    verifyEmployeeID(); // Appeler la méthode de vérification
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+// Fonction pour convertir l'UID en un nombre unique
+/*quint64 MainWindow::convertUIDtoNumber(const QString &uid)
+{
+    QByteArray byteArray = QCryptographicHash::hash(uid.toUtf8(), QCryptographicHash::Sha256);
+    quint64 numericUID = 0;
+    for (int i = 0; i < 8; ++i) {
+        numericUID = (numericUID << 8) | (byteArray[i] & 0xFF);
+    }
+    return numericUID;
+}*/
+
+// Slot pour vérifier l'ID de l'employé saisi dans le QLineEdit
+/*void MainWindow::verifyEmployeeID()
+{
+    QString employeeID = ui->lineEditEmployeeID->text();  // Récupérer l'ID de l'employé depuis le QLineEdit
+
+    if (employeeID.isEmpty()) {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID d'employé.");
+        return;
+    }
+    // Convertir l'UID saisi en un nombre
+   /* quint64 numericID = convertUIDtoNumber(employeeID);
+    QString employeeCardCode = QString::number(numericID);  // Convertir le nombre en QString pour l'utiliser dans SQL*/
+
+    // Traiter l'ID de l'employé
+    //processEmployeeID(employeeID);
+//}
+
+
+/*void MainWindow::processEmployeeID(const QString &employeeID)
+{
+    // Vérifier si l'ID de l'employé existe dans la base de données en utilisant CARDUID
+    QString employeeCardCode = getEmployeeCardCodeFromDatabase(employeeID);
+    QString result_name;
+
+    if (!employeeCardCode.isEmpty()) {
+        // Si l'ID existe, récupérer le nom et le prénom de l'employé
+        QString employeeName = getEmployeeNameFromDatabase(employeeCardCode).toUpper();
+        QString employeeFirstName = getEmployeeFirstNameFromDatabase(employeeCardCode).toUpper();
+
+        // Concatenation du nom et prénom
+         result_name = "NAME:" + employeeName + " " + employeeFirstName;  // Ajout du préfixe "NAME:"
+        //result_name = employeeName + " " + employeeFirstName;  // Concatenation du nom et prénom
+        ui->labelResult->setText("Welcome, " + result_name);   // Afficher sur le QLabel
+        QByteArray employeeFullNameData = result_name.toUtf8();
+        A.write_to_arduino(employeeFullNameData); // Envoyer au Arduino
+    } else {
+        result_name = "ERROR: Card Not Found";  // Message d'erreur si l'ID n'est pas trouvé
+        ui->labelResult->setText("Access Denied: " + result_name); // Afficher le message d'erreur sur le QLabel
+        QByteArray errorMessage = result_name.toUtf8();
+        A.write_to_arduino(errorMessage); // Envoyer le message d'erreur à Arduino
+    }
+}
+*/
+
+/*QString MainWindow::getEmployeeCardCodeFromDatabase(const QString &employeeID)
+{
+    QString employeeCardCode;
+   // QString numericUID = QString::number(convertUIDtoNumber(employeeID)); // Convertir l'UID en nombre
+
+    QSqlQuery query;
+    query.prepare("SELECT CARDUID FROM MALEK.EMPLOYEES WHERE CARDUID = :employeeID");
+    query.bindValue(":employeeID", employeeID.trimmed());
+    qDebug() << "Executing query:" << query.lastQuery();  // Affiche la requête SQL
+
+    if (!query.exec()) {
+        qDebug() << "Query execution error:" << query.lastError().text();
+        return employeeCardCode;
+    }
+
+    if (query.next()) {
+        employeeCardCode = query.value(0).toString();  // Récupérer l'IDE (UID de la carte)
+        qDebug() << "UID trouvé :" << employeeCardCode;
+    } else {
+        qDebug() << "Aucun UID trouvé pour :" << employeeID;
+    }
+
+
+       // qDebug() << "Found employee ID:" << employeeCardCode;  // Affiche l'ID trouvé
+  //  }
+
+    return employeeCardCode;
+}*/
+
+/*QString MainWindow::getEmployeeNameFromDatabase(const QString &employeeCardCode)
+{
+    QString employeeName;
+
+    QSqlQuery query;
+    query.prepare("SELECT NOME FROM MALEK.EMPLOYEES WHERE CARDUID = :employeeCardCode");
+    query.bindValue(":employeeCardCode", employeeCardCode);
+
+    if (!query.exec()) {
+        qDebug() << "Query execution error:" << query.lastError();
+        return employeeName;
+    }
+
+    if (query.next()) {
+        employeeName = query.value(0).toString(); // Récupérer le nom
+    }
+
+    return employeeName;
+}*/
+
+/*QString MainWindow::getEmployeeFirstNameFromDatabase(const QString &employeeCardCode)
+{
+    QString employeeFirstName;
+
+    QSqlQuery query;
+    query.prepare("SELECT PRENOME FROM MALEK.EMPLOYEES WHERE CARDUID = :employeeCardCode");
+    query.bindValue(":employeeCardCode", employeeCardCode);
+
+    if (!query.exec()) {
+        qDebug() << "Query execution error:" << query.lastError();
+        return employeeFirstName;
+    }
+
+    if (query.next()) {
+        employeeFirstName = query.value(0).toString(); // Récupérer le prénom
+    }
+
+    return employeeFirstName;
+}*/
+
+/*void MainWindow::on_pushButton_VerifyID_clicked() {
+    // Appeler la méthode qui vérifie l'ID de l'employé
+    verifyEmployeeID();  // Cette fonction doit être définie dans ton code comme tu l'as fait précédemment
+}
+*/
+
+/*void MainWindow::readDataFromArduino()
+{
+    QByteArray newData = A.read_from_arduino();  // Lire les données envoyées par Arduino
+    QString receivedData = QString::fromUtf8(newData).trimmed();  // Convertir les données en QString
+
+    if (receivedData.length() >= 8) {
+        QString cardUID = receivedData.left(8);  // Extraire l'UID de la carte
+        processCardUID(cardUID);  // Appeler la fonction pour traiter l'UID
+    } else {
+        qDebug() << "Incomplete card UID received from Arduino:" << receivedData;
+    }
+}*/
+
+
+
+
+
+
+//hedha lekdim
+
+/*void MainWindow::readDataFromArduino()
+{
+    static QString receivedData; // Static variable to store partial data between function calls
+
+        QByteArray newData = A.read_from_arduino(); // Read new data from Arduino
+        QString newDataString = QString::fromUtf8(newData).trimmed(); // Convert to QString and remove leading/trailing whitespace
+
+        // Concatenate new data with previously received data
+        receivedData += newDataString;
+
+        // Check if the received data contains a valid card UID
+        if (receivedData.length() >= 8) {
+            QString cardUID = receivedData.left(8); // Extract the first 8 characters as the card UID
+            processCardUID(cardUID); // Process the card UID
+            receivedData = receivedData.mid(8); // Remove the processed UID from the received data
+        } else {
+            qDebug() << "Incomplete card UID received from Arduino:" << receivedData;
+        }
+
+
+}*/
+
+
+/*void MainWindow::processCardUID(const QString &cardUID) //hedhy deja en cmntr
+{
+    QString athleteCardCode = getAthleteCardCodeFromDatabase(cardUID);
+    //qDebug()<<athleteCardCode;
+    QString resultat_nom;
+        if (!athleteCardCode.isEmpty()) {
+            QString athleteName = getAthleteNameFromDatabase(athleteCardCode).toUpper();
+            QString athleteFirstName = getAthleteFirstNameFromDatabase(athleteCardCode).toUpper();
+
+            resultat_nom= athleteName+" "+athleteFirstName;
+            QByteArray athleteFullNameData = resultat_nom.toUtf8();
+            A.write_to_arduino(athleteFullNameData);
+            //ui->lcd->clear();
+            //ui->lcd->setText("Athlete: " + resultat_nom);
+            //sendDataToArduino("athleteName");
+
+        } else {
+            qDebug()<<cardUID;
+            qDebug() << "Athlete Name Not Found";
+            resultat_nom= "Card not Found!";
+            QByteArray errorMessage = resultat_nom.toUtf8();
+            A.write_to_arduino(errorMessage);
+            //ui->lcd->clear();
+            //ui->lcd->setText("Access Denied");
+            sendDataToArduino("false");
+        }
+}*/
+
+/*void MainWindow::processCardUID(const QString &cardUID)
+{
+    QString athleteCardCode = getAthleteCardCodeFromDatabase(cardUID);
+    QString resultat_nom;
+
+    if (!athleteCardCode.isEmpty()) {
+        QString athleteName = getAthleteNameFromDatabase(athleteCardCode).toUpper();
+        QString athleteFirstName = getAthleteFirstNameFromDatabase(athleteCardCode).toUpper();
+
+        resultat_nom = "NAME:" + athleteName + " " + athleteFirstName;
+        QByteArray athleteFullNameData = resultat_nom.toUtf8();
+        A.write_to_arduino(athleteFullNameData); // Send full name to Arduino
+    } else {
+        resultat_nom = "ERROR:Card Not Found";
+        QByteArray errorMessage = resultat_nom.toUtf8();
+        A.write_to_arduino(errorMessage); // Send error message to Arduino
+    }
+}
+
+
+
+void MainWindow::sendDataToArduino(const QByteArray &data)
+{
+    if (A.getserial()->isOpen() && A.getserial()->isWritable()) {
+        A.getserial()->write(data);
+    }
+}
+
+
+
+QString MainWindow::getAthleteCardCodeFromDatabase(const QString &cardUID)
+{
+    QString athleteCardCode;
+
+    QSqlQuery query;
+    query.prepare("SELECT CARDUID FROM CLIENTS WHERE CARDUID = :cardUID");
+    query.bindValue(":cardUID", cardUID);
+
+    if (!query.exec()) {
+        qDebug() << "Query execution error:";
+        return athleteCardCode;
+    }
+
+    if (query.next()) {
+        athleteCardCode = query.value(0).toString();
+        //qDebug()<<athleteCardCode;
+
+
+    }
+    return athleteCardCode;
+
+}
+
+QString MainWindow::getAthleteNameFromDatabase(const QString &athleteCardCode)
+{
+    QString athleteName;
+
+    QSqlQuery query;
+    query.prepare("SELECT NOMC FROM CLIENTS WHERE CARDUID= :athleteCardCode");
+    query.bindValue(":athleteCardCode", athleteCardCode);
+
+    if (!query.exec()) {
+        qDebug() << "Query execution error:";
+        return athleteName;
+    }
+
+    if (query.next()) {
+        athleteName = query.value(0).toString();
+    }
+
+    return athleteName;
+}
+QString MainWindow::getAthleteFirstNameFromDatabase(const QString &athleteCardCode)
+{
+    QString athleteFirstName;
+
+    QSqlQuery query;
+    query.prepare("SELECT PRENOMC FROM CLIENTS WHERE CARDUID= :athleteCardCode");
+    query.bindValue(":athleteCardCode", athleteCardCode);
+
+    if (!query.exec()) {
+        qDebug() << "Query execution error:";
+        return athleteFirstName;
+    }
+
+    if (query.next()) {
+        athleteFirstName = query.value(0).toString();
+    }
+
+
+    return athleteFirstName;
+}*/
+
+
+
+
 void MainWindow::actualiserListeClients() {
     ui->tableView->setModel(Cl.afficher());
     ui->tableView->resizeColumnsToContents();
@@ -720,6 +1100,12 @@ void MainWindow::on_pushButtonSend_clicked()
     sendEmailWithPostmark();
 }
 
+/*void MainWindow::update_label()
+{
+    data=A.read_from_arduino();
+    if(data=="1")
+        ui->label_3->setText();
+}*/
 
 
 

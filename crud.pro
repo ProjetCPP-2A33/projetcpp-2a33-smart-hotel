@@ -1,5 +1,6 @@
 QT       += core gui sql printsupport charts
 QT += network
+QT +=serialport
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 CONFIG += c++17
@@ -9,6 +10,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    Arduino.cpp \
     client.cpp \
     connection.cpp \
     main.cpp \
@@ -16,6 +18,7 @@ SOURCES += \
     smtp.cpp
 
 HEADERS += \
+    Arduino.h \
     client.h \
     connection.h \
     mainwindow.h \
