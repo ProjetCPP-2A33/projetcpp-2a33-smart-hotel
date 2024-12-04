@@ -6,6 +6,11 @@
 #include "Connection.h"
 #include <QtSql/QSqlDatabase>
 #include <QtSql/QSqlQuery>
+#include <QMainWindow>
+#include <qnetworkreply.h>
+#include "service.h"
+#include <QSerialPort>
+//#include "arduinoservice.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -30,12 +35,22 @@ public slots:
     void on_pushButtonRechercher_met_clicked();
     void on_pushButton_afficher_clicked();
     void sendEmailWithPostmark();
+    void verifyEmployeeID();
+    QString processEmployeeID(const QString &employeeID);
+    void on_pushButton_VerifyID_clicked();
 
-     void verifyEmployeeID();
-     QString processEmployeeID(const QString &employeeID);
-     //quint64 convertUIDtoNumber(const QString &cardUID);
-
-     void on_pushButton_VerifyID_clicked();
+    // nour
+    void on_ajouterButton_clicked();
+    void on_supprimerButton_clicked();
+    void on_modifierButton_clicked();
+    void on_rechercherButton_clicked();
+    void on_trierButton_clicked();
+    void on_statistiqueButton_clicked();
+    void on_statistiqueButton_2_clicked();
+    void on_pb_pdf_clicked();
+    void on_pb_historiqueService_clicked();
+    void on_sendSMSButton_clicked();
+    void envoyerSMS(const QString &destinataire, const QString &message);
 
 
 private slots:
@@ -46,37 +61,18 @@ private slots:
     void on_pushButton_modifier_clicked();
     void on_pushButton_rechercher2_clicked();
     void on_pushButtonSend_clicked();
-  //  void afficherClientLePlusFidele();
-   // void afficherNbReservationsClients();
-   // void afficherReservationsParClient();
-    //void afficherClientFidele();
-
     void on_pushButton_client_fidele_clicked();
-
-  //  void on_pushButton_VerifyID_clicked(); // Bouton pour vérifier l'UID
-
-   // void readDataFromArduino();
-
-  //  void processEmployeeID(const QString &employeeID);
-  //  void processCardUID(const QString &cardUID);
-   // void sendDataToArduino(const QByteArray &data);
-    /*QString getAthleteCardCodeFromDatabase(const QString &cardUID);
-    QString getAthleteNameFromDatabase(const QString &athleteCardCode);
-    QString getAthleteFirstNameFromDatabase(const QString &athleteCardCode);*/
-
-    // Méthodes pour interagir avec la base de données
-   // QString getEmployeeCardCodeFromDatabase(const QString &employeeID); // Récupérer le code de la carte de l'employé depuis la base
-   // QString getEmployeeNameFromDatabase(const QString &employeeCardCode); // Récupérer le nom de l'employé depuis la base
-  //  QString getEmployeeFirstNameFromDatabase(const QString &employeeCardCode); // Récupérer le prénom de l'employé depuis la base
-
 
 private:
     Ui::MainWindow *ui;
     Client Cl;
-   // QByteArray data;
     Arduino A;
-    Connection conn;    // Instance de la classe Connection
-
+    Connection conn;
+    Service serviceModel;
+    void afficherHistoriqueService();
+    void addToHistory(const QString &action, int ids);
+    // QSerialPort *serialPort;
+    //arduinoServices *arduinoServices;
 };
 
 

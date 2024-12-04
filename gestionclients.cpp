@@ -13,6 +13,11 @@
 #include <QString>
 
 
+#include <QtCharts/QPieSeries>
+#include <QDesktopServices>
+#include <QUrl>
+
+
 #include <QSqlQuery>
 #include <QChart>
 #include <QChartView>
@@ -35,19 +40,6 @@
 #include "Arduino.h"
 #include <QSerialPort>
 #include <QtSql/QSqlError>
-/*
-#include "smtp.h"
-//#include <QMessageBox>            // Affichage des boîtes de message (succès/échec).
-//#include <QFileDialog>            // Pour choisir des fichiers (pièces jointes).
-#include <QDesktopServices>       // Ouvrir des URLs ou des fichiers.
-#include <QUrl>                   // Gestion des URLs.
-#include <QDebug>
-*/              // Pour déboguer et afficher des logs.
-
-
-
-
-
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -65,11 +57,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->pushButton_VerifyID, &QPushButton::clicked, this, &MainWindow::on_pushButton_VerifyID_clicked);
 
-
-
-
-
-
     int ret=A.connect_arduino();
     switch(ret){
     case(0):qDebug()<< "arduino is available and connected to : "<< A.getarduino_port_name();
@@ -79,20 +66,24 @@ MainWindow::MainWindow(QWidget *parent)
     case(-1):qDebug() << "arduino is not available";
     }
    // QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(readDataFromArduino()));
+
+   // if (!arduinoServices->ouvrirPort("COM5")) {
+    //    QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le port série.");
+   // }
+    // connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
+    ui->tableView->setModel(serviceModel.afficher());
 }
-
-
-
 
 MainWindow::~MainWindow()
 {
+  //  serialPort->close();
     delete ui;
 }
-// Slot pour vérifier l'ID de l'employé saisi dans le QLineEdit
+
+
 void MainWindow::verifyEmployeeID()
 {
-    QString employeeID = ui->lineEditEmployeeID->text().trimmed(); // Récupérer et nettoyer l'ID de l'employé
-
+    QString employeeID = ui->lineEditEmployeeID->text().trimmed();
     if (employeeID.isEmpty()) {
         QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID de carte valide.");
         return;
@@ -139,315 +130,6 @@ void MainWindow::on_pushButton_VerifyID_clicked()
 {
     verifyEmployeeID(); // Appeler la méthode de vérification
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-// Fonction pour convertir l'UID en un nombre unique
-/*quint64 MainWindow::convertUIDtoNumber(const QString &uid)
-{
-    QByteArray byteArray = QCryptographicHash::hash(uid.toUtf8(), QCryptographicHash::Sha256);
-    quint64 numericUID = 0;
-    for (int i = 0; i < 8; ++i) {
-        numericUID = (numericUID << 8) | (byteArray[i] & 0xFF);
-    }
-    return numericUID;
-}*/
-
-// Slot pour vérifier l'ID de l'employé saisi dans le QLineEdit
-/*void MainWindow::verifyEmployeeID()
-{
-    QString employeeID = ui->lineEditEmployeeID->text();  // Récupérer l'ID de l'employé depuis le QLineEdit
-
-    if (employeeID.isEmpty()) {
-        QMessageBox::warning(this, "Erreur", "Veuillez saisir un ID d'employé.");
-        return;
-    }
-    // Convertir l'UID saisi en un nombre
-   /* quint64 numericID = convertUIDtoNumber(employeeID);
-    QString employeeCardCode = QString::number(numericID);  // Convertir le nombre en QString pour l'utiliser dans SQL*/
-
-    // Traiter l'ID de l'employé
-    //processEmployeeID(employeeID);
-//}
-
-
-/*void MainWindow::processEmployeeID(const QString &employeeID)
-{
-    // Vérifier si l'ID de l'employé existe dans la base de données en utilisant CARDUID
-    QString employeeCardCode = getEmployeeCardCodeFromDatabase(employeeID);
-    QString result_name;
-
-    if (!employeeCardCode.isEmpty()) {
-        // Si l'ID existe, récupérer le nom et le prénom de l'employé
-        QString employeeName = getEmployeeNameFromDatabase(employeeCardCode).toUpper();
-        QString employeeFirstName = getEmployeeFirstNameFromDatabase(employeeCardCode).toUpper();
-
-        // Concatenation du nom et prénom
-         result_name = "NAME:" + employeeName + " " + employeeFirstName;  // Ajout du préfixe "NAME:"
-        //result_name = employeeName + " " + employeeFirstName;  // Concatenation du nom et prénom
-        ui->labelResult->setText("Welcome, " + result_name);   // Afficher sur le QLabel
-        QByteArray employeeFullNameData = result_name.toUtf8();
-        A.write_to_arduino(employeeFullNameData); // Envoyer au Arduino
-    } else {
-        result_name = "ERROR: Card Not Found";  // Message d'erreur si l'ID n'est pas trouvé
-        ui->labelResult->setText("Access Denied: " + result_name); // Afficher le message d'erreur sur le QLabel
-        QByteArray errorMessage = result_name.toUtf8();
-        A.write_to_arduino(errorMessage); // Envoyer le message d'erreur à Arduino
-    }
-}
-*/
-
-/*QString MainWindow::getEmployeeCardCodeFromDatabase(const QString &employeeID)
-{
-    QString employeeCardCode;
-   // QString numericUID = QString::number(convertUIDtoNumber(employeeID)); // Convertir l'UID en nombre
-
-    QSqlQuery query;
-    query.prepare("SELECT CARDUID FROM MALEK.EMPLOYEES WHERE CARDUID = :employeeID");
-    query.bindValue(":employeeID", employeeID.trimmed());
-    qDebug() << "Executing query:" << query.lastQuery();  // Affiche la requête SQL
-
-    if (!query.exec()) {
-        qDebug() << "Query execution error:" << query.lastError().text();
-        return employeeCardCode;
-    }
-
-    if (query.next()) {
-        employeeCardCode = query.value(0).toString();  // Récupérer l'IDE (UID de la carte)
-        qDebug() << "UID trouvé :" << employeeCardCode;
-    } else {
-        qDebug() << "Aucun UID trouvé pour :" << employeeID;
-    }
-
-
-       // qDebug() << "Found employee ID:" << employeeCardCode;  // Affiche l'ID trouvé
-  //  }
-
-    return employeeCardCode;
-}*/
-
-/*QString MainWindow::getEmployeeNameFromDatabase(const QString &employeeCardCode)
-{
-    QString employeeName;
-
-    QSqlQuery query;
-    query.prepare("SELECT NOME FROM MALEK.EMPLOYEES WHERE CARDUID = :employeeCardCode");
-    query.bindValue(":employeeCardCode", employeeCardCode);
-
-    if (!query.exec()) {
-        qDebug() << "Query execution error:" << query.lastError();
-        return employeeName;
-    }
-
-    if (query.next()) {
-        employeeName = query.value(0).toString(); // Récupérer le nom
-    }
-
-    return employeeName;
-}*/
-
-/*QString MainWindow::getEmployeeFirstNameFromDatabase(const QString &employeeCardCode)
-{
-    QString employeeFirstName;
-
-    QSqlQuery query;
-    query.prepare("SELECT PRENOME FROM MALEK.EMPLOYEES WHERE CARDUID = :employeeCardCode");
-    query.bindValue(":employeeCardCode", employeeCardCode);
-
-    if (!query.exec()) {
-        qDebug() << "Query execution error:" << query.lastError();
-        return employeeFirstName;
-    }
-
-    if (query.next()) {
-        employeeFirstName = query.value(0).toString(); // Récupérer le prénom
-    }
-
-    return employeeFirstName;
-}*/
-
-/*void MainWindow::on_pushButton_VerifyID_clicked() {
-    // Appeler la méthode qui vérifie l'ID de l'employé
-    verifyEmployeeID();  // Cette fonction doit être définie dans ton code comme tu l'as fait précédemment
-}
-*/
-
-/*void MainWindow::readDataFromArduino()
-{
-    QByteArray newData = A.read_from_arduino();  // Lire les données envoyées par Arduino
-    QString receivedData = QString::fromUtf8(newData).trimmed();  // Convertir les données en QString
-
-    if (receivedData.length() >= 8) {
-        QString cardUID = receivedData.left(8);  // Extraire l'UID de la carte
-        processCardUID(cardUID);  // Appeler la fonction pour traiter l'UID
-    } else {
-        qDebug() << "Incomplete card UID received from Arduino:" << receivedData;
-    }
-}*/
-
-
-
-
-
-
-//hedha lekdim
-
-/*void MainWindow::readDataFromArduino()
-{
-    static QString receivedData; // Static variable to store partial data between function calls
-
-        QByteArray newData = A.read_from_arduino(); // Read new data from Arduino
-        QString newDataString = QString::fromUtf8(newData).trimmed(); // Convert to QString and remove leading/trailing whitespace
-
-        // Concatenate new data with previously received data
-        receivedData += newDataString;
-
-        // Check if the received data contains a valid card UID
-        if (receivedData.length() >= 8) {
-            QString cardUID = receivedData.left(8); // Extract the first 8 characters as the card UID
-            processCardUID(cardUID); // Process the card UID
-            receivedData = receivedData.mid(8); // Remove the processed UID from the received data
-        } else {
-            qDebug() << "Incomplete card UID received from Arduino:" << receivedData;
-        }
-
-
-}*/
-
-
-/*void MainWindow::processCardUID(const QString &cardUID) //hedhy deja en cmntr
-{
-    QString athleteCardCode = getAthleteCardCodeFromDatabase(cardUID);
-    //qDebug()<<athleteCardCode;
-    QString resultat_nom;
-        if (!athleteCardCode.isEmpty()) {
-            QString athleteName = getAthleteNameFromDatabase(athleteCardCode).toUpper();
-            QString athleteFirstName = getAthleteFirstNameFromDatabase(athleteCardCode).toUpper();
-
-            resultat_nom= athleteName+" "+athleteFirstName;
-            QByteArray athleteFullNameData = resultat_nom.toUtf8();
-            A.write_to_arduino(athleteFullNameData);
-            //ui->lcd->clear();
-            //ui->lcd->setText("Athlete: " + resultat_nom);
-            //sendDataToArduino("athleteName");
-
-        } else {
-            qDebug()<<cardUID;
-            qDebug() << "Athlete Name Not Found";
-            resultat_nom= "Card not Found!";
-            QByteArray errorMessage = resultat_nom.toUtf8();
-            A.write_to_arduino(errorMessage);
-            //ui->lcd->clear();
-            //ui->lcd->setText("Access Denied");
-            sendDataToArduino("false");
-        }
-}*/
-
-/*void MainWindow::processCardUID(const QString &cardUID)
-{
-    QString athleteCardCode = getAthleteCardCodeFromDatabase(cardUID);
-    QString resultat_nom;
-
-    if (!athleteCardCode.isEmpty()) {
-        QString athleteName = getAthleteNameFromDatabase(athleteCardCode).toUpper();
-        QString athleteFirstName = getAthleteFirstNameFromDatabase(athleteCardCode).toUpper();
-
-        resultat_nom = "NAME:" + athleteName + " " + athleteFirstName;
-        QByteArray athleteFullNameData = resultat_nom.toUtf8();
-        A.write_to_arduino(athleteFullNameData); // Send full name to Arduino
-    } else {
-        resultat_nom = "ERROR:Card Not Found";
-        QByteArray errorMessage = resultat_nom.toUtf8();
-        A.write_to_arduino(errorMessage); // Send error message to Arduino
-    }
-}
-
-
-
-void MainWindow::sendDataToArduino(const QByteArray &data)
-{
-    if (A.getserial()->isOpen() && A.getserial()->isWritable()) {
-        A.getserial()->write(data);
-    }
-}
-
-
-
-QString MainWindow::getAthleteCardCodeFromDatabase(const QString &cardUID)
-{
-    QString athleteCardCode;
-
-    QSqlQuery query;
-    query.prepare("SELECT CARDUID FROM CLIENTS WHERE CARDUID = :cardUID");
-    query.bindValue(":cardUID", cardUID);
-
-    if (!query.exec()) {
-        qDebug() << "Query execution error:";
-        return athleteCardCode;
-    }
-
-    if (query.next()) {
-        athleteCardCode = query.value(0).toString();
-        //qDebug()<<athleteCardCode;
-
-
-    }
-    return athleteCardCode;
-
-}
-
-QString MainWindow::getAthleteNameFromDatabase(const QString &athleteCardCode)
-{
-    QString athleteName;
-
-    QSqlQuery query;
-    query.prepare("SELECT NOMC FROM CLIENTS WHERE CARDUID= :athleteCardCode");
-    query.bindValue(":athleteCardCode", athleteCardCode);
-
-    if (!query.exec()) {
-        qDebug() << "Query execution error:";
-        return athleteName;
-    }
-
-    if (query.next()) {
-        athleteName = query.value(0).toString();
-    }
-
-    return athleteName;
-}
-QString MainWindow::getAthleteFirstNameFromDatabase(const QString &athleteCardCode)
-{
-    QString athleteFirstName;
-
-    QSqlQuery query;
-    query.prepare("SELECT PRENOMC FROM CLIENTS WHERE CARDUID= :athleteCardCode");
-    query.bindValue(":athleteCardCode", athleteCardCode);
-
-    if (!query.exec()) {
-        qDebug() << "Query execution error:";
-        return athleteFirstName;
-    }
-
-    if (query.next()) {
-        athleteFirstName = query.value(0).toString();
-    }
-
-
-    return athleteFirstName;
-}*/
-
-
-
 
 void MainWindow::actualiserListeClients() {
     ui->tableView->setModel(Cl.afficher());
@@ -589,52 +271,6 @@ void MainWindow::on_pushButton_supprimer_clicked()
 
 }
 
-/*void MainWindow::on_pushButton_modifier_clicked() {
-    int idC = ui->lineedit_id_modif->text().toInt(); // Récupérez l'ID du client à modifier
-    if (idC == 0) {
-        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID valide pour modifier.");
-        return;
-    }
-
-    Client clientTrouve = Cl.rechercher(idC); // Rechercher le client
-
-    if (clientTrouve.getCIN() != 0) { // Vérifiez si un client a été trouvé
-
-
-        // Remplissez les champs avec les attributs du client trouvé
-        ui->lineedit_cin_modif->setText(QString::number(clientTrouve.getCIN()));
-        ui->lineedit_nom_modif->setText(clientTrouve.getNom());
-        ui->lineedit_prenom_modif->setText(clientTrouve.getPrenom());
-        ui->lineedit_nationalite_modif->setText(clientTrouve.getNationalite());
-        ui->lineedit_tel_modif->setText(QString::number(clientTrouve.getNum_tel()));
-        ui->lineedit_adresse_modif->setText(clientTrouve.getEmail());
-        ui->radiobutton_homme_modif->setChecked(clientTrouve.getGenre() == "homme");
-        ui->radiobutton_femme_modif->setChecked(clientTrouve.getGenre() == "femme");
-
-        // Lorsque les champs sont remplis, permettez à l'utilisateur de modifier les champs souhaités
-        // Ensuite, implémentez la logique de modification (par exemple, avec un autre bouton "Enregistrer les modifications")
-        connect(ui->pushButton_modifier, &QPushButton::clicked, this, [this, idC]() {
-            // Récupérez les nouvelles valeurs
-            int newCIN = ui->lineedit_cin->text().toInt();
-            QString newNom = ui->lineedit_nom->text();
-            QString newPrenom = ui->lineedit_prenom->text();
-            QString newNationalite = ui->lineedit_nationalite->text();
-            int newNumTel = ui->lineedit_tel->text().toInt();
-            QString newEmail = ui->lineedit_adresse->text();
-            QString newGenre = ui->radiobutton_homme->isChecked() ? "homme" : "femme";
-
-            // Mettez à jour les attributs du client
-            Client clientAModifier = Client(newCIN, newNumTel, newNom, newPrenom, newNationalite, newEmail, newGenre);
-            clientAModifier.supprimer(idC); // Supprimez l'ancien client
-            clientAModifier.ajouter(); // Ajoutez le nouveau client
-
-            QMessageBox::information(this, "Modification réussie", "Les informations du client ont été modifiées.");
-            actualiserListeClients(); // Mettez à jour l'affichage
-        });
-    } else {
-        QMessageBox::information(this, "Non trouvé", "Aucun client avec cet ID n'a été trouvé.");
-    }
-}*/
 
 void MainWindow::on_pushButton_rechercher2_clicked() {
     int idC = ui->lineedit_id_modif->text().toInt(); // Récupérez l'ID du client à rechercher
@@ -743,7 +379,6 @@ void MainWindow::on_pushButton_export_pdf_clicked()
     exportToPdf("liste_clients.pdf");
 }
 
-
 void MainWindow::on_comboBoxCritere_currentIndexChanged()
 {
     QString critere = ui->comboBoxCritere->currentText();
@@ -794,7 +429,6 @@ void MainWindow::createPieChart(QString critere)
     ui->graphicsView_chart->setScene(scene);
 }
 
-
 void MainWindow::on_pushButtonRechercher_met_clicked() {
     QString critereRecherche = ui->lineEdit_critereRecherche->text();
     QString typeRecherche = ui->comboBox_critereRecherche->currentText();
@@ -828,99 +462,6 @@ void MainWindow::on_pushButton_afficher_clicked()
     actualiserListeClients();
 }
 
-/*void MainWindow::afficherClientFidele() {
-     Client client;  // Créer un objet Client
-    QString clientFidele = client.clientLePlusFidele();  // Appel de la méthode
-
-    if (!clientFidele.isEmpty()) {
-        // Afficher les informations du client fidèle dans une boîte de message
-        QMessageBox::information(this, "Client Fidèle", "Le client le plus fidèle est : " + clientFidele);
-    } else {
-        QMessageBox::information(this, "Aucun client fidèle", "Aucun client n'a de réservations.");
-    }
-    // Afficher le résultat sur l'interface utilisateur
-   // ui->label_client_fidele->setText(clientFidele);  // Assurez-vous que label_client_fidele existe dans votre UI
-}*/
-
-/*void MainWindow::afficherReservationsParClient() {
-    Client client;
-    QSqlQueryModel* model = client.obtenirReservationsParClient();
-    QString message;
-
-    for (int i = 0; i < model->rowCount(); ++i) {
-        int idc = model->record(i).value("IDC").toInt();
-        int nbr_reservations = model->record(i).value("nbr_reservations").toInt();
-        QString nom = model->record(i).value("NOMC").toString();
-        QString prenom = model->record(i).value("PRENOMC").toString();
-
-        message += QString("Client ID: %1, Nom: %2, Prénom: %3, Nombre de réservations: %4\n")
-                       .arg(idc)
-                       .arg(nom)
-                       .arg(prenom)
-                       .arg(nbr_reservations);
-    }
-
-    if (message.isEmpty()) {
-        message = "Aucun client n'a de réservation.";
-    }
-
-    QMessageBox::information(this, "Réservations par client", message);
-}*/
-/*void MainWindow::afficherReservationsParClient()
-{
-    Client client;
-    QString clientFidele = client.clientLePlusFidele();  // Récupère le nom du client le plus fidèle
-
-    if (!clientFidele.isEmpty()) {
-        QMessageBox::information(this, "Client le plus fidèle", "Le client le plus fidèle est : " + clientFidele);
-    } else {
-        QMessageBox::information(this, "Aucun client", "Aucun client n'a encore effectué de réservation.");
-    }
-}*/
-/*void MainWindow::afficherClientLePlusFidele()
-{
-    Client client;
-    QString clientFidele = client.clientLePlusFidele();  // Appel de la fonction
-
-    // Afficher le résultat dans une boîte de dialogue
-    QMessageBox::information(this, "Client le plus fidèle", clientFidele);
-}*/
-/*void MainWindow::afficherNbReservationsClients()
-{
-    Client client;
-    QString result = client.afficherNbReservationsParClient();  // Appeler la fonction
-
-    // Afficher le résultat dans un QMessageBox
-    QMessageBox::information(this, "Nombre de réservations par client", result);
-}*/
-
-/*void MainWindow::afficherReservationsParClient() {
-    Client client;
-    QSqlQueryModel* model = client.obtenirReservationsParClient();
-
-    if (!model || model->rowCount() == 0) {
-        QMessageBox::information(this, "Information", "Aucun client n'a de réservation.");
-        return;
-    }
-
-    QString message;
-
-    for (int i = 0; i < model->rowCount(); ++i) {
-        int idc = model->record(i).value("IDC").toInt();
-        QString nom = model->record(i).value("NOMC").toString();
-        QString prenom = model->record(i).value("PRENOMC").toString();
-        int nbr_reservations = model->record(i).value("nbr_reservations").toInt();
-
-        message += QString("Client ID: %1, Nom: %2, Prénom: %3, Nombre de réservations: %4\n")
-                       .arg(idc)
-                       .arg(nom)
-                       .arg(prenom)
-                       .arg(nbr_reservations);
-    }
-
-    QMessageBox::information(this, "Réservations par client", message);
-}
-*/
 
 void MainWindow::on_pushButton_client_fidele_clicked()
 {
@@ -928,8 +469,8 @@ void MainWindow::on_pushButton_client_fidele_clicked()
     QSqlQueryModel* model = client.obtenirReservationsParClient();
     if (model) {
         QString result;
-        int maxReservations = 0;  // Stocke le nombre maximal de réservations
-        QString plusFidele;       // Stocke les informations du client le plus fidèle
+        int maxReservations = 0;
+        QString plusFidele;
 
         for (int i = 0; i < model->rowCount(); ++i) {
             int id = model->data(model->index(i, 0)).toInt();
@@ -1100,12 +641,320 @@ void MainWindow::on_pushButtonSend_clicked()
     sendEmailWithPostmark();
 }
 
-/*void MainWindow::update_label()
+// nour
+
+
+void MainWindow::on_supprimerButton_clicked() {
+    int ids = ui->lineedit_id_rech->text().toInt();
+
+    // Appel de la fonction de suppression avec vérification d'existence de l'ID
+    bool test = serviceModel.supprimer(ids);
+
+    if (test) {
+        // Rafraîchissement du modèle pour afficher les données mises à jour
+        ui->tableView->setModel(serviceModel.afficher());
+        addToHistory("Supprimer", ids);
+        QMessageBox::information(this, QObject::tr("Succès"),
+                                 QObject::tr("Suppression effectuée.\nCliquez sur Annuler pour quitter."), QMessageBox::Cancel);
+    } else {
+        QMessageBox::critical(this, QObject::tr("Erreur"),
+                              QObject::tr("Erreur : l'ID n'existe pas dans la base de données."), QMessageBox::Cancel);
+    }
+}
+
+void MainWindow::on_ajouterButton_clicked() {
+    int ids = ui->l1->text().toInt();
+    if (ids == 0) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID valide non null et sous forme de entier.");
+        return;
+    }
+
+    QString noms = ui->l2->text();
+
+    bool isPrixFloat;
+    float prix = ui->l3->text().toFloat(&isPrixFloat);
+    if (!isPrixFloat) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un prix valide sous forme de float.");
+        return;
+    }
+    if (prix < 0) {
+        QMessageBox::warning(this, "Erreur", "Le prix ne peut pas être négatif.");
+        return;
+    }
+
+    int disponibilite = ui->l4->text().toInt();
+    if (disponibilite != 0 && disponibilite != 1) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer une disponibilité valide : 1 pour disponible, 0 pour non disponible.");
+        return;
+    }
+
+    if (serviceModel.ajouter(ids, noms, prix, disponibilite)) {
+        ui->tableView->setModel(serviceModel.afficher());
+        addToHistory("Ajouter", ids);
+        QMessageBox::information(this, "Succès", "Service ajouté avec succès.");
+    } else {
+        QMessageBox::warning(this, "Erreur", "Erreur lors de l'ajout du service.");
+    }
+}
+
+void MainWindow::on_modifierButton_clicked() {
+    int ids = ui->lineedit_id_modif->text().toInt();
+    if (ids == 0) {
+        QMessageBox::warning(this, "Erreur", "La modification ne peut pas se faire sur l'ID.");
+        return;
+    }
+
+    QString noms = ui->l6->text();
+    bool isPrixFloat;
+    float prix = ui->l7->text().toFloat(&isPrixFloat);
+    if (prix < 0) {
+        QMessageBox::warning(this, "Erreur", "Le prix ne peut pas être négatif.");
+        return;
+    }
+
+    int disponibilite = ui->l8->text().toInt();
+
+    // Vérification si au moins une case est remplie
+    bool isValid = false;
+    if (!noms.isEmpty() || isPrixFloat || (disponibilite == 0 || disponibilite == 1)) {
+        isValid = true;
+    }
+
+    if (!isValid) {
+        QMessageBox::warning(this, "Erreur", "Veuillez saisir au moins une case valide.");
+        return;
+    }
+
+    // Appel de la fonction modifier avec les données
+    if (serviceModel.modifier(ids, noms.isEmpty() ? QString() : noms,
+                              isPrixFloat ? prix : -1,
+                              (disponibilite == 0 || disponibilite == 1) ? disponibilite : -1)) {
+        ui->tableView->setModel(serviceModel.afficher());
+        addToHistory("Modifier", ids);
+        QMessageBox::information(this, "Succès", "Service modifié avec succès.");
+    } else {
+        QMessageBox::warning(this, "Erreur", "Erreur : l'ID n'existe pas dans la base de données.");
+    }
+}
+
+void MainWindow::on_pb_pdf_clicked() {
+    QString nomFichier = QFileDialog::getSaveFileName(this, "Enregistrer le PDF", "", "Fichiers PDF (*.pdf)");
+    if (!nomFichier.isEmpty()) {
+        Service service;
+
+        // Récupère les données des services
+        QSqlQueryModel *model = service.afficher();
+
+        // Exportation vers PDF
+        service.exporterPDF(nomFichier, model);
+
+        // Libération de mémoire
+        delete model;
+        addToHistory("pdf", 0);
+
+        QMessageBox::information(this, "Exportation PDF", "Exportation vers PDF réussie !");
+    }
+}
+
+void MainWindow::on_rechercherButton_clicked() {
+    int ids = ui->l5->text().toInt();  // Récupérer l'ID à partir de l'interface
+    if (ids == 0) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID valide (entier) pour la recherche.");
+        return;
+    }
+
+    // Appel de la fonction recherche avec l'ID donné
+    QSqlQueryModel* model = serviceModel.recherche(ids);
+
+    if (model && model->rowCount() > 0) {
+        // Si le modèle contient la ligne recherchée, l'afficher
+        ui->tableView->setModel(model);
+        addToHistory("Rechercher", ids);
+        QMessageBox::information(this, "Recherche réussie", "L'ID recherché a été trouvé.");
+    } else {
+        // Si l'ID n'existe pas, afficher un message d'erreur
+        QMessageBox::warning(this, "Erreur", "L'ID recherché n'existe pas dans la base de données.");
+        delete model;  // Libérer la mémoire du modèle si aucun résultat n'est trouvé
+    }
+}
+
+void MainWindow::on_trierButton_clicked() {
+    ui->tableView->setModel(serviceModel.trierParPrix());
+    QMessageBox::information(this, "Tri par Prix", "Données triées du plus cher au moins cher.");
+}
+
+void MainWindow::on_statistiqueButton_clicked() {
+    // Appel de la méthode statique
+    QMap<QString, double> stats = Service::obtenirStatistiquesDisponibilite();
+
+    // Effacer les éléments précédents dans le listWidget
+    ui->listWidget->clear();
+
+    // Ajouter les résultats au listWidget sous forme de pourcentages
+    for (auto it = stats.constBegin(); it != stats.constEnd(); ++it) {
+        QString result = QString("%1 : %2%").arg(it.key()).arg(QString::number(it.value(), 'f', 2));
+        ui->listWidget->addItem(result);
+    }
+    addToHistory("Statistique numerique", 0);
+}
+
+void MainWindow::on_statistiqueButton_2_clicked() {
+    QMap<QString, double> stats = serviceModel.statistiquesParDisponibilite();
+
+    // Calculer le total des services
+    double totalServices = 0;
+    for (auto it = stats.constBegin(); it != stats.constEnd(); ++it) {
+        totalServices += it.value();
+    }
+
+    // Vider le layout avant d'ajouter un nouveau graphique
+    QLayoutItem* item;
+    while ((item = ui->verticalLayout->takeAt(0)) != nullptr) {
+        delete item->widget();
+        delete item;
+    }
+
+    // Créer un pie series pour le graphique
+    QPieSeries *series = new QPieSeries();
+
+    // Ajouter les données de disponibilité dans le graphique avec le pourcentage
+    for (auto it = stats.constBegin(); it != stats.constEnd(); ++it) {
+        QString label = QString("%1: %2%").arg(it.key()).arg(it.value(), 0, 'f', 1);
+        series->append(label, it.value());
+    }
+
+    // Créer un graphique à partir de la série
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Statistiques de disponibilité des services");
+
+    // Créer un chart view pour afficher le graphique
+    QChartView *chartView = new QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);  // Améliorer l'anti-aliasing
+
+    // Afficher le graphique dans le layout
+    ui->verticalLayout->addWidget(chartView);
+    addToHistory("Statistique par graphe", 0);
+}
+
+void MainWindow::afficherHistoriqueService() {
+    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUDhistorique_service.txt";
+    QFile file(cheminFichier);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, "Erreur", "Impossible d'ouvrir le fichier d'historique.");
+        return;
+    }
+
+    QTextStream in(&file);
+    QString historique = in.readAll();
+    file.close();
+
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Historique des services");
+    msgBox.setText(historique);
+    msgBox.exec();
+}
+
+void MainWindow::addToHistory(const QString &action, int idService) {
+    Service Stemp;
+    Stemp.addToHistory(action, idService);
+}
+
+void MainWindow::on_pb_historiqueService_clicked() {
+    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
+    QDesktopServices::openUrl(QUrl::fromLocalFile(cheminFichier));
+    QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
+}
+
+void MainWindow::on_sendSMSButton_clicked()
 {
-    data=A.read_from_arduino();
-    if(data=="1")
-        ui->label_3->setText();
-}*/
+    QString destinataire = "+21624119339";
+    QString message = ui->contenu->toPlainText();
+
+    envoyerSMS(destinataire, message);
+
+
+}
+
+void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
+{
+    /*
+    // SID et auth token de Twilio
+    QString sid = "AC23f6573f85d049a9c4e5525382eef6bc";
+    QString authToken = "49b9200ccf31e547b68531af60a8dc75";
+
+    // URL de l'API Twilio
+    QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
+
+    // Créer un gestionnaire de requêtes
+    QNetworkAccessManager *networkAccessManager = new QNetworkAccessManager(this);
+
+    // Connecter le signal pour traiter la réponse
+    //   connect(networkAccessManager, &QNetworkAccessManager::finished, this, &MainWindow::replyFinished);
+
+    // Construire les données POST
+    QByteArray postData;
+    postData.append("To=" + QUrl::toPercentEncoding(destinataire)); // Encodage pour les caractères spéciaux
+    postData.append("&From=%2B12565484720"); // Numéro de l'expéditeur avec "%2B" pour "+"
+    postData.append("&Body=" + QUrl::toPercentEncoding(message));
+
+    // Configurer la requête HTTP
+    QNetworkRequest request;
+    request.setUrl(QUrl(url));
+    request.setHeader(QNetworkRequest::ContentTypeHeader, "application/x-www-form-urlencoded");
+
+    // Ajouter l'autorisation avec Basic Auth
+    QString credentials = QString("%1:%2").arg(sid).arg(authToken);
+    request.setRawHeader("Authorization", "Basic " + credentials.toUtf8().toBase64());
+
+    // Envoyer la requête
+    networkAccessManager->post(request, postData);
+
+    QMessageBox::information(this, "Envoi SMS", "Le SMS est en cours d'envoi...");
+
+    */
+}
+
+
+/*
+void MainWindow::on_ButtonOuvrir_Clicked()
+{
+    // Récupérer l'ID saisi dans l'interface
+    int idReservation = ui->l11->text().toInt();
+    if (idReservation == 0) {
+        QMessageBox::warning(this, "Erreur", "Veuillez entrer un ID valide.");
+        return;
+    }
+
+    // Rechercher l'ID dans la table "reservation"
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM reservation WHERE id = :id");
+    query.bindValue(":id", idReservation);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Erreur", "Erreur lors de l'accès à la base de données : " + query.lastError().text());
+        return;
+    }
+
+    // Vérifier si l'ID existe dans la table
+    query.next(); // Accéder au premier (et unique) résultat
+    int count = query.value(0).toInt();
+
+    if (count > 0) {
+        // ID valide, envoyer la commande au servomoteur
+        if (arduinoServices->estPortOuvert()) {
+            if(arduinoServices->envoyerCommande("ouvrir")){
+                QMessageBox::information(this, "Succès", "L'ID est valide. Le servomoteur tourne.");}
+        } else {
+            QMessageBox::critical(this, "Erreur", "Le port série n'est pas ouvert !");
+        }
+    } else {
+        // ID invalide, afficher un message d'erreur
+        QMessageBox::warning(this, "Erreur", "L'ID saisi n'existe pas dans la table 'reservation'.");
+    }
+}
+
+*/
 
 
 

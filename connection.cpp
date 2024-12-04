@@ -7,8 +7,8 @@ bool Connection::createconnection()
 {
     db = QSqlDatabase::addDatabase("QODBC");
     //bool test=false;
-    db.setDatabaseName("ProjetCpp2A33");
-    db.setUserName("Malek");
+    db.setDatabaseName("source2a33");
+    db.setUserName("nour");
     db.setPassword("oracle");
     if (db.open()) {
         qDebug() << "Connexion réussie!";

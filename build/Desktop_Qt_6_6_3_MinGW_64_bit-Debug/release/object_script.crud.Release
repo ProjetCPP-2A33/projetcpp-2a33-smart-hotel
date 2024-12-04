@@ -1,11 +1,14 @@
 release/Arduino.o
+release/arduinoservice.o
 release/client.o
 release/connection.o
 release/gestionclients.o
 release/main.o
+release/service.o
 release/qrc_b.o
 release/qrc_logo.o
 release/qrc_n.o
 release/qrc_t.o
 release/qrc_ressource.o
+release/moc_arduinoservice.o
 release/moc_gestionclients.o

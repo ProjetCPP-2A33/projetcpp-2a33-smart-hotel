@@ -11,16 +11,20 @@ CONFIG += c++17
 
 SOURCES += \
     Arduino.cpp \
+    arduinoservice.cpp \
     client.cpp \
     connection.cpp \
     gestionclients.cpp \
-    main.cpp
+    main.cpp \
+    service.cpp
 
 HEADERS += \
     Arduino.h \
+    arduinoservice.h \
     client.h \
     connection.h \
-    gestionclients.h
+    gestionclients.h \
+    service.h
 
 FORMS += \
     gestionclients.ui
