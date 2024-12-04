@@ -1,3 +1,4 @@
+#include "arduinoservice.h"
 #include "client.h"
 #include "gestionclients.h"
 #include "ui_gestionclients.h"
@@ -44,16 +45,20 @@
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
-    , ui (new Ui::MainWindow)
+    , ui(new Ui::MainWindow),  arduinoServices(new class arduinoServices(this))
 {
     ui->setupUi(this);
+    ui->tableView_2->setModel(serviceModel.afficher());
     ui->tableView->setModel(Cl.afficher());
     qDebug() << "MainWindow initialisé, prêt à écouter les événements.";
-
+    if (!arduinoServices->ouvrirPort("COM3")) {
+        QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le port série.");
+    }
     // Connecter le bouton pour afficher les réservations par client
     //connect(ui->pushButton_client_fidele, &QPushButton::clicked, this, &MainWindow::on_pushButton_client_fidele_clicked);
     // Connecter le bouton "Envoyer" à la fonction d'envoi d'email
     connect(ui->pushButtonSend, &QPushButton::clicked, this, &MainWindow::sendEmailWithPostmark);
+    connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
 
     connect(ui->pushButton_VerifyID, &QPushButton::clicked, this, &MainWindow::on_pushButton_VerifyID_clicked);
 
@@ -66,17 +71,11 @@ MainWindow::MainWindow(QWidget *parent)
     case(-1):qDebug() << "arduino is not available";
     }
    // QObject::connect(A.getserial(),SIGNAL(readyRead()),this,SLOT(readDataFromArduino()));
-
-   // if (!arduinoServices->ouvrirPort("COM5")) {
-    //    QMessageBox::critical(this, "Erreur", "Impossible d'ouvrir le port série.");
-   // }
-    // connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
-    ui->tableView->setModel(serviceModel.afficher());
 }
 
 MainWindow::~MainWindow()
 {
-  //  serialPort->close();
+    serialPort->close();
     delete ui;
 }
 
@@ -503,93 +502,6 @@ void MainWindow::on_pushButton_client_fidele_clicked()
     }
 }
 
-/*void  MainWindow::browse()
-{
-    files.clear();
-
-    QFileDialog dialog(this);
-    dialog.setDirectory(QDir::homePath());
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-
-    if (dialog.exec())
-        files = dialog.selectedFiles();
-
-    QString fileListString;
-    foreach(QString file, files)
-        fileListString.append( "\"" + QFileInfo(file).fileName() + "\" " );
-
-    ui->file->setText( fileListString );
-
-}*/
-
-//mailing
-
-/*void  MainWindow::browse()
-{
-    files.clear();
-
-    QFileDialog dialog(this);
-    dialog.setDirectory(QDir::homePath());
-    dialog.setFileMode(QFileDialog::ExistingFiles);
-
-    if (dialog.exec())
-        files = dialog.selectedFiles();
-
-    QString fileListString;
-    foreach(QString file, files)
-        fileListString.append( "\"" + QFileInfo(file).fileName() + "\" " );
-
-    ui->file->setText( fileListString );
-
-}
-void   MainWindow::sendMail()
-{
-    Smtp* smtp = new Smtp("malekknani4@gmail.com",ui->mail_pass->text(), "smtp.gmail.com");
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-
-    if( !files.isEmpty() )
-        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText(), files );
-    else
-        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
-}
-
-void   MainWindow::mailSent(QString status)
-{
-
-    if(status == "Message sent")
-        QMessageBox::warning( nullptr, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-    ui->rcpt->clear();
-    ui->subject->clear();
-    ui->file->clear();
-    ui->msg->clear();
-    ui->mail_pass->clear();
-}
-
-
-
-/*void   MainWindow::sendMail()
-{
-    Smtp* smtp = new Smtp("malekknani4@gmail.com",ui->mail_pass->text(), "smtp.gmail.com");
-    connect(smtp, SIGNAL(status(QString)), this, SLOT(mailSent(QString)));
-
-    if( !files.isEmpty() )
-        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText(), files );
-    else
-        smtp->sendMail("malekknani4@gmail.com", ui->rcpt->text() , ui->subject->text(),ui->msg->toPlainText());
-}
-
-void   MainWindow::mailSent(QString status)
-{
-
-    if(status == "Message sent")
-        QMessageBox::warning( nullptr, tr( "Qt Simple SMTP client" ), tr( "Message sent!\n\n" ) );
-    ui->rcpt->clear();
-    ui->subject->clear();
-    ui->file->clear();
-    ui->msg->clear();
-    ui->mail_pass->clear();
-}*/
-
 //mail
 void MainWindow::sendEmailWithPostmark() {
     // Récupérer les informations saisies par l'utilisateur
@@ -645,14 +557,14 @@ void MainWindow::on_pushButtonSend_clicked()
 
 
 void MainWindow::on_supprimerButton_clicked() {
-    int ids = ui->lineedit_id_rech->text().toInt();
+    int ids = ui->lineedit_id_rech_2->text().toInt();
 
     // Appel de la fonction de suppression avec vérification d'existence de l'ID
     bool test = serviceModel.supprimer(ids);
 
     if (test) {
         // Rafraîchissement du modèle pour afficher les données mises à jour
-        ui->tableView->setModel(serviceModel.afficher());
+        ui->tableView_2->setModel(serviceModel.afficher());
         addToHistory("Supprimer", ids);
         QMessageBox::information(this, QObject::tr("Succès"),
                                  QObject::tr("Suppression effectuée.\nCliquez sur Annuler pour quitter."), QMessageBox::Cancel);
@@ -689,7 +601,7 @@ void MainWindow::on_ajouterButton_clicked() {
     }
 
     if (serviceModel.ajouter(ids, noms, prix, disponibilite)) {
-        ui->tableView->setModel(serviceModel.afficher());
+        ui->tableView_2->setModel(serviceModel.afficher());
         addToHistory("Ajouter", ids);
         QMessageBox::information(this, "Succès", "Service ajouté avec succès.");
     } else {
@@ -698,7 +610,7 @@ void MainWindow::on_ajouterButton_clicked() {
 }
 
 void MainWindow::on_modifierButton_clicked() {
-    int ids = ui->lineedit_id_modif->text().toInt();
+    int ids = ui->lineedit_id_modif_2->text().toInt();
     if (ids == 0) {
         QMessageBox::warning(this, "Erreur", "La modification ne peut pas se faire sur l'ID.");
         return;
@@ -729,7 +641,7 @@ void MainWindow::on_modifierButton_clicked() {
     if (serviceModel.modifier(ids, noms.isEmpty() ? QString() : noms,
                               isPrixFloat ? prix : -1,
                               (disponibilite == 0 || disponibilite == 1) ? disponibilite : -1)) {
-        ui->tableView->setModel(serviceModel.afficher());
+        ui->tableView_2->setModel(serviceModel.afficher());
         addToHistory("Modifier", ids);
         QMessageBox::information(this, "Succès", "Service modifié avec succès.");
     } else {
@@ -768,7 +680,7 @@ void MainWindow::on_rechercherButton_clicked() {
 
     if (model && model->rowCount() > 0) {
         // Si le modèle contient la ligne recherchée, l'afficher
-        ui->tableView->setModel(model);
+        ui->tableView_2->setModel(model);
         addToHistory("Rechercher", ids);
         QMessageBox::information(this, "Recherche réussie", "L'ID recherché a été trouvé.");
     } else {
@@ -779,7 +691,7 @@ void MainWindow::on_rechercherButton_clicked() {
 }
 
 void MainWindow::on_trierButton_clicked() {
-    ui->tableView->setModel(serviceModel.trierParPrix());
+    ui->tableView_2->setModel(serviceModel.trierParPrix());
     QMessageBox::information(this, "Tri par Prix", "Données triées du plus cher au moins cher.");
 }
 
@@ -878,10 +790,9 @@ void MainWindow::on_sendSMSButton_clicked()
 
 void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
 {
-    /*
     // SID et auth token de Twilio
-    QString sid = "AC23f6573f85d049a9c4e5525382eef6bc";
-    QString authToken = "49b9200ccf31e547b68531af60a8dc75";
+    QString sid = "AC33a7a85609d980ad8c5f6af6ea4407b8";
+    QString authToken = "e7831917593e61169112e26f7ff93a5a";
 
     // URL de l'API Twilio
     QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
@@ -895,7 +806,7 @@ void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
     // Construire les données POST
     QByteArray postData;
     postData.append("To=" + QUrl::toPercentEncoding(destinataire)); // Encodage pour les caractères spéciaux
-    postData.append("&From=%2B12565484720"); // Numéro de l'expéditeur avec "%2B" pour "+"
+    postData.append("&From=%2B12029293390"); // Numéro de l'expéditeur avec "%2B" pour "+"
     postData.append("&Body=" + QUrl::toPercentEncoding(message));
 
     // Configurer la requête HTTP
@@ -911,12 +822,7 @@ void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
     networkAccessManager->post(request, postData);
 
     QMessageBox::information(this, "Envoi SMS", "Le SMS est en cours d'envoi...");
-
-    */
 }
-
-
-/*
 void MainWindow::on_ButtonOuvrir_Clicked()
 {
     // Récupérer l'ID saisi dans l'interface
@@ -953,9 +859,3 @@ void MainWindow::on_ButtonOuvrir_Clicked()
         QMessageBox::warning(this, "Erreur", "L'ID saisi n'existe pas dans la table 'reservation'.");
     }
 }
-
-*/
-
-
-
-

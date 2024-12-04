@@ -174,7 +174,7 @@ public:
     QLineEdit *l3;
     QLabel *label_39;
     QLabel *label_40;
-    QPushButton *ouvre_porte;
+    QPushButton *ButtonOuvrir;
     QLineEdit *l11;
     QWidget *Modifier_2;
     QGroupBox *groupBox_9;
@@ -192,7 +192,6 @@ public:
     QLabel *label_55;
     QPushButton *sendSMSButton;
     QPlainTextEdit *contenu;
-    QLabel *label_56;
     QStatusBar *statusbar;
     QMenuBar *menuBar;
 
@@ -2345,10 +2344,10 @@ public:
         label_40->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
 "border-radius :15px"));
         label_40->setAlignment(Qt::AlignmentFlag::AlignCenter);
-        ouvre_porte = new QPushButton(groupBox_8);
-        ouvre_porte->setObjectName("ouvre_porte");
-        ouvre_porte->setGeometry(QRect(920, 590, 221, 51));
-        ouvre_porte->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+        ButtonOuvrir = new QPushButton(groupBox_8);
+        ButtonOuvrir->setObjectName("ButtonOuvrir");
+        ButtonOuvrir->setGeometry(QRect(920, 590, 221, 51));
+        ButtonOuvrir->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
 "QPushButton {\n"
 "    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
 "    color: #ffffff;              /* Texte blanc */\n"
@@ -2625,11 +2624,6 @@ public:
         contenu->setObjectName("contenu");
         contenu->setGeometry(QRect(940, 410, 211, 151));
         tabWidget_3->addTab(Modifier_2, QString());
-        label_56 = new QLabel(tab_4);
-        label_56->setObjectName("label_56");
-        label_56->setGeometry(QRect(230, 740, 101, 41));
-        label_56->setStyleSheet(QString::fromUtf8("image: url(:/res/vv-removebg-preview.png)\n"
-""));
         tabWidget->addTab(tab_4, QString());
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
@@ -2643,7 +2637,7 @@ public:
         retranslateUi(MainWindow);
 
         tabWidget->setCurrentIndex(2);
-        tabWidget_2->setCurrentIndex(3);
+        tabWidget_2->setCurrentIndex(4);
         tabWidget_3->setCurrentIndex(1);
 
 
@@ -2785,7 +2779,7 @@ public:
         l3->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez le prix", nullptr));
         label_39->setText(QCoreApplication::translate("MainWindow", "Disponible 1", nullptr));
         label_40->setText(QCoreApplication::translate("MainWindow", "non Disponible 0", nullptr));
-        ouvre_porte->setText(QCoreApplication::translate("MainWindow", "Ouvrir", nullptr));
+        ButtonOuvrir->setText(QCoreApplication::translate("MainWindow", "Ouvrir", nullptr));
         l11->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre id", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(Ajouter_2), QCoreApplication::translate("MainWindow", "Ajouter+ouverture", nullptr));
         groupBox_9->setTitle(QCoreApplication::translate("MainWindow", "MODIFIER", nullptr));
@@ -2803,7 +2797,6 @@ public:
         label_55->setText(QCoreApplication::translate("MainWindow", "0:Non disponible", nullptr));
         sendSMSButton->setText(QCoreApplication::translate("MainWindow", "SMS", nullptr));
         tabWidget_3->setTabText(tabWidget_3->indexOf(Modifier_2), QCoreApplication::translate("MainWindow", "modifier+SMS ", nullptr));
-        label_56->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(tab_4), QCoreApplication::translate("MainWindow", "gestion services", nullptr));
     } // retranslateUi
 

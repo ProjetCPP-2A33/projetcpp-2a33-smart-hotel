@@ -1,5 +1,3 @@
-/*
-
 #ifndef ARDUINOSERVICES_H
 #define ARDUINOSERVICES_H
 #include <QSerialPort>
@@ -13,7 +11,7 @@ public:
     explicit arduinoServices(QObject *parent = nullptr);
     ~arduinoServices();
 
-    bool ouvrirPort(const QString &portName);
+    bool ouvrirPort(const QString &portName1);
     void fermerPort();
     bool envoyerCommande(const QByteArray &commande);
     bool estPortOuvert() const;
@@ -24,5 +22,3 @@ private:
 
 
 #endif // ARDUINOSERVICES_H
-
-*/

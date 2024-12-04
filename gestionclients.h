@@ -1,5 +1,6 @@
 #ifndef GESTIONCLIENTS_H
 #define GESTIONCLIENTS_H
+#include "arduinoservice.h"
 #include "client.h"
 #include <QMainWindow>
 #include "Arduino.h"
@@ -10,7 +11,6 @@
 #include <qnetworkreply.h>
 #include "service.h"
 #include <QSerialPort>
-//#include "arduinoservice.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -49,6 +49,7 @@ public slots:
     void on_statistiqueButton_2_clicked();
     void on_pb_pdf_clicked();
     void on_pb_historiqueService_clicked();
+    void on_ButtonOuvrir_Clicked();
     void on_sendSMSButton_clicked();
     void envoyerSMS(const QString &destinataire, const QString &message);
 
@@ -71,8 +72,8 @@ private:
     Service serviceModel;
     void afficherHistoriqueService();
     void addToHistory(const QString &action, int ids);
-    // QSerialPort *serialPort;
-    //arduinoServices *arduinoServices;
+    QSerialPort *serialPort;
+   arduinoServices *arduinoServices;
 };
 
 

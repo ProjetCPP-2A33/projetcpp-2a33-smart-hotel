@@ -191,7 +191,7 @@ QTabBar {
 </string>
       </property>
       <property name="currentIndex">
-       <number>3</number>
+       <number>4</number>
       </property>
       <property name="iconSize">
        <size>
@@ -4062,7 +4062,7 @@ border-radius :15px</string>
           <set>Qt::AlignmentFlag::AlignCenter</set>
          </property>
         </widget>
-        <widget class="QPushButton" name="ouvre_porte">
+        <widget class="QPushButton" name="ButtonOuvrir">
          <property name="geometry">
           <rect>
            <x>920</x>
@@ -4591,23 +4591,6 @@ QWidget:disabled {
         </widget>
        </widget>
       </widget>
-     </widget>
-     <widget class="QLabel" name="label_56">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>740</y>
-        <width>101</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">image: url(:/res/vv-removebg-preview.png)
-</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
      </widget>
     </widget>
    </widget>

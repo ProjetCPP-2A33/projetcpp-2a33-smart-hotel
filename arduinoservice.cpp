@@ -1,5 +1,3 @@
-/*
-
 #include "arduinoservice.h"
 #include <QDebug>
 
@@ -12,12 +10,12 @@ arduinoServices::~arduinoServices() {
     fermerPort();
 }
 
-bool arduinoServices::ouvrirPort(const QString &portName) {
+bool arduinoServices::ouvrirPort(const QString &portName1) {
     if (serialPort->isOpen()) {
         serialPort->close();
     }
 
-    serialPort->setPortName(portName);
+    serialPort->setPortName(portName1);
     serialPort->setBaudRate(QSerialPort::Baud9600);
     serialPort->setDataBits(QSerialPort::Data8);
     serialPort->setParity(QSerialPort::NoParity);
@@ -25,7 +23,7 @@ bool arduinoServices::ouvrirPort(const QString &portName) {
     serialPort->setFlowControl(QSerialPort::NoFlowControl);
 
     if (serialPort->open(QIODevice::WriteOnly)) {
-        qDebug() << "Port série ouvert : " << portName;
+        qDebug() << "Port série ouvert : " << portName1;
         return true;
     } else {
         qDebug() << "Échec d'ouverture du port série : " << serialPort->errorString();
@@ -54,6 +52,3 @@ bool arduinoServices::envoyerCommande(const QByteArray &commande) {
 bool arduinoServices::estPortOuvert() const {
     return serialPort->isOpen();
 }
-
-
-*/
