@@ -1,12 +1,11 @@
 debug/Arduino.o
 debug/client.o
 debug/connection.o
+debug/gestionclients.o
 debug/main.o
-debug/mainwindow.o
-debug/smtp.o
 debug/qrc_b.o
 debug/qrc_logo.o
 debug/qrc_n.o
 debug/qrc_t.o
 debug/qrc_ressource.o
-debug/moc_mainwindow.o
+debug/moc_gestionclients.o

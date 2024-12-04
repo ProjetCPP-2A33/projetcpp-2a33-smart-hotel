@@ -13,19 +13,17 @@ SOURCES += \
     Arduino.cpp \
     client.cpp \
     connection.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    smtp.cpp
+    gestionclients.cpp \
+    main.cpp
 
 HEADERS += \
     Arduino.h \
     client.h \
     connection.h \
-    mainwindow.h \
-    smtp.h
+    gestionclients.h
 
 FORMS += \
-    mainwindow.ui
+    gestionclients.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
