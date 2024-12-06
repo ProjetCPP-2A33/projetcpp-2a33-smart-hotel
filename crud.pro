@@ -16,6 +16,7 @@ SOURCES += \
     connection.cpp \
     gestionclients.cpp \
     main.cpp \
+    reservation.cpp \
     service.cpp
 
 HEADERS += \
@@ -24,6 +25,7 @@ HEADERS += \
     client.h \
     connection.h \
     gestionclients.h \
+    reservation.h \
     service.h
 
 FORMS += \

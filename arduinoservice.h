@@ -1,24 +1,32 @@
-#ifndef ARDUINOSERVICES_H
-#define ARDUINOSERVICES_H
+#ifndef ARDUINO_H
+#define ARDUINO_H
+
 #include <QSerialPort>
-#include <QString>
 #include <QObject>
 
-class arduinoServices : public QObject {
+class Arduino : public QObject {
     Q_OBJECT
 
 public:
-    explicit arduinoServices(QObject *parent = nullptr);
-    ~arduinoServices();
+    explicit Arduino(QObject *parent = nullptr);
+    ~Arduino();
 
-    bool ouvrirPort(const QString &portName1);
+    bool connectToArduino(const QString &portName);
+    void disconnectFromArduino();
+    bool ouvrirPort(const QString &portName);
     void fermerPort();
     bool envoyerCommande(const QByteArray &commande);
     bool estPortOuvert() const;
+
+
+signals:
+    void idReceived(const QString &id); // Signal pour transmettre l'ID reçu
+
+private slots:
+    void readSerialData(); // Lecture des données série
 
 private:
     QSerialPort *serialPort;
 };
 
-
-#endif // ARDUINOSERVICES_H
+#endif // ARDUINO_H

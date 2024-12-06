@@ -4,6 +4,7 @@ release/client.o
 release/connection.o
 release/gestionclients.o
 release/main.o
+release/reservation.o
 release/service.o
 release/qrc_b.o
 release/qrc_logo.o

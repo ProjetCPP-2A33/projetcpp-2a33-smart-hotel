@@ -9,6 +9,7 @@
 #include <QtSql/QSqlQuery>
 #include <QMainWindow>
 #include <qnetworkreply.h>
+#include "reservation.h"
 #include "service.h"
 #include <QSerialPort>
 
@@ -52,7 +53,22 @@ public slots:
     void on_ButtonOuvrir_Clicked();
     void on_sendSMSButton_clicked();
     void envoyerSMS(const QString &destinataire, const QString &message);
+    //bessem
+    void bt1_ajouter_clicked();
+    void bt1_supprimer_clicked();
+    void bt1_modifier_clicked();
+    void bt1_afficher_clicked();
+    void onRechercheParIdClicked();
+    void onCalculateOccupancyRateClicked();
+    void onSortByDateClicked();
 
+    void on_export_2_Clicked();
+
+    //void exportToPDF();
+    void afficherHistorique();
+    void toggleTheme();
+    void setupPalettes();
+    void handleIdReceived(const QString &id); // Déclaration de la méthode
 
 private slots:
     void on_pushButton_ajouter_clicked();
@@ -73,7 +89,12 @@ private:
     void afficherHistoriqueService();
     void addToHistory(const QString &action, int ids);
     QSerialPort *serialPort;
-   arduinoServices *arduinoServices;
+    Arduino *arduino;
+    reservation Etmp;
+    bool isAscending = true;
+
+    QPalette lightPalette;   // Palette pour le mode clair
+    QPalette darkPalette;
 };
 
 

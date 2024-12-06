@@ -4,6 +4,7 @@ debug/client.o
 debug/connection.o
 debug/gestionclients.o
 debug/main.o
+debug/reservation.o
 debug/service.o
 debug/qrc_b.o
 debug/qrc_logo.o

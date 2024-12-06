@@ -70,6 +70,19 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "envoyerSMS",
     "destinataire",
     "message",
+    "bt1_ajouter_clicked",
+    "bt1_supprimer_clicked",
+    "bt1_modifier_clicked",
+    "bt1_afficher_clicked",
+    "onRechercheParIdClicked",
+    "onCalculateOccupancyRateClicked",
+    "onSortByDateClicked",
+    "on_export_2_Clicked",
+    "afficherHistorique",
+    "toggleTheme",
+    "setupPalettes",
+    "handleIdReceived",
+    "id",
     "on_pushButton_ajouter_clicked",
     "on_pushButton_supprimer_clicked",
     "on_pushButton_rechercher_clicked",
@@ -81,7 +94,7 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[78];
+    uint offsetsAndSizes[104];
     char stringdata0[11];
     char stringdata1[34];
     char stringdata2[1];
@@ -113,14 +126,27 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata28[11];
     char stringdata29[13];
     char stringdata30[8];
-    char stringdata31[30];
-    char stringdata32[32];
-    char stringdata33[33];
-    char stringdata34[23];
-    char stringdata35[31];
-    char stringdata36[34];
-    char stringdata37[26];
-    char stringdata38[36];
+    char stringdata31[20];
+    char stringdata32[22];
+    char stringdata33[21];
+    char stringdata34[21];
+    char stringdata35[24];
+    char stringdata36[32];
+    char stringdata37[20];
+    char stringdata38[20];
+    char stringdata39[19];
+    char stringdata40[12];
+    char stringdata41[14];
+    char stringdata42[17];
+    char stringdata43[3];
+    char stringdata44[30];
+    char stringdata45[32];
+    char stringdata46[33];
+    char stringdata47[23];
+    char stringdata48[31];
+    char stringdata49[34];
+    char stringdata50[26];
+    char stringdata51[36];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -157,14 +183,27 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(652, 10),  // "envoyerSMS"
         QT_MOC_LITERAL(663, 12),  // "destinataire"
         QT_MOC_LITERAL(676, 7),  // "message"
-        QT_MOC_LITERAL(684, 29),  // "on_pushButton_ajouter_clicked"
-        QT_MOC_LITERAL(714, 31),  // "on_pushButton_supprimer_clicked"
-        QT_MOC_LITERAL(746, 32),  // "on_pushButton_rechercher_clicked"
-        QT_MOC_LITERAL(779, 22),  // "actualiserListeClients"
-        QT_MOC_LITERAL(802, 30),  // "on_pushButton_modifier_clicked"
-        QT_MOC_LITERAL(833, 33),  // "on_pushButton_rechercher2_cli..."
-        QT_MOC_LITERAL(867, 25),  // "on_pushButtonSend_clicked"
-        QT_MOC_LITERAL(893, 35)   // "on_pushButton_client_fidele_c..."
+        QT_MOC_LITERAL(684, 19),  // "bt1_ajouter_clicked"
+        QT_MOC_LITERAL(704, 21),  // "bt1_supprimer_clicked"
+        QT_MOC_LITERAL(726, 20),  // "bt1_modifier_clicked"
+        QT_MOC_LITERAL(747, 20),  // "bt1_afficher_clicked"
+        QT_MOC_LITERAL(768, 23),  // "onRechercheParIdClicked"
+        QT_MOC_LITERAL(792, 31),  // "onCalculateOccupancyRateClicked"
+        QT_MOC_LITERAL(824, 19),  // "onSortByDateClicked"
+        QT_MOC_LITERAL(844, 19),  // "on_export_2_Clicked"
+        QT_MOC_LITERAL(864, 18),  // "afficherHistorique"
+        QT_MOC_LITERAL(883, 11),  // "toggleTheme"
+        QT_MOC_LITERAL(895, 13),  // "setupPalettes"
+        QT_MOC_LITERAL(909, 16),  // "handleIdReceived"
+        QT_MOC_LITERAL(926, 2),  // "id"
+        QT_MOC_LITERAL(929, 29),  // "on_pushButton_ajouter_clicked"
+        QT_MOC_LITERAL(959, 31),  // "on_pushButton_supprimer_clicked"
+        QT_MOC_LITERAL(991, 32),  // "on_pushButton_rechercher_clicked"
+        QT_MOC_LITERAL(1024, 22),  // "actualiserListeClients"
+        QT_MOC_LITERAL(1047, 30),  // "on_pushButton_modifier_clicked"
+        QT_MOC_LITERAL(1078, 33),  // "on_pushButton_rechercher2_cli..."
+        QT_MOC_LITERAL(1112, 25),  // "on_pushButtonSend_clicked"
+        QT_MOC_LITERAL(1138, 35)   // "on_pushButton_client_fidele_c..."
     },
     "MainWindow",
     "on_pushButton_trierParNom_clicked",
@@ -197,6 +236,19 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "envoyerSMS",
     "destinataire",
     "message",
+    "bt1_ajouter_clicked",
+    "bt1_supprimer_clicked",
+    "bt1_modifier_clicked",
+    "bt1_afficher_clicked",
+    "onRechercheParIdClicked",
+    "onCalculateOccupancyRateClicked",
+    "onSortByDateClicked",
+    "on_export_2_Clicked",
+    "afficherHistorique",
+    "toggleTheme",
+    "setupPalettes",
+    "handleIdReceived",
+    "id",
     "on_pushButton_ajouter_clicked",
     "on_pushButton_supprimer_clicked",
     "on_pushButton_rechercher_clicked",
@@ -216,7 +268,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      32,   14, // methods
+      44,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -224,38 +276,50 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  206,    2, 0x0a,    1 /* Public */,
-       3,    0,  207,    2, 0x0a,    2 /* Public */,
-       4,    1,  208,    2, 0x0a,    3 /* Public */,
-       6,    0,  211,    2, 0x0a,    5 /* Public */,
-       7,    1,  212,    2, 0x0a,    6 /* Public */,
-       9,    0,  215,    2, 0x0a,    8 /* Public */,
-      10,    0,  216,    2, 0x0a,    9 /* Public */,
-      11,    0,  217,    2, 0x0a,   10 /* Public */,
-      12,    0,  218,    2, 0x0a,   11 /* Public */,
-      13,    0,  219,    2, 0x0a,   12 /* Public */,
-      14,    1,  220,    2, 0x0a,   13 /* Public */,
-      16,    0,  223,    2, 0x0a,   15 /* Public */,
-      17,    0,  224,    2, 0x0a,   16 /* Public */,
-      18,    0,  225,    2, 0x0a,   17 /* Public */,
-      19,    0,  226,    2, 0x0a,   18 /* Public */,
-      20,    0,  227,    2, 0x0a,   19 /* Public */,
-      21,    0,  228,    2, 0x0a,   20 /* Public */,
-      22,    0,  229,    2, 0x0a,   21 /* Public */,
-      23,    0,  230,    2, 0x0a,   22 /* Public */,
-      24,    0,  231,    2, 0x0a,   23 /* Public */,
-      25,    0,  232,    2, 0x0a,   24 /* Public */,
-      26,    0,  233,    2, 0x0a,   25 /* Public */,
-      27,    0,  234,    2, 0x0a,   26 /* Public */,
-      28,    2,  235,    2, 0x0a,   27 /* Public */,
-      31,    0,  240,    2, 0x08,   30 /* Private */,
-      32,    0,  241,    2, 0x08,   31 /* Private */,
-      33,    0,  242,    2, 0x08,   32 /* Private */,
-      34,    0,  243,    2, 0x08,   33 /* Private */,
-      35,    0,  244,    2, 0x08,   34 /* Private */,
-      36,    0,  245,    2, 0x08,   35 /* Private */,
-      37,    0,  246,    2, 0x08,   36 /* Private */,
-      38,    0,  247,    2, 0x08,   37 /* Private */,
+       1,    0,  278,    2, 0x0a,    1 /* Public */,
+       3,    0,  279,    2, 0x0a,    2 /* Public */,
+       4,    1,  280,    2, 0x0a,    3 /* Public */,
+       6,    0,  283,    2, 0x0a,    5 /* Public */,
+       7,    1,  284,    2, 0x0a,    6 /* Public */,
+       9,    0,  287,    2, 0x0a,    8 /* Public */,
+      10,    0,  288,    2, 0x0a,    9 /* Public */,
+      11,    0,  289,    2, 0x0a,   10 /* Public */,
+      12,    0,  290,    2, 0x0a,   11 /* Public */,
+      13,    0,  291,    2, 0x0a,   12 /* Public */,
+      14,    1,  292,    2, 0x0a,   13 /* Public */,
+      16,    0,  295,    2, 0x0a,   15 /* Public */,
+      17,    0,  296,    2, 0x0a,   16 /* Public */,
+      18,    0,  297,    2, 0x0a,   17 /* Public */,
+      19,    0,  298,    2, 0x0a,   18 /* Public */,
+      20,    0,  299,    2, 0x0a,   19 /* Public */,
+      21,    0,  300,    2, 0x0a,   20 /* Public */,
+      22,    0,  301,    2, 0x0a,   21 /* Public */,
+      23,    0,  302,    2, 0x0a,   22 /* Public */,
+      24,    0,  303,    2, 0x0a,   23 /* Public */,
+      25,    0,  304,    2, 0x0a,   24 /* Public */,
+      26,    0,  305,    2, 0x0a,   25 /* Public */,
+      27,    0,  306,    2, 0x0a,   26 /* Public */,
+      28,    2,  307,    2, 0x0a,   27 /* Public */,
+      31,    0,  312,    2, 0x0a,   30 /* Public */,
+      32,    0,  313,    2, 0x0a,   31 /* Public */,
+      33,    0,  314,    2, 0x0a,   32 /* Public */,
+      34,    0,  315,    2, 0x0a,   33 /* Public */,
+      35,    0,  316,    2, 0x0a,   34 /* Public */,
+      36,    0,  317,    2, 0x0a,   35 /* Public */,
+      37,    0,  318,    2, 0x0a,   36 /* Public */,
+      38,    0,  319,    2, 0x0a,   37 /* Public */,
+      39,    0,  320,    2, 0x0a,   38 /* Public */,
+      40,    0,  321,    2, 0x0a,   39 /* Public */,
+      41,    0,  322,    2, 0x0a,   40 /* Public */,
+      42,    1,  323,    2, 0x0a,   41 /* Public */,
+      44,    0,  326,    2, 0x08,   43 /* Private */,
+      45,    0,  327,    2, 0x08,   44 /* Private */,
+      46,    0,  328,    2, 0x08,   45 /* Private */,
+      47,    0,  329,    2, 0x08,   46 /* Private */,
+      48,    0,  330,    2, 0x08,   47 /* Private */,
+      49,    0,  331,    2, 0x08,   48 /* Private */,
+      50,    0,  332,    2, 0x08,   49 /* Private */,
+      51,    0,  333,    2, 0x08,   50 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -282,6 +346,18 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString,   29,   30,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   43,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -356,6 +432,31 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'bt1_ajouter_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bt1_supprimer_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bt1_modifier_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bt1_afficher_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onRechercheParIdClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onCalculateOccupancyRateClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onSortByDateClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_export_2_Clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'afficherHistorique'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'toggleTheme'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setupPalettes'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'handleIdReceived'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_pushButton_ajouter_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_supprimer_clicked'
@@ -407,14 +508,25 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 21: _t->on_ButtonOuvrir_Clicked(); break;
         case 22: _t->on_sendSMSButton_clicked(); break;
         case 23: _t->envoyerSMS((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
-        case 24: _t->on_pushButton_ajouter_clicked(); break;
-        case 25: _t->on_pushButton_supprimer_clicked(); break;
-        case 26: _t->on_pushButton_rechercher_clicked(); break;
-        case 27: _t->actualiserListeClients(); break;
-        case 28: _t->on_pushButton_modifier_clicked(); break;
-        case 29: _t->on_pushButton_rechercher2_clicked(); break;
-        case 30: _t->on_pushButtonSend_clicked(); break;
-        case 31: _t->on_pushButton_client_fidele_clicked(); break;
+        case 24: _t->bt1_ajouter_clicked(); break;
+        case 25: _t->bt1_supprimer_clicked(); break;
+        case 26: _t->bt1_modifier_clicked(); break;
+        case 27: _t->bt1_afficher_clicked(); break;
+        case 28: _t->onRechercheParIdClicked(); break;
+        case 29: _t->onCalculateOccupancyRateClicked(); break;
+        case 30: _t->onSortByDateClicked(); break;
+        case 31: _t->on_export_2_Clicked(); break;
+        case 33: _t->toggleTheme(); break;
+        case 34: _t->setupPalettes(); break;
+        case 35: _t->handleIdReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 36: _t->on_pushButton_ajouter_clicked(); break;
+        case 37: _t->on_pushButton_supprimer_clicked(); break;
+        case 38: _t->on_pushButton_rechercher_clicked(); break;
+        case 39: _t->actualiserListeClients(); break;
+        case 40: _t->on_pushButton_modifier_clicked(); break;
+        case 41: _t->on_pushButton_rechercher2_clicked(); break;
+        case 42: _t->on_pushButtonSend_clicked(); break;
+        case 43: _t->on_pushButton_client_fidele_clicked(); break;
         default: ;
         }
     }
@@ -439,13 +551,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 32)
+        if (_id < 44)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 32;
+        _id -= 44;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 32)
+        if (_id < 44)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 32;
+        _id -= 44;
     }
     return _id;
 }
