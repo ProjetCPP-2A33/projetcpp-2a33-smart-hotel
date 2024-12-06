@@ -1,5 +1,6 @@
 #ifndef RESERVATION_H
 #define RESERVATION_H
+#include "qsqlquerymodel.h"
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>

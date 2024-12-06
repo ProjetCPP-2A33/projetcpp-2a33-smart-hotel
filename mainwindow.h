@@ -79,6 +79,7 @@ private slots:
     void on_pushButton_rechercher2_clicked();
     void on_pushButtonSend_clicked();
     void on_pushButton_client_fidele_clicked();
+    QString chercherdateDansBD(const QString &id);
 
 private:
     Ui::MainWindow *ui;

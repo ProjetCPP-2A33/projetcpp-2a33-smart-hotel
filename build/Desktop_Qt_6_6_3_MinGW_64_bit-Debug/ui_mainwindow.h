@@ -201,8 +201,8 @@ public:
     QPushButton *afficher_4;
     QPushButton *export_2;
     QPushButton *toggleThemeButton;
-    QLabel *l1_2;
     QPushButton *ok;
+    QLineEdit *lineEdit1;
     QLineEdit *lineEdit_recherche_id;
     QPushButton *searchButton;
     QPushButton *tri;
@@ -2976,13 +2976,12 @@ public:
 "    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
 "}\n"
 ""));
-        l1_2 = new QLabel(groupBox_10);
-        l1_2->setObjectName("l1_2");
-        l1_2->setGeometry(QRect(490, 480, 431, 121));
-        l1_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         ok = new QPushButton(groupBox_10);
         ok->setObjectName("ok");
         ok->setGeometry(QRect(600, 450, 75, 24));
+        lineEdit1 = new QLineEdit(groupBox_10);
+        lineEdit1->setObjectName("lineEdit1");
+        lineEdit1->setGeometry(QRect(580, 540, 113, 28));
         lineEdit_recherche_id = new QLineEdit(afficher_3);
         lineEdit_recherche_id->setObjectName("lineEdit_recherche_id");
         lineEdit_recherche_id->setGeometry(QRect(920, 120, 231, 41));
@@ -3863,7 +3862,6 @@ public:
         afficher_4->setText(QCoreApplication::translate("MainWindow", "Afficher", nullptr));
         export_2->setText(QCoreApplication::translate("MainWindow", "Exporter en format PDF", nullptr));
         toggleThemeButton->setText(QCoreApplication::translate("MainWindow", "Mode sombre", nullptr));
-        l1_2->setText(QString());
         ok->setText(QCoreApplication::translate("MainWindow", "ok", nullptr));
         lineEdit_recherche_id->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher", nullptr));
         searchButton->setText(QString());

@@ -6,7 +6,7 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../mainwindow.h"
+#include "../../../../sdfghjk/mainwindow.h"
 #include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
@@ -90,11 +90,12 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "on_pushButton_modifier_clicked",
     "on_pushButton_rechercher2_clicked",
     "on_pushButtonSend_clicked",
-    "on_pushButton_client_fidele_clicked"
+    "on_pushButton_client_fidele_clicked",
+    "chercherdateDansBD"
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[104];
+    uint offsetsAndSizes[106];
     char stringdata0[11];
     char stringdata1[34];
     char stringdata2[1];
@@ -147,6 +148,7 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata49[34];
     char stringdata50[26];
     char stringdata51[36];
+    char stringdata52[19];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -203,7 +205,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(1047, 30),  // "on_pushButton_modifier_clicked"
         QT_MOC_LITERAL(1078, 33),  // "on_pushButton_rechercher2_cli..."
         QT_MOC_LITERAL(1112, 25),  // "on_pushButtonSend_clicked"
-        QT_MOC_LITERAL(1138, 35)   // "on_pushButton_client_fidele_c..."
+        QT_MOC_LITERAL(1138, 35),  // "on_pushButton_client_fidele_c..."
+        QT_MOC_LITERAL(1174, 18)   // "chercherdateDansBD"
     },
     "MainWindow",
     "on_pushButton_trierParNom_clicked",
@@ -256,7 +259,8 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "on_pushButton_modifier_clicked",
     "on_pushButton_rechercher2_clicked",
     "on_pushButtonSend_clicked",
-    "on_pushButton_client_fidele_clicked"
+    "on_pushButton_client_fidele_clicked",
+    "chercherdateDansBD"
 };
 #undef QT_MOC_LITERAL
 #endif // !QT_MOC_HAS_STRING_DATA
@@ -268,7 +272,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      44,   14, // methods
+      45,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -276,50 +280,51 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  278,    2, 0x0a,    1 /* Public */,
-       3,    0,  279,    2, 0x0a,    2 /* Public */,
-       4,    1,  280,    2, 0x0a,    3 /* Public */,
-       6,    0,  283,    2, 0x0a,    5 /* Public */,
-       7,    1,  284,    2, 0x0a,    6 /* Public */,
-       9,    0,  287,    2, 0x0a,    8 /* Public */,
-      10,    0,  288,    2, 0x0a,    9 /* Public */,
-      11,    0,  289,    2, 0x0a,   10 /* Public */,
-      12,    0,  290,    2, 0x0a,   11 /* Public */,
-      13,    0,  291,    2, 0x0a,   12 /* Public */,
-      14,    1,  292,    2, 0x0a,   13 /* Public */,
-      16,    0,  295,    2, 0x0a,   15 /* Public */,
-      17,    0,  296,    2, 0x0a,   16 /* Public */,
-      18,    0,  297,    2, 0x0a,   17 /* Public */,
-      19,    0,  298,    2, 0x0a,   18 /* Public */,
-      20,    0,  299,    2, 0x0a,   19 /* Public */,
-      21,    0,  300,    2, 0x0a,   20 /* Public */,
-      22,    0,  301,    2, 0x0a,   21 /* Public */,
-      23,    0,  302,    2, 0x0a,   22 /* Public */,
-      24,    0,  303,    2, 0x0a,   23 /* Public */,
-      25,    0,  304,    2, 0x0a,   24 /* Public */,
-      26,    0,  305,    2, 0x0a,   25 /* Public */,
-      27,    0,  306,    2, 0x0a,   26 /* Public */,
-      28,    2,  307,    2, 0x0a,   27 /* Public */,
-      31,    0,  312,    2, 0x0a,   30 /* Public */,
-      32,    0,  313,    2, 0x0a,   31 /* Public */,
-      33,    0,  314,    2, 0x0a,   32 /* Public */,
-      34,    0,  315,    2, 0x0a,   33 /* Public */,
-      35,    0,  316,    2, 0x0a,   34 /* Public */,
-      36,    0,  317,    2, 0x0a,   35 /* Public */,
-      37,    0,  318,    2, 0x0a,   36 /* Public */,
-      38,    0,  319,    2, 0x0a,   37 /* Public */,
-      39,    0,  320,    2, 0x0a,   38 /* Public */,
-      40,    0,  321,    2, 0x0a,   39 /* Public */,
-      41,    0,  322,    2, 0x0a,   40 /* Public */,
-      42,    1,  323,    2, 0x0a,   41 /* Public */,
-      44,    0,  326,    2, 0x08,   43 /* Private */,
-      45,    0,  327,    2, 0x08,   44 /* Private */,
-      46,    0,  328,    2, 0x08,   45 /* Private */,
-      47,    0,  329,    2, 0x08,   46 /* Private */,
-      48,    0,  330,    2, 0x08,   47 /* Private */,
-      49,    0,  331,    2, 0x08,   48 /* Private */,
-      50,    0,  332,    2, 0x08,   49 /* Private */,
-      51,    0,  333,    2, 0x08,   50 /* Private */,
+       1,    0,  284,    2, 0x0a,    1 /* Public */,
+       3,    0,  285,    2, 0x0a,    2 /* Public */,
+       4,    1,  286,    2, 0x0a,    3 /* Public */,
+       6,    0,  289,    2, 0x0a,    5 /* Public */,
+       7,    1,  290,    2, 0x0a,    6 /* Public */,
+       9,    0,  293,    2, 0x0a,    8 /* Public */,
+      10,    0,  294,    2, 0x0a,    9 /* Public */,
+      11,    0,  295,    2, 0x0a,   10 /* Public */,
+      12,    0,  296,    2, 0x0a,   11 /* Public */,
+      13,    0,  297,    2, 0x0a,   12 /* Public */,
+      14,    1,  298,    2, 0x0a,   13 /* Public */,
+      16,    0,  301,    2, 0x0a,   15 /* Public */,
+      17,    0,  302,    2, 0x0a,   16 /* Public */,
+      18,    0,  303,    2, 0x0a,   17 /* Public */,
+      19,    0,  304,    2, 0x0a,   18 /* Public */,
+      20,    0,  305,    2, 0x0a,   19 /* Public */,
+      21,    0,  306,    2, 0x0a,   20 /* Public */,
+      22,    0,  307,    2, 0x0a,   21 /* Public */,
+      23,    0,  308,    2, 0x0a,   22 /* Public */,
+      24,    0,  309,    2, 0x0a,   23 /* Public */,
+      25,    0,  310,    2, 0x0a,   24 /* Public */,
+      26,    0,  311,    2, 0x0a,   25 /* Public */,
+      27,    0,  312,    2, 0x0a,   26 /* Public */,
+      28,    2,  313,    2, 0x0a,   27 /* Public */,
+      31,    0,  318,    2, 0x0a,   30 /* Public */,
+      32,    0,  319,    2, 0x0a,   31 /* Public */,
+      33,    0,  320,    2, 0x0a,   32 /* Public */,
+      34,    0,  321,    2, 0x0a,   33 /* Public */,
+      35,    0,  322,    2, 0x0a,   34 /* Public */,
+      36,    0,  323,    2, 0x0a,   35 /* Public */,
+      37,    0,  324,    2, 0x0a,   36 /* Public */,
+      38,    0,  325,    2, 0x0a,   37 /* Public */,
+      39,    0,  326,    2, 0x0a,   38 /* Public */,
+      40,    0,  327,    2, 0x0a,   39 /* Public */,
+      41,    0,  328,    2, 0x0a,   40 /* Public */,
+      42,    1,  329,    2, 0x0a,   41 /* Public */,
+      44,    0,  332,    2, 0x08,   43 /* Private */,
+      45,    0,  333,    2, 0x08,   44 /* Private */,
+      46,    0,  334,    2, 0x08,   45 /* Private */,
+      47,    0,  335,    2, 0x08,   46 /* Private */,
+      48,    0,  336,    2, 0x08,   47 /* Private */,
+      49,    0,  337,    2, 0x08,   48 /* Private */,
+      50,    0,  338,    2, 0x08,   49 /* Private */,
+      51,    0,  339,    2, 0x08,   50 /* Private */,
+      52,    1,  340,    2, 0x08,   51 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -366,6 +371,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::QString, QMetaType::QString,   43,
 
        0        // eod
 };
@@ -472,7 +478,10 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         // method 'on_pushButtonSend_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_client_fidele_clicked'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'chercherdateDansBD'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -528,6 +537,8 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 41: _t->on_pushButton_rechercher2_clicked(); break;
         case 42: _t->on_pushButtonSend_clicked(); break;
         case 43: _t->on_pushButton_client_fidele_clicked(); break;
+        case 44: { QString _r = _t->chercherdateDansBD((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
     }
@@ -552,13 +563,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 44)
+        if (_id < 45)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 44;
+        _id -= 45;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 44)
+        if (_id < 45)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 44;
+        _id -= 45;
     }
     return _id;
 }
