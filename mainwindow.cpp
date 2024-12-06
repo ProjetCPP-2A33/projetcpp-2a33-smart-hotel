@@ -126,6 +126,13 @@ MainWindow::MainWindow(QWidget *parent)
     setupPalettes();
     QApplication::setPalette(lightPalette);
     ui->centralwidget->setPalette(lightPalette);
+    bool connected = arduino->connectToArduino("COM5"); // Tente d'ouvrir le port série
+    if (connected) {
+        connect(arduino, &Arduino::idReceived, this, &MainWindow::handleIdReceived);
+        qDebug() << "Connexion et ouverture réussies.";
+    } else {
+        QMessageBox::critical(this, "Erreur", "Connexion à Arduino échouée.");
+    }
 
     // Gestion de la connexion Arduino via la classe Arduino
     /*int ret = arduino->connect_arduino();
@@ -142,12 +149,12 @@ MainWindow::MainWindow(QWidget *parent)
     }*/
 
     // Gestion de la connexion ArduinoService via un port spécifique
-    if (arduino->connectToArduino("COM3")) {
+    /*if (arduino->connectToArduino("COM3")) {
         qDebug() << "ArduinoService connecté manuellement sur le port : COM3";
         connect(arduino, &Arduino::idReceived, this, &MainWindow::handleIdReceived);
     } else {
         QMessageBox::critical(this, "Erreur", "Connexion à ArduinoService échouée sur le port COM3.");
-    }
+    }*/
 
     // Connexion des boutons aux slots correspondants
     connect(ui->pushButtonSend, &QPushButton::clicked, this, &MainWindow::sendEmailWithPostmark);
@@ -1169,8 +1176,52 @@ void MainWindow::on_export_2_Clicked()
 }
 void MainWindow::handleIdReceived(const QString &id)
 {
-    qDebug() << "ID reçu depuis Arduino:" << id;
-    // Vous pouvez ici ajouter des traitements spécifiques à l'ID reçu
+    // Vérifie si l'ID n'est pas vide
+    int idReservation = ui->lineEdit1->text().toInt();
+
+    // Rechercher l'ID dans la table "reservation"
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM RESERVATION WHERE id = :id");
+    query.bindValue(":id", idReservation);
+
+    if (!query.exec()) {
+        QMessageBox::critical(this, "Erreur", "Erreur lors de l'accès à la base de données : " + query.lastError().text());
+        return;
+    }
+
+    // Vérifier si l'ID existe dans la table
+    query.next(); // Accéder au premier (et unique) résultat
+    int count = query.value(0).toInt();
+    ui->lineEdit1->setText(id);
+
+    if (count > 0) {
+        // Si l'ID est valide, vérifie l'état de la commande
+        QString dateDebut = chercherdateDansBD(id);
+
+        // Affiche l'état dans une QMessageBox
+        if (!dateDebut.isEmpty()) {
+            QMessageBox::information(this, "dateDebut de la reservation", "dateDebut : " + dateDebut);
+        } else {
+            QMessageBox::warning(this, "Erreur", "dateDebut de la reservation introuvable.");
+        }
+    } /*else {
+        // Si l'ID n'existe pas dans la base de données, affiche un message d'erreur
+        QMessageBox::warning(this, "Erreur", "dateDebut non trouvé dans la base de données.");
+    }*/
+
+    qDebug() << "dateDebut reçu :" << id;
+}
+QString MainWindow::chercherdateDansBD(const QString &id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT dateDebut FROM RESERVATION WHERE id = :id");
+    query.bindValue(":id", id);
+
+    if (query.exec() && query.next())
+    {
+        return query.value(0).toString();
+    }
+    return "";
 }
 
 

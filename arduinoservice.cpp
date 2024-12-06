@@ -90,3 +90,4 @@ bool Arduino::envoyerCommande(const QByteArray &commande) {
 bool Arduino::estPortOuvert() const {
     return serialPort->isOpen();
 }
+

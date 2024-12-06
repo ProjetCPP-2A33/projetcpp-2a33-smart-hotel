@@ -1,6 +1,7 @@
 #ifndef SERVICE_H
 #define SERVICE_H
 
+#include "qsqlquerymodel.h"
 #include <QString>
 #include <QSqlQuery>
 #include <QSqlQueryModel>

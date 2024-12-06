@@ -1,5 +1,6 @@
 #ifndef CLIENT_H
 #define CLIENT_H
+#include "qsqlquerymodel.h"
 #include<QString>
 #include<QSqlQuery>
 #include<QSqlQueryModel>
