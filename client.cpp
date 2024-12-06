@@ -1,5 +1,5 @@
 #include "client.h"
-#include "gestionclients.h"
+#include "mainwindow.h"
 #include <QSqlError>
 #include <QSqlQueryModel>
 #include<QSqlQuery>

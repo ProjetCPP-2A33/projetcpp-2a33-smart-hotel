@@ -6,7 +6,8 @@
 ** WARNING! All changes made in this file will be lost!
 *****************************************************************************/
 
-#include "../../../../integration/crud - Copie - Copie/mainwindow.h"
+#include "../../../mainwindow.h"
+#include <QtNetwork/QSslError>
 #include <QtCore/qmetatype.h>
 
 #if __has_include(<QtCore/qtmochelpers.h>)
@@ -55,6 +56,33 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
     "processEmployeeID",
     "employeeID",
     "on_pushButton_VerifyID_clicked",
+    "on_ajouterButton_clicked",
+    "on_supprimerButton_clicked",
+    "on_modifierButton_clicked",
+    "on_rechercherButton_clicked",
+    "on_trierButton_clicked",
+    "on_statistiqueButton_clicked",
+    "on_statistiqueButton_2_clicked",
+    "on_pb_pdf_clicked",
+    "on_pb_historiqueService_clicked",
+    "on_ButtonOuvrir_Clicked",
+    "on_sendSMSButton_clicked",
+    "envoyerSMS",
+    "destinataire",
+    "message",
+    "bt1_ajouter_clicked",
+    "bt1_supprimer_clicked",
+    "bt1_modifier_clicked",
+    "bt1_afficher_clicked",
+    "onRechercheParIdClicked",
+    "onCalculateOccupancyRateClicked",
+    "onSortByDateClicked",
+    "on_export_2_Clicked",
+    "afficherHistorique",
+    "toggleTheme",
+    "setupPalettes",
+    "handleIdReceived",
+    "id",
     "on_pushButton_ajouter_clicked",
     "on_pushButton_supprimer_clicked",
     "on_pushButton_rechercher_clicked",
@@ -66,7 +94,7 @@ constexpr auto qt_meta_stringdata_CLASSMainWindowENDCLASS = QtMocHelpers::string
 );
 #else  // !QT_MOC_HAS_STRING_DATA
 struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
-    uint offsetsAndSizes[50];
+    uint offsetsAndSizes[104];
     char stringdata0[11];
     char stringdata1[34];
     char stringdata2[1];
@@ -84,14 +112,41 @@ struct qt_meta_stringdata_CLASSMainWindowENDCLASS_t {
     char stringdata14[18];
     char stringdata15[11];
     char stringdata16[31];
-    char stringdata17[30];
-    char stringdata18[32];
-    char stringdata19[33];
-    char stringdata20[23];
-    char stringdata21[31];
-    char stringdata22[34];
-    char stringdata23[26];
-    char stringdata24[36];
+    char stringdata17[25];
+    char stringdata18[27];
+    char stringdata19[26];
+    char stringdata20[28];
+    char stringdata21[23];
+    char stringdata22[29];
+    char stringdata23[31];
+    char stringdata24[18];
+    char stringdata25[32];
+    char stringdata26[24];
+    char stringdata27[25];
+    char stringdata28[11];
+    char stringdata29[13];
+    char stringdata30[8];
+    char stringdata31[20];
+    char stringdata32[22];
+    char stringdata33[21];
+    char stringdata34[21];
+    char stringdata35[24];
+    char stringdata36[32];
+    char stringdata37[20];
+    char stringdata38[20];
+    char stringdata39[19];
+    char stringdata40[12];
+    char stringdata41[14];
+    char stringdata42[17];
+    char stringdata43[3];
+    char stringdata44[30];
+    char stringdata45[32];
+    char stringdata46[33];
+    char stringdata47[23];
+    char stringdata48[31];
+    char stringdata49[34];
+    char stringdata50[26];
+    char stringdata51[36];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_CLASSMainWindowENDCLASS_t::offsetsAndSizes) + ofs), len 
@@ -114,14 +169,41 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
         QT_MOC_LITERAL(304, 17),  // "processEmployeeID"
         QT_MOC_LITERAL(322, 10),  // "employeeID"
         QT_MOC_LITERAL(333, 30),  // "on_pushButton_VerifyID_clicked"
-        QT_MOC_LITERAL(364, 29),  // "on_pushButton_ajouter_clicked"
-        QT_MOC_LITERAL(394, 31),  // "on_pushButton_supprimer_clicked"
-        QT_MOC_LITERAL(426, 32),  // "on_pushButton_rechercher_clicked"
-        QT_MOC_LITERAL(459, 22),  // "actualiserListeClients"
-        QT_MOC_LITERAL(482, 30),  // "on_pushButton_modifier_clicked"
-        QT_MOC_LITERAL(513, 33),  // "on_pushButton_rechercher2_cli..."
-        QT_MOC_LITERAL(547, 25),  // "on_pushButtonSend_clicked"
-        QT_MOC_LITERAL(573, 35)   // "on_pushButton_client_fidele_c..."
+        QT_MOC_LITERAL(364, 24),  // "on_ajouterButton_clicked"
+        QT_MOC_LITERAL(389, 26),  // "on_supprimerButton_clicked"
+        QT_MOC_LITERAL(416, 25),  // "on_modifierButton_clicked"
+        QT_MOC_LITERAL(442, 27),  // "on_rechercherButton_clicked"
+        QT_MOC_LITERAL(470, 22),  // "on_trierButton_clicked"
+        QT_MOC_LITERAL(493, 28),  // "on_statistiqueButton_clicked"
+        QT_MOC_LITERAL(522, 30),  // "on_statistiqueButton_2_clicked"
+        QT_MOC_LITERAL(553, 17),  // "on_pb_pdf_clicked"
+        QT_MOC_LITERAL(571, 31),  // "on_pb_historiqueService_clicked"
+        QT_MOC_LITERAL(603, 23),  // "on_ButtonOuvrir_Clicked"
+        QT_MOC_LITERAL(627, 24),  // "on_sendSMSButton_clicked"
+        QT_MOC_LITERAL(652, 10),  // "envoyerSMS"
+        QT_MOC_LITERAL(663, 12),  // "destinataire"
+        QT_MOC_LITERAL(676, 7),  // "message"
+        QT_MOC_LITERAL(684, 19),  // "bt1_ajouter_clicked"
+        QT_MOC_LITERAL(704, 21),  // "bt1_supprimer_clicked"
+        QT_MOC_LITERAL(726, 20),  // "bt1_modifier_clicked"
+        QT_MOC_LITERAL(747, 20),  // "bt1_afficher_clicked"
+        QT_MOC_LITERAL(768, 23),  // "onRechercheParIdClicked"
+        QT_MOC_LITERAL(792, 31),  // "onCalculateOccupancyRateClicked"
+        QT_MOC_LITERAL(824, 19),  // "onSortByDateClicked"
+        QT_MOC_LITERAL(844, 19),  // "on_export_2_Clicked"
+        QT_MOC_LITERAL(864, 18),  // "afficherHistorique"
+        QT_MOC_LITERAL(883, 11),  // "toggleTheme"
+        QT_MOC_LITERAL(895, 13),  // "setupPalettes"
+        QT_MOC_LITERAL(909, 16),  // "handleIdReceived"
+        QT_MOC_LITERAL(926, 2),  // "id"
+        QT_MOC_LITERAL(929, 29),  // "on_pushButton_ajouter_clicked"
+        QT_MOC_LITERAL(959, 31),  // "on_pushButton_supprimer_clicked"
+        QT_MOC_LITERAL(991, 32),  // "on_pushButton_rechercher_clicked"
+        QT_MOC_LITERAL(1024, 22),  // "actualiserListeClients"
+        QT_MOC_LITERAL(1047, 30),  // "on_pushButton_modifier_clicked"
+        QT_MOC_LITERAL(1078, 33),  // "on_pushButton_rechercher2_cli..."
+        QT_MOC_LITERAL(1112, 25),  // "on_pushButtonSend_clicked"
+        QT_MOC_LITERAL(1138, 35)   // "on_pushButton_client_fidele_c..."
     },
     "MainWindow",
     "on_pushButton_trierParNom_clicked",
@@ -140,6 +222,33 @@ Q_CONSTINIT static const qt_meta_stringdata_CLASSMainWindowENDCLASS_t qt_meta_st
     "processEmployeeID",
     "employeeID",
     "on_pushButton_VerifyID_clicked",
+    "on_ajouterButton_clicked",
+    "on_supprimerButton_clicked",
+    "on_modifierButton_clicked",
+    "on_rechercherButton_clicked",
+    "on_trierButton_clicked",
+    "on_statistiqueButton_clicked",
+    "on_statistiqueButton_2_clicked",
+    "on_pb_pdf_clicked",
+    "on_pb_historiqueService_clicked",
+    "on_ButtonOuvrir_Clicked",
+    "on_sendSMSButton_clicked",
+    "envoyerSMS",
+    "destinataire",
+    "message",
+    "bt1_ajouter_clicked",
+    "bt1_supprimer_clicked",
+    "bt1_modifier_clicked",
+    "bt1_afficher_clicked",
+    "onRechercheParIdClicked",
+    "onCalculateOccupancyRateClicked",
+    "onSortByDateClicked",
+    "on_export_2_Clicked",
+    "afficherHistorique",
+    "toggleTheme",
+    "setupPalettes",
+    "handleIdReceived",
+    "id",
     "on_pushButton_ajouter_clicked",
     "on_pushButton_supprimer_clicked",
     "on_pushButton_rechercher_clicked",
@@ -159,7 +268,7 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-      20,   14, // methods
+      44,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -167,26 +276,50 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,  134,    2, 0x0a,    1 /* Public */,
-       3,    0,  135,    2, 0x0a,    2 /* Public */,
-       4,    1,  136,    2, 0x0a,    3 /* Public */,
-       6,    0,  139,    2, 0x0a,    5 /* Public */,
-       7,    1,  140,    2, 0x0a,    6 /* Public */,
-       9,    0,  143,    2, 0x0a,    8 /* Public */,
-      10,    0,  144,    2, 0x0a,    9 /* Public */,
-      11,    0,  145,    2, 0x0a,   10 /* Public */,
-      12,    0,  146,    2, 0x0a,   11 /* Public */,
-      13,    0,  147,    2, 0x0a,   12 /* Public */,
-      14,    1,  148,    2, 0x0a,   13 /* Public */,
-      16,    0,  151,    2, 0x0a,   15 /* Public */,
-      17,    0,  152,    2, 0x08,   16 /* Private */,
-      18,    0,  153,    2, 0x08,   17 /* Private */,
-      19,    0,  154,    2, 0x08,   18 /* Private */,
-      20,    0,  155,    2, 0x08,   19 /* Private */,
-      21,    0,  156,    2, 0x08,   20 /* Private */,
-      22,    0,  157,    2, 0x08,   21 /* Private */,
-      23,    0,  158,    2, 0x08,   22 /* Private */,
-      24,    0,  159,    2, 0x08,   23 /* Private */,
+       1,    0,  278,    2, 0x0a,    1 /* Public */,
+       3,    0,  279,    2, 0x0a,    2 /* Public */,
+       4,    1,  280,    2, 0x0a,    3 /* Public */,
+       6,    0,  283,    2, 0x0a,    5 /* Public */,
+       7,    1,  284,    2, 0x0a,    6 /* Public */,
+       9,    0,  287,    2, 0x0a,    8 /* Public */,
+      10,    0,  288,    2, 0x0a,    9 /* Public */,
+      11,    0,  289,    2, 0x0a,   10 /* Public */,
+      12,    0,  290,    2, 0x0a,   11 /* Public */,
+      13,    0,  291,    2, 0x0a,   12 /* Public */,
+      14,    1,  292,    2, 0x0a,   13 /* Public */,
+      16,    0,  295,    2, 0x0a,   15 /* Public */,
+      17,    0,  296,    2, 0x0a,   16 /* Public */,
+      18,    0,  297,    2, 0x0a,   17 /* Public */,
+      19,    0,  298,    2, 0x0a,   18 /* Public */,
+      20,    0,  299,    2, 0x0a,   19 /* Public */,
+      21,    0,  300,    2, 0x0a,   20 /* Public */,
+      22,    0,  301,    2, 0x0a,   21 /* Public */,
+      23,    0,  302,    2, 0x0a,   22 /* Public */,
+      24,    0,  303,    2, 0x0a,   23 /* Public */,
+      25,    0,  304,    2, 0x0a,   24 /* Public */,
+      26,    0,  305,    2, 0x0a,   25 /* Public */,
+      27,    0,  306,    2, 0x0a,   26 /* Public */,
+      28,    2,  307,    2, 0x0a,   27 /* Public */,
+      31,    0,  312,    2, 0x0a,   30 /* Public */,
+      32,    0,  313,    2, 0x0a,   31 /* Public */,
+      33,    0,  314,    2, 0x0a,   32 /* Public */,
+      34,    0,  315,    2, 0x0a,   33 /* Public */,
+      35,    0,  316,    2, 0x0a,   34 /* Public */,
+      36,    0,  317,    2, 0x0a,   35 /* Public */,
+      37,    0,  318,    2, 0x0a,   36 /* Public */,
+      38,    0,  319,    2, 0x0a,   37 /* Public */,
+      39,    0,  320,    2, 0x0a,   38 /* Public */,
+      40,    0,  321,    2, 0x0a,   39 /* Public */,
+      41,    0,  322,    2, 0x0a,   40 /* Public */,
+      42,    1,  323,    2, 0x0a,   41 /* Public */,
+      44,    0,  326,    2, 0x08,   43 /* Private */,
+      45,    0,  327,    2, 0x08,   44 /* Private */,
+      46,    0,  328,    2, 0x08,   45 /* Private */,
+      47,    0,  329,    2, 0x08,   46 /* Private */,
+      48,    0,  330,    2, 0x08,   47 /* Private */,
+      49,    0,  331,    2, 0x08,   48 /* Private */,
+      50,    0,  332,    2, 0x08,   49 /* Private */,
+      51,    0,  333,    2, 0x08,   50 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -201,6 +334,30 @@ Q_CONSTINIT static const uint qt_meta_data_CLASSMainWindowENDCLASS[] = {
     QMetaType::Void,
     QMetaType::QString, QMetaType::QString,   15,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString,   29,   30,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   43,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -249,6 +406,57 @@ Q_CONSTINIT const QMetaObject MainWindow::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_pushButton_VerifyID_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_ajouterButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_supprimerButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_modifierButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_rechercherButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_trierButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_statistiqueButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_statistiqueButton_2_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pb_pdf_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_pb_historiqueService_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_ButtonOuvrir_Clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_sendSMSButton_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'envoyerSMS'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'bt1_ajouter_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bt1_supprimer_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bt1_modifier_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'bt1_afficher_clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onRechercheParIdClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onCalculateOccupancyRateClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'onSortByDateClicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'on_export_2_Clicked'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'afficherHistorique'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'toggleTheme'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'setupPalettes'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'handleIdReceived'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'on_pushButton_ajouter_clicked'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'on_pushButton_supprimer_clicked'
@@ -288,14 +496,38 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 10: { QString _r = _t->processEmployeeID((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         case 11: _t->on_pushButton_VerifyID_clicked(); break;
-        case 12: _t->on_pushButton_ajouter_clicked(); break;
-        case 13: _t->on_pushButton_supprimer_clicked(); break;
-        case 14: _t->on_pushButton_rechercher_clicked(); break;
-        case 15: _t->actualiserListeClients(); break;
-        case 16: _t->on_pushButton_modifier_clicked(); break;
-        case 17: _t->on_pushButton_rechercher2_clicked(); break;
-        case 18: _t->on_pushButtonSend_clicked(); break;
-        case 19: _t->on_pushButton_client_fidele_clicked(); break;
+        case 12: _t->on_ajouterButton_clicked(); break;
+        case 13: _t->on_supprimerButton_clicked(); break;
+        case 14: _t->on_modifierButton_clicked(); break;
+        case 15: _t->on_rechercherButton_clicked(); break;
+        case 16: _t->on_trierButton_clicked(); break;
+        case 17: _t->on_statistiqueButton_clicked(); break;
+        case 18: _t->on_statistiqueButton_2_clicked(); break;
+        case 19: _t->on_pb_pdf_clicked(); break;
+        case 20: _t->on_pb_historiqueService_clicked(); break;
+        case 21: _t->on_ButtonOuvrir_Clicked(); break;
+        case 22: _t->on_sendSMSButton_clicked(); break;
+        case 23: _t->envoyerSMS((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2]))); break;
+        case 24: _t->bt1_ajouter_clicked(); break;
+        case 25: _t->bt1_supprimer_clicked(); break;
+        case 26: _t->bt1_modifier_clicked(); break;
+        case 27: _t->bt1_afficher_clicked(); break;
+        case 28: _t->onRechercheParIdClicked(); break;
+        case 29: _t->onCalculateOccupancyRateClicked(); break;
+        case 30: _t->onSortByDateClicked(); break;
+        case 31: _t->on_export_2_Clicked(); break;
+        //case 32: _t->afficherHistorique(); break;
+        case 33: _t->toggleTheme(); break;
+        case 34: _t->setupPalettes(); break;
+        case 35: _t->handleIdReceived((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 36: _t->on_pushButton_ajouter_clicked(); break;
+        case 37: _t->on_pushButton_supprimer_clicked(); break;
+        case 38: _t->on_pushButton_rechercher_clicked(); break;
+        case 39: _t->actualiserListeClients(); break;
+        case 40: _t->on_pushButton_modifier_clicked(); break;
+        case 41: _t->on_pushButton_rechercher2_clicked(); break;
+        case 42: _t->on_pushButtonSend_clicked(); break;
+        case 43: _t->on_pushButton_client_fidele_clicked(); break;
         default: ;
         }
     }
@@ -320,13 +552,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 44)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 44;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 20)
+        if (_id < 44)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 20;
+        _id -= 44;
     }
     return _id;
 }

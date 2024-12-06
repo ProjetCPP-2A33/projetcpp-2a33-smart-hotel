@@ -14,8 +14,8 @@ SOURCES += \
     arduinoservice.cpp \
     client.cpp \
     connection.cpp \
-    gestionclients.cpp \
     main.cpp \
+    mainwindow.cpp \
     reservation.cpp \
     service.cpp
 
@@ -24,12 +24,12 @@ HEADERS += \
     arduinoservice.h \
     client.h \
     connection.h \
-    gestionclients.h \
+    mainwindow.h \
     reservation.h \
     service.h
 
 FORMS += \
-    gestionclients.ui
+    mainwindow.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
