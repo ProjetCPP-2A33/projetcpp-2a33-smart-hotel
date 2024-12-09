@@ -201,8 +201,8 @@ public:
     QPushButton *afficher_4;
     QPushButton *export_2;
     QPushButton *toggleThemeButton;
-    QLabel *l1_2;
     QPushButton *ok;
+    QLineEdit *lineEdit1;
     QLineEdit *lineEdit_recherche_id;
     QPushButton *searchButton;
     QPushButton *tri;
@@ -252,6 +252,64 @@ public:
     QLabel *label_71;
     QPushButton *pushButton_rechercher_2;
     QTableView *tableViewb;
+    QWidget *tab_6;
+    QTabWidget *pdf;
+    QWidget *afficher_5;
+    QGroupBox *TAB_E;
+    QTableView *tab_affich_E;
+    QLineEdit *lineEdit_critereRecherche_2;
+    QComboBox *comboBox_critereRecherche_3;
+    QPushButton *pushButton_afficher_aziz;
+    QComboBox *comboBox_critereRech_3;
+    QLabel *label_56;
+    QLabel *label_72;
+    QPushButton *pushButton_afficher_aziz1;
+    QWidget *Ajouter_4;
+    QGroupBox *groupBox_14;
+    QLabel *label_73;
+    QLabel *label_74;
+    QLabel *label_75;
+    QLabel *label_76;
+    QLineEdit *nom;
+    QLineEdit *prenom;
+    QLineEdit *numero;
+    QPushButton *ajouter_aziz;
+    QLineEdit *ide;
+    QLabel *label_77;
+    QLabel *label_78;
+    QLineEdit *salaire;
+    QDateEdit *datenaissance;
+    QWidget *Modifier_4;
+    QGroupBox *groupBox_15;
+    QLabel *label_79;
+    QLabel *label_80;
+    QLabel *label_81;
+    QLineEdit *nom_modif;
+    QLineEdit *prenom_modif;
+    QLineEdit *numero_modif;
+    QPushButton *modifier_aziz;
+    QLabel *label_82;
+    QDateEdit *datenaissance_modif;
+    QLabel *label_83;
+    QLineEdit *salaire_modif;
+    QLabel *label_84;
+    QLineEdit *ide_modif;
+    QWidget *supprimer_4;
+    QGroupBox *groupBox_16;
+    QPushButton *supprimer_aziz;
+    QLineEdit *id_supprimer;
+    QLabel *label_85;
+    QWidget *tab_7;
+    QWidget *verticalLayoutWidget_2;
+    QVBoxLayout *verticalLayout_2;
+    QPushButton *stats1;
+    QWidget *tab_8;
+    QPushButton *QrCode;
+    QLabel *qrcodecommande_2;
+    QLineEdit *qr_code_bar;
+    QWidget *tab_9;
+    QLabel *label_nome;
+    QLabel *label_prenom;
     QStatusBar *statusbar;
     QMenuBar *menuBar;
 
@@ -266,7 +324,7 @@ public:
         centralwidget->setObjectName("centralwidget");
         tabWidget = new QTabWidget(centralwidget);
         tabWidget->setObjectName("tabWidget");
-        tabWidget->setGeometry(QRect(10, 10, 1531, 1081));
+        tabWidget->setGeometry(QRect(10, 0, 1531, 1081));
         tabWidget->setStyleSheet(QString::fromUtf8("/* Fond du QTabWidget */\n"
 "QTabWidget {\n"
 "    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(30, 144, 255, 255), stop:1 rgba(0, 70, 128, 255));\n"
@@ -2976,13 +3034,12 @@ public:
 "    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
 "}\n"
 ""));
-        l1_2 = new QLabel(groupBox_10);
-        l1_2->setObjectName("l1_2");
-        l1_2->setGeometry(QRect(490, 480, 431, 121));
-        l1_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
         ok = new QPushButton(groupBox_10);
         ok->setObjectName("ok");
         ok->setGeometry(QRect(600, 450, 75, 24));
+        lineEdit1 = new QLineEdit(groupBox_10);
+        lineEdit1->setObjectName("lineEdit1");
+        lineEdit1->setGeometry(QRect(580, 540, 113, 28));
         lineEdit_recherche_id = new QLineEdit(afficher_3);
         lineEdit_recherche_id->setObjectName("lineEdit_recherche_id");
         lineEdit_recherche_id->setGeometry(QRect(920, 120, 231, 41));
@@ -3685,21 +3742,936 @@ public:
         tableViewb->setGeometry(QRect(145, 290, 621, 192));
         tabWidget_4->addTab(supprimer_2, QString());
         tabWidget->addTab(tab_5, QString());
+        tab_6 = new QWidget();
+        tab_6->setObjectName("tab_6");
+        pdf = new QTabWidget(tab_6);
+        pdf->setObjectName("pdf");
+        pdf->setEnabled(true);
+        pdf->setGeometry(QRect(10, 30, 1675, 935));
+        pdf->setMinimumSize(QSize(1675, 0));
+        pdf->setMaximumSize(QSize(1674, 935));
+        pdf->setFont(font);
+        pdf->setStyleSheet(QString::fromUtf8("/* Fond du QTabWidget */\n"
+"QTabWidget {\n"
+"    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(30, 144, 255, 255), stop:1 rgba(0, 70, 128, 255));\n"
+"}\n"
+"\n"
+"/* Style des onglets */\n"
+"QTabBar::tab {\n"
+"    background-color: #3049D9; /* Remplac\303\251 par la couleur #3049D9 */\n"
+"    color: #FFF9C4; /* Texte blanc */\n"
+"   border: 3px solid #2A2DAC;\n"
+"   border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 12px 20px; /* Espacement interne - ajustez selon vos besoins */\n"
+"    text-align: center; /* Centrer le texte */\n"
+"}\n"
+"\n"
+"/* Style des onglets lorsqu'ils sont survol\303\251s */\n"
+"QTabBar::tab:hover {\n"
+"    background-color: #435AD9; /* Changer la couleur au survol */\n"
+"}\n"
+"\n"
+"/* Style des onglets actifs */\n"
+"QTabBar::tab:pressed {\n"
+"    background-color: #353FF2; /* Conserver la m\303\252me couleur que pour l'onglet actif */\n"
+"}\n"
+"\n"
+"\n"
+"/* Style du contenu des onglets */\n"
+"QTabWidget::pane {\n"
+"    border: 2px solid #0000"
+                        "00; /* Bordure bleu fonc\303\251 pour le contenu des onglets */\n"
+"    border-top: 0; /* Supprimer la bordure sup\303\251rieure */\n"
+"}\n"
+"\n"
+"/* Style des boutons de fermeture des onglets */\n"
+"QTabBar::close-button {\n"
+"    image: url(close.png); /* Remplacez par le chemin de votre ic\303\264ne de fermeture */\n"
+"    subcontrol-position: right; /* Position \303\240 droite du texte de l'onglet */\n"
+"}\n"
+"\n"
+"QTabBar::close-button:hover {\n"
+"    image: url(close-hover.png); /* Ic\303\264ne de fermeture au survol */\n"
+"}\n"
+"\n"
+"/* Ajustement de la police */\n"
+"QTabBar {\n"
+"    font-size: 16px; /* Taille de la police pour les onglets */\n"
+"    qproperty-drawBase: 0; /* D\303\251sactiver le dessin de la base (fond) de l'onglet */\n"
+"}\n"
+"\n"
+""));
+        pdf->setIconSize(QSize(16, 16));
+        afficher_5 = new QWidget();
+        afficher_5->setObjectName("afficher_5");
+        TAB_E = new QGroupBox(afficher_5);
+        TAB_E->setObjectName("TAB_E");
+        TAB_E->setGeometry(QRect(10, 20, 791, 461));
+        TAB_E->setFont(font1);
+        TAB_E->setStyleSheet(QString::fromUtf8("/* Style de base pour la QGroupBox */\n"
+"QGroupBox {\n"
+"    border: 4px solid #999DF2; /* Bordure de la m\303\252me couleur que le fond du titre */\n"
+"    border-radius: 25px; /* Coins arrondis */\n"
+"    margin-top: 10px; /* Marge en haut */\n"
+"}\n"
+"\n"
+"/* Style du titre de la QGroupBox */\n"
+"QGroupBox::title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top center;\n"
+"    padding: 0 3px;\n"
+"    background-color: #999DF2; /* Fond remplac\303\251 par #999DF2 */\n"
+"    color: #ffffff; /* Texte blanc pour le titre */\n"
+"    border-radius: 10px; /* Coins arrondis du titre */\n"
+"}\n"
+"\n"
+"/* Style des QLabel \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLabel {\n"
+"    color: #000000; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QRadioButton \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QRadioButton {\n"
+"    color: #333333; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QComboBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QComboBox {\n"
+"    background"
+                        "-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QLineEdit \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLineEdit {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QSpinBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QSpinBox {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sacti"
+                        "v\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0; /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0; /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}"));
+        TAB_E->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        tab_affich_E = new QTableView(TAB_E);
+        tab_affich_E->setObjectName("tab_affich_E");
+        tab_affich_E->setGeometry(QRect(20, 60, 741, 391));
+        tab_affich_E->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"image: url(:/c/cc.png);\n"
+"image: url(:/c/cc.png);\n"
+"image: url(:/c/cc.png);\n"
+"image: url(:/c/cc.png);\n"
+"QTableWidget {\n"
+"    font-family: Arial, sans-serif;\n"
+"    font-size: 14px;\n"
+"    background-color: #ffffff;\n"
+"    border: 1px solid #cccccc;\n"
+"}\n"
+"\n"
+"QTableWidget::item {\n"
+"    padding: 10px;\n"
+"}\n"
+"\n"
+"QHeaderView::section {\n"
+"    font-weight: bold;\n"
+"    color: #333333;\n"
+"    background-color: #f5f5f5;\n"
+"    border-bottom: 1px solid #cccccc;\n"
+"}\n"
+"\n"
+"\n"
+""));
+        lineEdit_critereRecherche_2 = new QLineEdit(afficher_5);
+        lineEdit_critereRecherche_2->setObjectName("lineEdit_critereRecherche_2");
+        lineEdit_critereRecherche_2->setGeometry(QRect(820, 130, 231, 41));
+        lineEdit_critereRecherche_2->setFont(font3);
+        lineEdit_critereRecherche_2->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"border-radius: 20px; "));
+        lineEdit_critereRecherche_2->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        comboBox_critereRecherche_3 = new QComboBox(afficher_5);
+        comboBox_critereRecherche_3->addItem(QString());
+        comboBox_critereRecherche_3->addItem(QString());
+        comboBox_critereRecherche_3->addItem(QString());
+        comboBox_critereRecherche_3->setObjectName("comboBox_critereRecherche_3");
+        comboBox_critereRecherche_3->setGeometry(QRect(820, 80, 141, 31));
+        comboBox_critereRecherche_3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);\n"
+"QComboBox {\n"
+"    border: 1px solid #ccc;\n"
+"    border-radius: 5px;\n"
+"    padding: 3px;\n"
+"}\n"
+"QComboBox::drop-down {\n"
+"    border: none;\n"
+"    subcontrol-origin: padding;\n"
+"    subcontrol-position: top right;\n"
+"    width: 20px;\n"
+"    border-left: 1px solid #ccc;\n"
+"    border-radius: 0 5px 5px 0;\n"
+"}"));
+        pushButton_afficher_aziz = new QPushButton(afficher_5);
+        pushButton_afficher_aziz->setObjectName("pushButton_afficher_aziz");
+        pushButton_afficher_aziz->setGeometry(QRect(20, 490, 201, 51));
+        pushButton_afficher_aziz->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #435AD9;   /* Garder la bordure de la couleur d'origine */\n"
+"}\n"
+"\n"
+"/* Style du QPushButt"
+                        "on lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        comboBox_critereRech_3 = new QComboBox(afficher_5);
+        comboBox_critereRech_3->addItem(QString());
+        comboBox_critereRech_3->addItem(QString());
+        comboBox_critereRech_3->setObjectName("comboBox_critereRech_3");
+        comboBox_critereRech_3->setGeometry(QRect(820, 220, 141, 31));
+        comboBox_critereRech_3->setStyleSheet(QString::fromUtf8("background-color: rgb(255, 255, 255);"));
+        label_56 = new QLabel(afficher_5);
+        label_56->setObjectName("label_56");
+        label_56->setGeometry(QRect(820, 30, 241, 31));
+        label_56->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_72 = new QLabel(afficher_5);
+        label_72->setObjectName("label_72");
+        label_72->setGeometry(QRect(820, 180, 281, 31));
+        label_72->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        pushButton_afficher_aziz1 = new QPushButton(afficher_5);
+        pushButton_afficher_aziz1->setObjectName("pushButton_afficher_aziz1");
+        pushButton_afficher_aziz1->setGeometry(QRect(230, 490, 201, 51));
+        pushButton_afficher_aziz1->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #435AD9;   /* Garder la bordure de la couleur d'origine */\n"
+"}\n"
+"\n"
+"/* Style du QPushButt"
+                        "on lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        pdf->addTab(afficher_5, QString());
+        Ajouter_4 = new QWidget();
+        Ajouter_4->setObjectName("Ajouter_4");
+        groupBox_14 = new QGroupBox(Ajouter_4);
+        groupBox_14->setObjectName("groupBox_14");
+        groupBox_14->setGeometry(QRect(20, 20, 991, 621));
+        groupBox_14->setFont(font1);
+        groupBox_14->setStyleSheet(QString::fromUtf8("/* Style de base pour la QGroupBox */\n"
+"QGroupBox {\n"
+"    border: 4px solid #999DF2; /* Bordure de la m\303\252me couleur que le fond du titre */\n"
+"    border-radius: 25px; /* Coins arrondis */\n"
+"    margin-top: 10px; /* Marge en haut */\n"
+"}\n"
+"\n"
+"/* Style du titre de la QGroupBox */\n"
+"QGroupBox::title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top center;\n"
+"    padding: 0 3px;\n"
+"    background-color: #999DF2; /* Fond remplac\303\251 par #999DF2 */\n"
+"    color: #ffffff; /* Texte blanc pour le titre */\n"
+"    border-radius: 10px; /* Coins arrondis du titre */\n"
+"\n"
+"}\n"
+"\n"
+"/* Style des QLabel \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLabel {\n"
+"    color: #000000; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QRadioButton \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QRadioButton {\n"
+"    color: #333333; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QComboBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QComboBox {\n"
+"    backg"
+                        "round-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QLineEdit \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLineEdit {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QSpinBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QSpinBox {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251"
+                        "sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0; /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0; /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}"));
+        groupBox_14->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_73 = new QLabel(groupBox_14);
+        label_73->setObjectName("label_73");
+        label_73->setGeometry(QRect(40, 60, 101, 31));
+        label_73->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_73->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_74 = new QLabel(groupBox_14);
+        label_74->setObjectName("label_74");
+        label_74->setGeometry(QRect(480, 60, 91, 31));
+        label_74->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_74->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_75 = new QLabel(groupBox_14);
+        label_75->setObjectName("label_75");
+        label_75->setGeometry(QRect(40, 140, 91, 31));
+        label_75->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_75->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_76 = new QLabel(groupBox_14);
+        label_76->setObjectName("label_76");
+        label_76->setGeometry(QRect(10, 230, 141, 31));
+        label_76->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_76->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        nom = new QLineEdit(groupBox_14);
+        nom->setObjectName("nom");
+        nom->setGeometry(QRect(150, 50, 331, 51));
+        nom->setFont(font3);
+        nom->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        nom->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        prenom = new QLineEdit(groupBox_14);
+        prenom->setObjectName("prenom");
+        prenom->setGeometry(QRect(570, 50, 301, 51));
+        prenom->setFont(font3);
+        prenom->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        prenom->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        numero = new QLineEdit(groupBox_14);
+        numero->setObjectName("numero");
+        numero->setGeometry(QRect(150, 220, 321, 51));
+        numero->setFont(font3);
+        numero->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        numero->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        ajouter_aziz = new QPushButton(groupBox_14);
+        ajouter_aziz->setObjectName("ajouter_aziz");
+        ajouter_aziz->setGeometry(QRect(370, 410, 221, 51));
+        ajouter_aziz->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        ide = new QLineEdit(groupBox_14);
+        ide->setObjectName("ide");
+        ide->setGeometry(QRect(150, 130, 331, 51));
+        ide->setFont(font3);
+        ide->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        ide->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_77 = new QLabel(groupBox_14);
+        label_77->setObjectName("label_77");
+        label_77->setGeometry(QRect(480, 140, 171, 31));
+        label_77->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_77->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_78 = new QLabel(groupBox_14);
+        label_78->setObjectName("label_78");
+        label_78->setGeometry(QRect(50, 300, 91, 31));
+        label_78->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        salaire = new QLineEdit(groupBox_14);
+        salaire->setObjectName("salaire");
+        salaire->setGeometry(QRect(150, 290, 321, 51));
+        salaire->setFont(font4);
+        salaire->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        salaire->setMaxLength(32778);
+        salaire->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        datenaissance = new QDateEdit(groupBox_14);
+        datenaissance->setObjectName("datenaissance");
+        datenaissance->setGeometry(QRect(670, 130, 191, 41));
+        pdf->addTab(Ajouter_4, QString());
+        Modifier_4 = new QWidget();
+        Modifier_4->setObjectName("Modifier_4");
+        groupBox_15 = new QGroupBox(Modifier_4);
+        groupBox_15->setObjectName("groupBox_15");
+        groupBox_15->setGeometry(QRect(10, 0, 911, 451));
+        groupBox_15->setFont(font1);
+        groupBox_15->setStyleSheet(QString::fromUtf8("/* Style de base pour la QGroupBox */\n"
+"QGroupBox {\n"
+"    border: 4px solid #999DF2; /* Bordure de la m\303\252me couleur que le fond du titre */\n"
+"    border-radius: 25px; /* Coins arrondis */\n"
+"    margin-top: 10px; /* Marge en haut */\n"
+"}\n"
+"\n"
+"/* Style du titre de la QGroupBox */\n"
+"QGroupBox::title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top center;\n"
+"    padding: 0 3px;\n"
+"    background-color: #999DF2; /* Fond remplac\303\251 par #999DF2 */\n"
+"    color: #ffffff; /* Texte blanc pour le titre */\n"
+"    border-radius: 10px; /* Coins arrondis du titre */\n"
+"}\n"
+"\n"
+"/* Style des QLabel \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLabel {\n"
+"    color: #000000; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QRadioButton \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QRadioButton {\n"
+"    color: #333333; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QComboBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QComboBox {\n"
+"    background"
+                        "-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QLineEdit \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLineEdit {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QSpinBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QSpinBox {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sacti"
+                        "v\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0; /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0; /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}"));
+        groupBox_15->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_79 = new QLabel(groupBox_15);
+        label_79->setObjectName("label_79");
+        label_79->setGeometry(QRect(20, 60, 131, 31));
+        label_79->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_79->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_80 = new QLabel(groupBox_15);
+        label_80->setObjectName("label_80");
+        label_80->setGeometry(QRect(430, 60, 131, 31));
+        label_80->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_80->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_81 = new QLabel(groupBox_15);
+        label_81->setObjectName("label_81");
+        label_81->setGeometry(QRect(10, 140, 191, 31));
+        label_81->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_81->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        nom_modif = new QLineEdit(groupBox_15);
+        nom_modif->setObjectName("nom_modif");
+        nom_modif->setGeometry(QRect(130, 50, 301, 51));
+        nom_modif->setFont(font3);
+        nom_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        nom_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        prenom_modif = new QLineEdit(groupBox_15);
+        prenom_modif->setObjectName("prenom_modif");
+        prenom_modif->setGeometry(QRect(530, 50, 351, 51));
+        prenom_modif->setFont(font3);
+        prenom_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        prenom_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        numero_modif = new QLineEdit(groupBox_15);
+        numero_modif->setObjectName("numero_modif");
+        numero_modif->setGeometry(QRect(180, 130, 301, 51));
+        numero_modif->setFont(font3);
+        numero_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        numero_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        modifier_aziz = new QPushButton(groupBox_15);
+        modifier_aziz->setObjectName("modifier_aziz");
+        modifier_aziz->setGeometry(QRect(570, 220, 221, 51));
+        modifier_aziz->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        label_82 = new QLabel(groupBox_15);
+        label_82->setObjectName("label_82");
+        label_82->setGeometry(QRect(20, 230, 171, 31));
+        label_82->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_82->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        datenaissance_modif = new QDateEdit(groupBox_15);
+        datenaissance_modif->setObjectName("datenaissance_modif");
+        datenaissance_modif->setGeometry(QRect(190, 220, 221, 41));
+        datenaissance_modif->setStyleSheet(QString::fromUtf8("\n"
+"                                                    QDateEdit{\n"
+"                                                    background-color: #ffffff; /* Fond blanc */\n"
+"                                                    color: #333333; /* Couleur du texte */\n"
+"                                                    border: 1px solid #3498db; /* Bordure bleue */\n"
+"                                                    border-radius: 3px; /* Coins arrondis */\n"
+"                                                     padding: 2px; /* Espacement interne */\n"
+"                                                     border-radius :15px\n"
+"                                                    }\n"
+"                                                  "));
+        label_83 = new QLabel(groupBox_15);
+        label_83->setObjectName("label_83");
+        label_83->setGeometry(QRect(50, 310, 111, 31));
+        label_83->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        salaire_modif = new QLineEdit(groupBox_15);
+        salaire_modif->setObjectName("salaire_modif");
+        salaire_modif->setGeometry(QRect(160, 300, 331, 51));
+        salaire_modif->setFont(font4);
+        salaire_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        salaire_modif->setMaxLength(32778);
+        salaire_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_84 = new QLabel(groupBox_15);
+        label_84->setObjectName("label_84");
+        label_84->setGeometry(QRect(480, 140, 91, 31));
+        label_84->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_84->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        ide_modif = new QLineEdit(groupBox_15);
+        ide_modif->setObjectName("ide_modif");
+        ide_modif->setGeometry(QRect(560, 130, 331, 51));
+        ide_modif->setFont(font3);
+        ide_modif->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        ide_modif->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        pdf->addTab(Modifier_4, QString());
+        supprimer_4 = new QWidget();
+        supprimer_4->setObjectName("supprimer_4");
+        groupBox_16 = new QGroupBox(supprimer_4);
+        groupBox_16->setObjectName("groupBox_16");
+        groupBox_16->setGeometry(QRect(10, 10, 751, 381));
+        groupBox_16->setFont(font1);
+        groupBox_16->setStyleSheet(QString::fromUtf8("/* Style de base pour la QGroupBox */\n"
+"QGroupBox {\n"
+"    border: 4px solid #999DF2; /* Bordure de la m\303\252me couleur que le fond du titre */\n"
+"    border-radius: 25px; /* Coins arrondis */\n"
+"    margin-top: 10px; /* Marge en haut */\n"
+"}\n"
+"\n"
+"/* Style du titre de la QGroupBox */\n"
+"QGroupBox::title {\n"
+"    subcontrol-origin: margin;\n"
+"    subcontrol-position: top center;\n"
+"    padding: 0 3px;\n"
+"    background-color: #999DF2; /* Fond remplac\303\251 par #999DF2 */\n"
+"    color: #ffffff; /* Texte blanc pour le titre */\n"
+"    border-radius: 10px; /* Coins arrondis du titre */\n"
+"}\n"
+"\n"
+"/* Style des QLabel \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLabel {\n"
+"    color: #000000; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QRadioButton \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QRadioButton {\n"
+"    color: #333333; /* Couleur du texte */\n"
+"}\n"
+"\n"
+"/* Style des QComboBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QComboBox {\n"
+"    background"
+                        "-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QLineEdit \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QLineEdit {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style des QSpinBox \303\240 l'int\303\251rieur de la QGroupBox */\n"
+"QSpinBox {\n"
+"    background-color: #ffffff; /* Fond blanc */\n"
+"    color: #333333; /* Couleur du texte */\n"
+"    border: 1px solid #3498db; /* Bordure bleue */\n"
+"    border-radius: 3px; /* Coins arrondis */\n"
+"    padding: 2px; /* Espacement interne */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sacti"
+                        "v\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0; /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0; /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}"));
+        groupBox_16->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        supprimer_aziz = new QPushButton(groupBox_16);
+        supprimer_aziz->setObjectName("supprimer_aziz");
+        supprimer_aziz->setGeometry(QRect(230, 230, 221, 51));
+        supprimer_aziz->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        id_supprimer = new QLineEdit(groupBox_16);
+        id_supprimer->setObjectName("id_supprimer");
+        id_supprimer->setGeometry(QRect(230, 130, 221, 51));
+        id_supprimer->setFont(font3);
+        id_supprimer->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        id_supprimer->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        label_85 = new QLabel(groupBox_16);
+        label_85->setObjectName("label_85");
+        label_85->setGeometry(QRect(80, 140, 151, 31));
+        label_85->setStyleSheet(QString::fromUtf8("font: italic 14pt \"Times New Roman\";\n"
+"border-radius :15px"));
+        label_85->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        pdf->addTab(supprimer_4, QString());
+        tab_7 = new QWidget();
+        tab_7->setObjectName("tab_7");
+        verticalLayoutWidget_2 = new QWidget(tab_7);
+        verticalLayoutWidget_2->setObjectName("verticalLayoutWidget_2");
+        verticalLayoutWidget_2->setGeometry(QRect(50, 50, 701, 281));
+        verticalLayout_2 = new QVBoxLayout(verticalLayoutWidget_2);
+        verticalLayout_2->setObjectName("verticalLayout_2");
+        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
+        stats1 = new QPushButton(tab_7);
+        stats1->setObjectName("stats1");
+        stats1->setGeometry(QRect(340, 340, 161, 51));
+        stats1->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        pdf->addTab(tab_7, QString());
+        tab_8 = new QWidget();
+        tab_8->setObjectName("tab_8");
+        QrCode = new QPushButton(tab_8);
+        QrCode->setObjectName("QrCode");
+        QrCode->setGeometry(QRect(270, 530, 161, 51));
+        QrCode->setStyleSheet(QString::fromUtf8("/* Style de base pour le QPushButton */\n"
+"QPushButton {\n"
+"    background-color: #435AD9;  /* Bleu vif pour un look frais et moderne */\n"
+"    color: #ffffff;              /* Texte blanc */\n"
+"    border: 3px solid #435AD9;  /* Bordure de la m\303\252me couleur que le fond */\n"
+"    border-radius: 12px;        /* Coins arrondis */\n"
+"    padding: 8px 12px;          /* Espacement interne */\n"
+"    font: 75 18pt \"Times New Roman\"; /* Police en gras */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est survol\303\251 */\n"
+"QPushButton:hover {\n"
+"    background-color: #5f7cd8;   /* Bleu plus clair au survol */\n"
+"    border: 3px solid #5f7cd8;   /* Bordure de la m\303\252me couleur que le fond survol\303\251 */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est press\303\251 (clic) */\n"
+"QPushButton:pressed {\n"
+"    background-color: #3b4fbf;   /* Bleu fonc\303\251 au clic */\n"
+"    border: 3px solid #3b4fbf;   /* Bordure de la m\303\252me couleur que le fond press\303\251 */\n"
+"}\n"
+"\n"
+"/* "
+                        "Style du QPushButton lorsqu'il est en focus (tabulation) */\n"
+"QPushButton:focus {\n"
+"    outline: none;               /* Supprimer le contour par d\303\251faut */\n"
+"    border: 2px solid #2e8a56;  /* Bordure plus fonc\303\251e lorsqu'en focus */\n"
+"}\n"
+"\n"
+"/* Style du QPushButton lorsqu'il est d\303\251sactiv\303\251 */\n"
+"QPushButton:disabled {\n"
+"    background-color: #b0b0b0;   /* Fond gris clair pour les boutons d\303\251sactiv\303\251s */\n"
+"    color: #707070;              /* Couleur du texte grise pour les boutons d\303\251sactiv\303\251s */\n"
+"    border: 2px solid #b0b0b0;   /* Bordure grise pour les boutons d\303\251sactiv\303\251s */\n"
+"}\n"
+"\n"
+"/* Style g\303\251n\303\251ral pour les widgets lorsqu'ils sont d\303\251sactiv\303\251s */\n"
+"QWidget:disabled {\n"
+"    background-color: #f0f0f0;   /* Fond gris clair pour les widgets d\303\251sactiv\303\251s */\n"
+"    color: #a0a0a0;              /* Couleur du texte grise pour les widgets d\303\251sactiv\303\251s */\n"
+"}\n"
+""));
+        qrcodecommande_2 = new QLabel(tab_8);
+        qrcodecommande_2->setObjectName("qrcodecommande_2");
+        qrcodecommande_2->setGeometry(QRect(200, 60, 531, 441));
+        qr_code_bar = new QLineEdit(tab_8);
+        qr_code_bar->setObjectName("qr_code_bar");
+        qr_code_bar->setGeometry(QRect(450, 530, 331, 51));
+        qr_code_bar->setFont(font3);
+        qr_code_bar->setStyleSheet(QString::fromUtf8("border-radius :15px"));
+        qr_code_bar->setAlignment(Qt::AlignmentFlag::AlignCenter);
+        pdf->addTab(tab_8, QString());
+        tab_9 = new QWidget();
+        tab_9->setObjectName("tab_9");
+        label_nome = new QLabel(tab_9);
+        label_nome->setObjectName("label_nome");
+        label_nome->setGeometry(QRect(150, 100, 111, 31));
+        label_prenom = new QLabel(tab_9);
+        label_prenom->setObjectName("label_prenom");
+        label_prenom->setGeometry(QRect(330, 100, 111, 31));
+        pdf->addTab(tab_9, QString());
+        tabWidget->addTab(tab_6, QString());
         MainWindow->setCentralWidget(centralwidget);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
         MainWindow->setStatusBar(statusbar);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName("menuBar");
-        menuBar->setGeometry(QRect(0, 0, 1920, 25));
+        menuBar->setGeometry(QRect(0, 0, 1920, 22));
         MainWindow->setMenuBar(menuBar);
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(4);
         tabWidget_2->setCurrentIndex(4);
         tabWidget_3->setCurrentIndex(1);
         tabWidget_4->setCurrentIndex(0);
+        pdf->setCurrentIndex(6);
 
 
         QMetaObject::connectSlotsByName(MainWindow);
@@ -3863,7 +4835,6 @@ public:
         afficher_4->setText(QCoreApplication::translate("MainWindow", "Afficher", nullptr));
         export_2->setText(QCoreApplication::translate("MainWindow", "Exporter en format PDF", nullptr));
         toggleThemeButton->setText(QCoreApplication::translate("MainWindow", "Mode sombre", nullptr));
-        l1_2->setText(QString());
         ok->setText(QCoreApplication::translate("MainWindow", "ok", nullptr));
         lineEdit_recherche_id->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher", nullptr));
         searchButton->setText(QString());
@@ -3913,6 +4884,63 @@ public:
         pushButton_rechercher_2->setText(QCoreApplication::translate("MainWindow", "Rechercher", nullptr));
         tabWidget_4->setTabText(tabWidget_4->indexOf(supprimer_2), QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_5), QCoreApplication::translate("MainWindow", "gestion reservations", nullptr));
+        TAB_E->setTitle(QCoreApplication::translate("MainWindow", "liste des Employ\303\251s", nullptr));
+        lineEdit_critereRecherche_2->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher", nullptr));
+        comboBox_critereRecherche_3->setItemText(0, QCoreApplication::translate("MainWindow", "id", nullptr));
+        comboBox_critereRecherche_3->setItemText(1, QCoreApplication::translate("MainWindow", "numero", nullptr));
+        comboBox_critereRecherche_3->setItemText(2, QCoreApplication::translate("MainWindow", "nom", nullptr));
+
+        pushButton_afficher_aziz->setText(QCoreApplication::translate("MainWindow", "Afficher", nullptr));
+        comboBox_critereRech_3->setItemText(0, QCoreApplication::translate("MainWindow", "id", nullptr));
+        comboBox_critereRech_3->setItemText(1, QCoreApplication::translate("MainWindow", "nom", nullptr));
+
+        label_56->setText(QCoreApplication::translate("MainWindow", "Rechercher un Employe par:", nullptr));
+        label_72->setText(QCoreApplication::translate("MainWindow", "Trier la liste des clients par:", nullptr));
+        pushButton_afficher_aziz1->setText(QCoreApplication::translate("MainWindow", "PDF", nullptr));
+        pdf->setTabText(pdf->indexOf(afficher_5), QCoreApplication::translate("MainWindow", "Liste", nullptr));
+        groupBox_14->setTitle(QCoreApplication::translate("MainWindow", "AJOUTER", nullptr));
+        label_73->setText(QCoreApplication::translate("MainWindow", "Nom : ", nullptr));
+        label_74->setText(QCoreApplication::translate("MainWindow", "Prenom : ", nullptr));
+        label_75->setText(QCoreApplication::translate("MainWindow", "Id_e:", nullptr));
+        label_76->setText(QCoreApplication::translate("MainWindow", "Num t\303\251l\303\251phone  : ", nullptr));
+        nom->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre nom ", nullptr));
+        prenom->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre prenom ", nullptr));
+        numero->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre numero de t\303\251l\303\251phone ", nullptr));
+        ajouter_aziz->setText(QCoreApplication::translate("MainWindow", "Ajouter ", nullptr));
+        ide->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre idantifiant", nullptr));
+        label_77->setText(QCoreApplication::translate("MainWindow", "Date de naissance:", nullptr));
+        label_78->setText(QCoreApplication::translate("MainWindow", "Salaire:", nullptr));
+        salaire->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre Salaire", nullptr));
+        pdf->setTabText(pdf->indexOf(Ajouter_4), QCoreApplication::translate("MainWindow", "Ajouter", nullptr));
+        groupBox_15->setTitle(QCoreApplication::translate("MainWindow", "MODIFIER", nullptr));
+        label_79->setText(QCoreApplication::translate("MainWindow", "Nom : ", nullptr));
+        label_80->setText(QCoreApplication::translate("MainWindow", "Prenom : ", nullptr));
+        label_81->setText(QCoreApplication::translate("MainWindow", "Num_t\303\251l\303\251phone  : ", nullptr));
+        nom_modif->setPlaceholderText(QCoreApplication::translate("MainWindow", "Modifier le nom ", nullptr));
+        prenom_modif->setPlaceholderText(QCoreApplication::translate("MainWindow", "Modifier le Prenom", nullptr));
+        numero_modif->setPlaceholderText(QCoreApplication::translate("MainWindow", "Modifier le numero de t\303\251l\303\251phone ", nullptr));
+        modifier_aziz->setText(QCoreApplication::translate("MainWindow", "Modifier", nullptr));
+        label_82->setText(QCoreApplication::translate("MainWindow", "Date de naissance:", nullptr));
+        label_83->setText(QCoreApplication::translate("MainWindow", "Salaire:", nullptr));
+        salaire_modif->setPlaceholderText(QCoreApplication::translate("MainWindow", "Modifier le Salaire", nullptr));
+        label_84->setText(QCoreApplication::translate("MainWindow", "Id_e:", nullptr));
+        ide_modif->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre idantifiant", nullptr));
+        pdf->setTabText(pdf->indexOf(Modifier_4), QCoreApplication::translate("MainWindow", "Modifier ", nullptr));
+        groupBox_16->setTitle(QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
+        supprimer_aziz->setText(QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
+        id_supprimer->setPlaceholderText(QCoreApplication::translate("MainWindow", "Rechercher par ID", nullptr));
+        label_85->setText(QCoreApplication::translate("MainWindow", "ID_e :", nullptr));
+        pdf->setTabText(pdf->indexOf(supprimer_4), QCoreApplication::translate("MainWindow", "Supprimer", nullptr));
+        stats1->setText(QCoreApplication::translate("MainWindow", "Stats", nullptr));
+        pdf->setTabText(pdf->indexOf(tab_7), QCoreApplication::translate("MainWindow", "statistiques ", nullptr));
+        QrCode->setText(QCoreApplication::translate("MainWindow", "QrCode", nullptr));
+        qrcodecommande_2->setText(QString());
+        qr_code_bar->setPlaceholderText(QCoreApplication::translate("MainWindow", "Entrez votre idantifiant", nullptr));
+        pdf->setTabText(pdf->indexOf(tab_8), QCoreApplication::translate("MainWindow", "QrCode", nullptr));
+        label_nome->setText(QCoreApplication::translate("MainWindow", "afficher nom", nullptr));
+        label_prenom->setText(QCoreApplication::translate("MainWindow", "afficher prenom", nullptr));
+        pdf->setTabText(pdf->indexOf(tab_9), QCoreApplication::translate("MainWindow", "ardui", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_6), QCoreApplication::translate("MainWindow", "Page", nullptr));
     } // retranslateUi
 
 };

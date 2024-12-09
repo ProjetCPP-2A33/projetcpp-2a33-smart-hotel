@@ -1,23 +1,36 @@
-#include"connection.h"
+
+#include "connection.h"
 #include <QDebug>
-#include <QSqlError>
-Connection::Connection(){}
 
-bool Connection::createconnection()
+connection::connection()
 {
-    db = QSqlDatabase::addDatabase("QODBC");
-    //bool test=false;
-    db.setDatabaseName("source2a33");
-    db.setUserName("nour");
-    db.setPassword("oracle");
-    if (db.open()) {
-        qDebug() << "Connexion réussie!";
-        return true;
-    } else {
-        qDebug() << "Erreur de connexion : " << db.lastError().text();
-        return false;
-    }
-
 }
 
-void Connection::closeConnection(){db.close();}
+bool connection::createconnection()
+{
+    bool test = false;
+
+    if (QSqlDatabase::contains("qt_sql_default_connection")) {
+        db = QSqlDatabase::database("qt_sql_default_connection");
+    } else {
+        db = QSqlDatabase::addDatabase("QODBC");
+        db.setDatabaseName("projercpp");  // Nom de la source de données
+        db.setUserName("aziz1");          // Nom d'utilisateur
+        db.setPassword("aziz");              // Mot de passe
+    }
+
+    if (db.open()) {
+        test = true;
+    } else {
+        qDebug() << "Erreur lors de la connexion à la base de données:" << db.lastError().text();
+    }
+
+    return test;
+}
+
+void connection::closeconnection()
+{
+    if (db.isOpen()) {
+        db.close();
+    }
+}

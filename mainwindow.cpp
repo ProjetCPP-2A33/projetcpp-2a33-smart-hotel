@@ -57,6 +57,11 @@
 #include "arduinoservice.h"
 #include <QSerialPort>
 #include <QtSql/QSqlError>
+#include "employee.h"
+
+#include <QMessageBox>
+#include <QSerialPortInfo>
+#include "qrcode.h"
 
 
 /*MainWindow::MainWindow(QWidget *parent)
@@ -1225,3 +1230,169 @@ QString MainWindow::chercherdateDansBD(const QString &id)
 }
 
 
+
+void MainWindow::on_pushButton_afficher_aziz_clicked()
+ {
+        QSqlQueryModel *model = E.afficher();
+        ui->tab_affich_E->setModel(model);
+}
+
+
+void MainWindow::on_pushButton_afficher_aziz1_clicked()
+{
+    E.exportDataToPDF();
+}
+
+
+void MainWindow::on_ajouter_aziz_clicked()
+{
+    qDebug() << "Bouton Ajouter cliqué.";
+    QString id_e = ui->ide->text();  // Change to QString
+    int numero = ui->numero->text().toInt();
+    int salaire = ui->salaire->text().toInt();
+    QString nome = ui->nom->text();
+    QString prenom = ui->prenom->text();
+    QString datenaissancee = ui->datenaissance->text();
+
+    Employe M(id_e, nome, prenom, salaire, numero, datenaissancee);
+    bool test = M.ajouter();
+
+    if (test) {
+        QMessageBox::information(this, QObject::tr("Succès"), QObject::tr("Ajout effectué.\n"), QMessageBox::Ok);
+        refreshTable();  // Refresh the table after adding
+    } else {
+        QMessageBox::critical(this, QObject::tr("Échec"), QObject::tr("Ajout non effectué.\n"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_modifier_aziz_clicked()
+{
+    qDebug() << "Bouton Modifier cliqué.";
+    QString id_e = ui->ide_modif->text();  // Change to QString
+    int numero = ui->numero_modif->text().toInt();
+    int salaire = ui->salaire_modif->text().toInt();
+    QString nome = ui->nom_modif->text();
+    QString prenom = ui->prenom_modif->text();
+    QString datenaissancee = ui->datenaissance_modif->text();
+
+    Employe E(id_e, nome, prenom, salaire, numero, datenaissancee);
+    bool test = E.modifier();
+
+    if (test) {
+        QMessageBox::information(this, QObject::tr("Succès"), QObject::tr("Modification effectuée.\n"), QMessageBox::Ok);
+        refreshTable();  // Refresh the table after modification
+    } else {
+        QMessageBox::critical(this, QObject::tr("Échec"), QObject::tr("Modification non effectuée.\n"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_supprimer_aziz_clicked()
+{
+    QString id = ui->id_supprimer->text();
+    Employe E;
+    bool test = E.supprimer2(id);
+
+    if (test) {
+        QMessageBox::information(this, QObject::tr("Succès"), QObject::tr("Suppression effectuée.\n"), QMessageBox::Ok);
+        refreshTable();  // Refresh the table after deletion
+    } else {
+        QMessageBox::critical(this, QObject::tr("Échec"), QObject::tr("Suppression non effectuée.\n"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_stats1_clicked()
+{
+    QLayoutItem* item;
+    while ((item = ui->verticalLayout_2->layout()->takeAt(0)) != nullptr) {
+        delete item->widget();
+        delete item;
+    }
+    QChartView *chartView = nullptr;
+
+    chartView = E.createSalaireDistributionChart();
+
+    // Add the chart view to the layout if it was successfully created
+    if (chartView != nullptr) {
+        ui->verticalLayout_2->layout()->addWidget(chartView);
+    }
+}
+void MainWindow::refreshTable()
+{
+    Employe E;
+    QSqlQueryModel *model = E.afficher();
+    ui->tab_affich_E->setModel(model);  // Set the model for the QTableView
+}
+
+void MainWindow::on_lineEdit_critereRecherche_2_textChanged(const QString &arg1)
+{
+    QString selectedOption = ui->comboBox_critereRecherche_3->currentText(); // Get the selected search option
+
+    if (arg1.isEmpty() && ui->lineEdit_critereRecherche_2->hasFocus() && !ui->lineEdit_critereRecherche_2->hasSelectedText()) {
+        ui->tab_affich_E->setModel(E.afficher());
+        ui->lineEdit_critereRecherche_2->setToolTip("Entrez un critère de recherche");
+        return; // Exit early if there's no input
+    }
+
+    // Call the rechercher function with the selected option and input value
+    ui->tab_affich_E->setModel(E.rechercher(selectedOption, arg1));
+    ui->tab_affich_E->clearSelection(); //annuler la selection
+}
+void MainWindow::on_comboBox_critereRech_3_currentTextChanged(const QString &arg1)
+{
+    QSqlQueryModel* sortedModel = E.trier(arg1);
+
+    // Assuming you have a QTableView named tableView in your MainWindow UI to display the sorted data
+    ui->tab_affich_E->setModel(sortedModel);
+}
+void MainWindow::on_QrCode_clicked()
+{
+    using namespace qrcodegen;
+
+    QString value = ui->qr_code_bar->text(); // Récupérer la valeur du QR code (ID de l'employé)
+
+    if (value.isEmpty()) {
+        // Afficher un message d'erreur si le champ du QR code est vide
+        QMessageBox::warning(this, "Erreur", "Le champ du QR Code ne peut pas être vide !");
+    } else {
+        QString id = value;  // Treat as QString
+
+        // Vérifier si l'ID existe dans la base de données
+        QSqlQuery query;
+        query.prepare("SELECT NOME, PRENOM, SALAIRE, NUMERO, DATENAISSANCEE FROM EMPLOYEE WHERE ID_E = :id");
+        query.bindValue(":id", id);
+
+        if (query.exec() && query.next()) {
+            // Récupérer les informations de l'employé
+            QString nome = query.value("NOME").toString();
+            QString prenom = query.value("PRENOM").toString();
+            int salaire = query.value("SALAIRE").toInt();
+            int numero = query.value("NUMERO").toInt();
+            QString datenaissancee = query.value("DATENAISSANCEE").toString();
+
+            // Créer le texte du QR code avec les informations de l'employé
+            QString text = QString("Employé: %1 %2\nSalaire: %3\nNuméro: %4\nDate de Naissance: %5")
+                               .arg(nome).arg(prenom).arg(salaire).arg(numero).arg(datenaissancee);
+
+            // Générer le QR code avec ces informations
+            QrCode qr = QrCode::encodeText(text.toUtf8().data(), QrCode::Ecc::MEDIUM);
+
+            qint32 sz = qr.getSize();
+            QImage im(sz, sz, QImage::Format_RGB32);
+            QRgb black = qRgb(9, 13, 12);
+            QRgb white = qRgb(255, 255, 255);
+
+            // Créer l'image du QR code
+            for (int y = 0; y < sz; y++) {
+                for (int x = 0; x < sz; x++) {
+                    im.setPixel(x, y, qr.getModule(x, y) ? black : white);
+                }
+            }
+
+            // Afficher l'image du QR code dans le label
+            ui->qrcodecommande_2->setPixmap(QPixmap::fromImage(im.scaled(200, 200, Qt::KeepAspectRatio, Qt::FastTransformation)));
+        } else {
+            // Si l'employé n'existe pas dans la base de données
+            QMessageBox::warning(this, "Erreur", "L'employé avec cet ID n'existe pas !");
+        }
+    }
+}

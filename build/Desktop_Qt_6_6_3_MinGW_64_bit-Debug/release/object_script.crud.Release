@@ -2,8 +2,10 @@ release/Arduino.o
 release/arduinoservice.o
 release/client.o
 release/connection.o
+release/employee.o
 release/main.o
 release/mainwindow.o
+release/qrcode.o
 release/reservation.o
 release/service.o
 release/qrc_b.o
