@@ -345,7 +345,7 @@ QSqlQueryModel* Client::obtenirReservationsParClient() {
     QSqlQuery query;
 
     // Requête pour compter le nombre de réservations par client
-    query.prepare("SELECT R.IDC, COUNT(R.IDC) AS nbr_reservations, C.NOMC, C.PRENOMC "
+    query.prepare("SELECT R.IDC, COUNT(R.IDC) AS nbrperso, C.NOMC, C.PRENOMC "
                   "FROM RESERVATION R "
                   "JOIN CLIENTS C ON R.IDC = C.IDC "
                   "GROUP BY R.IDC, C.NOMC, C.PRENOMC");

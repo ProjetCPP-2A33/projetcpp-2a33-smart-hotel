@@ -57,6 +57,12 @@
 #include "arduinoservice.h"
 #include <QSerialPort>
 #include <QtSql/QSqlError>
+#include "employee.h"
+
+#include <QMessageBox>
+#include <QSerialPortInfo>
+#include "qrcode.h"
+
 
 
 /*MainWindow::MainWindow(QWidget *parent)
@@ -117,10 +123,17 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
+
+
     // Initialisation des modèles
     ui->tableView_3->setModel(Etmp.afficher());
     ui->tableView_2->setModel(serviceModel.afficher());
     ui->tableView->setModel(Cl.afficher());
+
+    QTabWidget *tabWidget = ui->tabWidget;
+
+    // Définir la première page (index 0) comme active
+    tabWidget->setCurrentIndex(0);
 
     // Configuration de la palette (mode clair par défaut)
     setupPalettes();
@@ -134,8 +147,8 @@ MainWindow::MainWindow(QWidget *parent)
         QMessageBox::critical(this, "Erreur", "Connexion à Arduino échouée.");
     }
 
-    // Gestion de la connexion Arduino via la classe Arduino
-    /*int ret = arduino->connect_arduino();
+   /* // Gestion de la connexion Arduino via la classe Arduino
+    int ret = arduino->connect_arduino();
     switch (ret) {
     case 0:
         qDebug() << "Arduino détecté et connecté sur le port :" << arduino->getarduino_port_name();
@@ -157,6 +170,8 @@ MainWindow::MainWindow(QWidget *parent)
     }*/
 
     // Connexion des boutons aux slots correspondants
+
+    connect(ui->tabWidget, &QTabWidget::currentChanged, this, &MainWindow::onTabChanged);
     connect(ui->pushButtonSend, &QPushButton::clicked, this, &MainWindow::sendEmailWithPostmark);
     connect(ui->ButtonOuvrir, &QPushButton::clicked, this, &MainWindow::on_ButtonOuvrir_Clicked);
     connect(ui->tri, &QPushButton::clicked, this, &MainWindow::onSortByDateClicked);
@@ -202,7 +217,7 @@ void MainWindow::verifyEmployeeID()
 QString MainWindow::processEmployeeID(const QString &employeeID)
 {
     QSqlQuery query;
-    query.prepare("SELECT NOME, PRENOME FROM MALEK.EMPLOYEES WHERE ID_E = :employeeID");
+    query.prepare("SELECT NOME, PRENOM FROM MALEK.EMPLOYEE WHERE ID_E = :employeeID");
     query.bindValue(":employeeID", employeeID);
 
     if (!query.exec()) {
@@ -213,7 +228,7 @@ QString MainWindow::processEmployeeID(const QString &employeeID)
     if (query.next()) {
         // Récupérer le nom et le prénom
         QString employeeName = query.value("NOME").toString().toUpper();
-        QString employeeFirstName = query.value("PRENOME").toString().toUpper();
+        QString employeeFirstName = query.value("PRENOM").toString().toUpper();
 
         // Retourner le message de bienvenue
         return "Welcome, " + employeeName + " " + employeeFirstName + "!";
@@ -620,11 +635,11 @@ void MainWindow::sendEmailWithPostmark() {
     // Préparer la requête HTTP vers l'API Postmark
     QNetworkRequest request(QUrl("https://api.postmarkapp.com/email"));
     request.setHeader(QNetworkRequest::ContentTypeHeader, "application/json");
-    request.setRawHeader("X-Postmark-Server-Token", ""); // Votre token API
+    request.setRawHeader("X-Postmark-Server-Token", "164aa4c8-0022-4a7a-b61c-9df18bbf0d56"); // Votre token API
 
     // Construire le contenu de l'email
     QJsonObject emailObject;
-    emailObject["From"] = ""; // Adresse email expéditeur (vérifiée dans Postmark)
+    emailObject["From"] = "malek.knani@esprit.tn"; // Adresse email expéditeur (vérifiée dans Postmark)
     emailObject["To"] = recipient; // Adresse email du destinataire
     emailObject["Subject"] = "Email de test depuis Qt et Postmark"; // Sujet de l'email
     emailObject["TextBody"] = "Bonjour,\nCeci est un test envoyé avec Qt et Postmark."; // Contenu texte de l'email
@@ -849,7 +864,7 @@ void MainWindow::on_statistiqueButton_2_clicked() {
 }
 
 void MainWindow::afficherHistoriqueService() {
-    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUDhistorique_service.txt";
+    QString cheminFichier = "C:/Users/KMTECH/Downloads/2/historique_service.txt";
     QFile file(cheminFichier);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QMessageBox::warning(this, "Erreur", "Impossible d'ouvrir le fichier d'historique.");
@@ -872,7 +887,7 @@ void MainWindow::addToHistory(const QString &action, int idService) {
 }
 
 void MainWindow::on_pb_historiqueService_clicked() {
-    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
+    QString cheminFichier = "C:/Users/KMTECH/Downloads/2/historique_service.txt";
     QDesktopServices::openUrl(QUrl::fromLocalFile(cheminFichier));
     QMessageBox::information(this, "Historique", "Les actions ont été enregistrées dans l'historique.");
 }
@@ -890,8 +905,8 @@ void MainWindow::on_sendSMSButton_clicked()
 void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
 {
     // SID et auth token de Twilio
-    QString sid = "AC33a7a85609d980ad8c5f6af6ea4407b8";
-    QString authToken = "e7831917593e61169112e26f7ff93a5a";
+    QString sid = "AC23f6573f85d049a9c4e5525382eef6bc";
+    QString authToken = "7bd82c7af8a3f4a430cbe14f8e9af06f";
 
     // URL de l'API Twilio
     QString url = "https://api.twilio.com/2010-04-01/Accounts/" + sid + "/Messages.json";
@@ -905,7 +920,7 @@ void MainWindow::envoyerSMS(const QString &destinataire, const QString &message)
     // Construire les données POST
     QByteArray postData;
     postData.append("To=" + QUrl::toPercentEncoding(destinataire)); // Encodage pour les caractères spéciaux
-    postData.append("&From=%2B12029293390"); // Numéro de l'expéditeur avec "%2B" pour "+"
+    postData.append("&From=%2B12565484720"); // Numéro de l'expéditeur avec "%2B" pour "+"
     postData.append("&Body=" + QUrl::toPercentEncoding(message));
 
     // Configurer la requête HTTP
@@ -1225,3 +1240,228 @@ QString MainWindow::chercherdateDansBD(const QString &id)
 }
 
 
+
+void MainWindow::on_pushButton_afficher_aziz_clicked()
+ {
+        QSqlQueryModel *model = E.afficher();
+        ui->tab_affich_E->setModel(model);
+}
+
+
+void MainWindow::on_pushButton_afficher_aziz1_clicked()
+{
+    E.exportDataToPDF();
+}
+
+
+void MainWindow::on_ajouter_aziz_clicked()
+{
+    qDebug() << "Bouton Ajouter cliqué.";
+    QString id_e = ui->ide->text();  // Change to QString
+    int numero = ui->numero->text().toInt();
+    int salaire = ui->salaire->text().toInt();
+    QString nome = ui->nom->text();
+    QString prenom = ui->prenom->text();
+    QString datenaissancee = ui->datenaissance->text();
+
+    Employe M(id_e, nome, prenom, salaire, numero, datenaissancee);
+    bool test = M.ajouter();
+
+    if (test) {
+        QMessageBox::information(this, QObject::tr("Succès"), QObject::tr("Ajout effectué.\n"), QMessageBox::Ok);
+        refreshTable();  // Refresh the table after adding
+    } else {
+        QMessageBox::critical(this, QObject::tr("Échec"), QObject::tr("Ajout non effectué.\n"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_modifier_aziz_clicked()
+{
+    qDebug() << "Bouton Modifier cliqué.";
+    QString id_e = ui->ide_modif->text();  // Change to QString
+    int numero = ui->numero_modif->text().toInt();
+    int salaire = ui->salaire_modif->text().toInt();
+    QString nome = ui->nom_modif->text();
+    QString prenom = ui->prenom_modif->text();
+    QString datenaissancee = ui->datenaissance_modif->text();
+
+    Employe E(id_e, nome, prenom, salaire, numero, datenaissancee);
+    bool test = E.modifier();
+
+    if (test) {
+        QMessageBox::information(this, QObject::tr("Succès"), QObject::tr("Modification effectuée.\n"), QMessageBox::Ok);
+        refreshTable();  // Refresh the table after modification
+    } else {
+        QMessageBox::critical(this, QObject::tr("Échec"), QObject::tr("Modification non effectuée.\n"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_supprimer_aziz_clicked()
+{
+    QString id = ui->id_supprimer->text();
+    Employe E;
+    bool test = E.supprimer2(id);
+
+    if (test) {
+        QMessageBox::information(this, QObject::tr("Succès"), QObject::tr("Suppression effectuée.\n"), QMessageBox::Ok);
+        refreshTable();  // Refresh the table after deletion
+    } else {
+        QMessageBox::critical(this, QObject::tr("Échec"), QObject::tr("Suppression non effectuée.\n"), QMessageBox::Ok);
+    }
+}
+
+void MainWindow::on_stats1_clicked()
+{
+    QLayoutItem* item;
+    while ((item = ui->verticalLayout_2->layout()->takeAt(0)) != nullptr) {
+        delete item->widget();
+        delete item;
+    }
+    QChartView *chartView = nullptr;
+
+    chartView = E.createSalaireDistributionChart();
+
+    // Add the chart view to the layout if it was successfully created
+    if (chartView != nullptr) {
+        ui->verticalLayout_2->layout()->addWidget(chartView);
+    }
+}
+void MainWindow::refreshTable()
+{
+    Employe E;
+    QSqlQueryModel *model = E.afficher();
+    ui->tab_affich_E->setModel(model);  // Set the model for the QTableView
+}
+
+void MainWindow::on_lineEdit_critereRecherche_2_textChanged(const QString &arg1)
+{
+    QString selectedOption = ui->comboBox_critereRecherche_3->currentText(); // Get the selected search option
+
+    if (arg1.isEmpty() && ui->lineEdit_critereRecherche_2->hasFocus() && !ui->lineEdit_critereRecherche_2->hasSelectedText()) {
+        ui->tab_affich_E->setModel(E.afficher());
+        ui->lineEdit_critereRecherche_2->setToolTip("Entrez un critère de recherche");
+        return; // Exit early if there's no input
+    }
+
+    // Call the rechercher function with the selected option and input value
+    ui->tab_affich_E->setModel(E.rechercher(selectedOption, arg1));
+    ui->tab_affich_E->clearSelection(); //annuler la selection
+}
+void MainWindow::on_comboBox_critereRech_3_currentTextChanged(const QString &arg1)
+{
+    QSqlQueryModel* sortedModel = E.trier(arg1);
+
+    // Assuming you have a QTableView named tableView in your MainWindow UI to display the sorted data
+    ui->tab_affich_E->setModel(sortedModel);
+}
+void MainWindow::on_QrCode_clicked()
+{
+    using namespace qrcodegen;
+
+    QString value = ui->qr_code_bar->text(); // Récupérer la valeur du QR code (ID de l'employé)
+
+    if (value.isEmpty()) {
+        // Afficher un message d'erreur si le champ du QR code est vide
+        QMessageBox::warning(this, "Erreur", "Le champ du QR Code ne peut pas être vide !");
+    } else {
+        QString id = value;  // Treat as QString
+
+        // Vérifier si l'ID existe dans la base de données
+        QSqlQuery query;
+        query.prepare("SELECT NOME, PRENOM, SALAIRE, NUMERO, DATENAISSANCEE FROM EMPLOYEE WHERE ID_E = :id");
+        query.bindValue(":id", id);
+
+        if (query.exec() && query.next()) {
+            // Récupérer les informations de l'employé
+            QString nome = query.value("NOME").toString();
+            QString prenom = query.value("PRENOM").toString();
+            int salaire = query.value("SALAIRE").toInt();
+            int numero = query.value("NUMERO").toInt();
+            QString datenaissancee = query.value("DATENAISSANCEE").toString();
+
+            // Créer le texte du QR code avec les informations de l'employé
+            QString text = QString("Employé: %1 %2\nSalaire: %3\nNuméro: %4\nDate de Naissance: %5")
+                               .arg(nome).arg(prenom).arg(salaire).arg(numero).arg(datenaissancee);
+
+            // Générer le QR code avec ces informations
+            QrCode qr = QrCode::encodeText(text.toUtf8().data(), QrCode::Ecc::MEDIUM);
+
+            qint32 sz = qr.getSize();
+            QImage im(sz, sz, QImage::Format_RGB32);
+            QRgb black = qRgb(9, 13, 12);
+            QRgb white = qRgb(255, 255, 255);
+
+            // Créer l'image du QR code
+            for (int y = 0; y < sz; y++) {
+                for (int x = 0; x < sz; x++) {
+                    im.setPixel(x, y, qr.getModule(x, y) ? black : white);
+                }
+            }
+
+            // Afficher l'image du QR code dans le label
+            ui->qrcodecommande_2->setPixmap(QPixmap::fromImage(im.scaled(200, 200, Qt::KeepAspectRatio, Qt::FastTransformation)));
+        } else {
+            // Si l'employé n'existe pas dans la base de données
+            QMessageBox::warning(this, "Erreur", "L'employé avec cet ID n'existe pas !");
+        }
+    }
+}
+
+
+void MainWindow::onTabChanged(int index)
+{
+    qDebug() << "Changement d'onglet à l'index: " << index;
+
+    // Si l'utilisateur tente d'accéder à une page protégée
+    if (index == 1) {
+        handlePageAccess("gestion des clients", "client_admin", "client_password");
+    } else if (index == 2) {
+        handlePageAccess("gestion des services", "service_admin", "service_password");
+    } else if (index == 3) {
+        handlePageAccess("gestion des réservations", "reservation_admin", "reservation_password");
+    } else if (index == 4) {
+        handlePageAccess("gestion des employés", "employee_admin", "employee_password");
+    }
+}
+
+void MainWindow::handlePageAccess(const QString &pageName, const QString &expectedUsername, const QString &expectedPassword)
+{
+    qDebug() << "Tentative d'accès à la page protégée : " << pageName;
+
+    // Créer un formulaire de connexion
+    QDialog loginDialog(this);
+    loginDialog.setWindowTitle("Login");
+
+    QVBoxLayout *layout = new QVBoxLayout(&loginDialog);
+
+    QLabel *usernameLabel = new QLabel("Nom d'utilisateur:", &loginDialog);
+    QLineEdit *usernameLineEdit = new QLineEdit(&loginDialog);
+    QLabel *passwordLabel = new QLabel("Mot de passe:", &loginDialog);
+    QLineEdit *passwordLineEdit = new QLineEdit(&loginDialog);
+    passwordLineEdit->setEchoMode(QLineEdit::Password);
+
+    QPushButton *loginButton = new QPushButton("Se connecter", &loginDialog);
+    layout->addWidget(usernameLabel);
+    layout->addWidget(usernameLineEdit);
+    layout->addWidget(passwordLabel);
+    layout->addWidget(passwordLineEdit);
+    layout->addWidget(loginButton);
+
+    // Vérification des identifiants lors du clic sur "Se connecter"
+    connect(loginButton, &QPushButton::clicked, [&]() {
+        if (usernameLineEdit->text() == expectedUsername && passwordLineEdit->text() == expectedPassword) {
+            loginDialog.accept();  // Connexion réussie
+        } else {
+            QMessageBox::warning(&loginDialog, "Erreur", "Nom d'utilisateur ou mot de passe incorrect.");
+        }
+    });
+
+    // Afficher la fenêtre de connexion et attendre la réponse
+    if (loginDialog.exec() == QDialog::Accepted) {
+        qDebug() << "Accès autorisé à la page.";
+        return;  // Si l'utilisateur est autorisé à accéder à la page
+    } else {
+        qDebug() << "Accès refusé, retour à la page Menu.";
+        ui->tabWidget->setCurrentIndex(0);  // Retourner à la page Menu
+    }
+}

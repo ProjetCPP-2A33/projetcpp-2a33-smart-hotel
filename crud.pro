@@ -15,8 +15,10 @@ SOURCES += \
     arduinoservice.cpp \
     client.cpp \
     connection.cpp \
+    employee.cpp \
     main.cpp \
     mainwindow.cpp \
+    qrcode.cpp \
     reservation.cpp \
     service.cpp
 
@@ -25,7 +27,9 @@ HEADERS += \
     arduinoservice.h \
     client.h \
     connection.h \
+    employee.h \
     mainwindow.h \
+    qrcode.h \
     reservation.h \
     service.h
 

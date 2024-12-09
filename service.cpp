@@ -268,7 +268,7 @@ QMap<QString, double> Service::statistiquesParDisponibilite() {
     return stats;
 }
 void Service::addToHistory(const QString &action, int ids) {
-    QString cheminFichier = "C:/Users/nour1/OneDrive/Documents/InterfaceCRUD/historique_service.txt";
+    QString cheminFichier = "C:/Users/KMTECH/Downloads/2/historique_service.txt";
     QFile file(cheminFichier);
     if (!file.open(QIODevice::Append | QIODevice::Text)) {
         qDebug() << "Erreur lors de l'ouverture du fichier historique.";

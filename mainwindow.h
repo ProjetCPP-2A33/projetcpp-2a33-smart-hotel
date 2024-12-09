@@ -12,6 +12,20 @@
 #include "reservation.h"
 #include "service.h"
 #include <QSerialPort>
+#include "employee.h"
+#include <QSerialPort>
+#include <QSerialPortInfo>
+#include <QTableView>  // This includes the necessary QTableView class
+/*
+#include <QTabWidget>
+#include <QLineEdit>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QMessageBox>
+#include <QSet>
+#include <QMap>
+*/
+
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -80,7 +94,19 @@ private slots:
     void on_pushButtonSend_clicked();
     void on_pushButton_client_fidele_clicked();
     QString chercherdateDansBD(const QString &id);
+    //aziz
+    void on_pushButton_afficher_aziz_clicked();
+    void on_pushButton_afficher_aziz1_clicked();
+    void on_ajouter_aziz_clicked();
+    void on_modifier_aziz_clicked();
+    void on_supprimer_aziz_clicked();
+    void refreshTable();
+    void on_stats1_clicked();
+    void on_lineEdit_critereRecherche_2_textChanged(const QString &arg1);
+    void on_comboBox_critereRech_3_currentTextChanged(const QString &arg1);
+    void on_QrCode_clicked();
 
+    void onTabChanged(int index);
 private:
     Ui::MainWindow *ui;
     Client Cl;
@@ -96,6 +122,11 @@ private:
 
     QPalette lightPalette;   // Palette pour le mode clair
     QPalette darkPalette;
+
+    Employe E;
+    void handlePageAccess(const QString &pageName, const QString &expectedUsername, const QString &expectedPassword);
+    //void handlePageAccess(const QString& pageName);
+
 };
 
 
