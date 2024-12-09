@@ -6388,7 +6388,7 @@ QWidget:disabled {
     </widget>
     <widget class="QWidget" name="tab_6">
      <attribute name="title">
-      <string>Page</string>
+      <string>gestion employes</string>
      </attribute>
      <widget class="QTabWidget" name="pdf">
       <property name="enabled">
@@ -8049,7 +8049,7 @@ QWidget:disabled {
      <x>0</x>
      <y>0</y>
      <width>1920</width>
-     <height>22</height>
+     <height>23</height>
     </rect>
    </property>
   </widget>
